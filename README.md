@@ -7,6 +7,13 @@ This repo implements the Garlic Tech development infrastucture. The infrastructu
 * you do not have to maintain complicated production, development and CI configurations
 * all the services can benefit from the optimization in the development / production processes immediately
 
+## Pre-requistes
+
+Before able to use the workflows, you have to 
+
+* install docker and provision a docker machine
+* ```DOCKER_USERNAME``` and ```DOCKER_PASSWORD``` environment variables must be set, in order to be able to pull images from docker.garlictech.com.
+
 ## Development process
 
 _tl;dr_
