@@ -105,3 +105,28 @@ Executes the protractor bases e2e tests. It uses a different container, based on
 The protractor is pre-configured inside the container.
 
 The test assumes that the application/site (the webpack server) also runs.
+
+### gulp
+
+We have some, mainly releasing and maintenance related tasks that we implement with gulp. A configured gulp task list also has its own container: ```garlictech-workflows-common```. Use npm to simply relay the gulp commands to the container.
+
+For example, get all the available gulp tasks:
+
+```npm run gulp help```
+
+So, add the gulp commands after ```npm run gulp``` instead of ```gulp```.
+
+## Installing packages
+
+Well, this is a disadvantage now, to be solved. Actually, you cannot really use npm install locally. Whay you should do:
+
+* Go to the container: ```npm run bash```
+* Install the package here, as you wish: ```npm install```
+* Cat the ```package.json```, and copy the added line from (dev, peer) dependencies
+* Paste the line to the appropriate place in your local ```package.json```.
+
+To be automated!
+
+
+
+

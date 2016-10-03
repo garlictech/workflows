@@ -1,16 +1,17 @@
 FROM docker.garlictech.com/garlictech-base-image
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-COPY ./package.json /
-
-RUN cd / && \
-  npm install -g gulp coffee && \
-  npm install && \
-  rm /package.json
-
 RUN mkdir /app
 WORKDIR /app
-COPY gulpfile.coffee /app
-VOLUME /app
+COPY package.json /app
+
+RUN npm install -g --silent gulp coffee && \
+  npm install --silent && \
+  npm link gulp && \
+  git config --global user.email "contact@garlictech.com" && \
+  git config --global user.name "Garlic Tech Ltd."
+
+COPY . /app
+VOLUME /app/project
 
 ENTRYPOINT ["gulp"]

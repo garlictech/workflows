@@ -1,7 +1,7 @@
-gulp = require('gulp-help') require 'gulp'
+gulp = require 'gulp'
 
 config =
-  base: __dirname
+  root: "/app/project"
 
-require('garlictech-workflows-common/dist/gulp/client')(gulp, config)
+require('./gulp')(gulp, config)
 return gulp
