@@ -1,0 +1,6 @@
+{
+  "docker-images": {
+    "appname": "docker images",
+    "scope": "garlictech"
+  }
+}
