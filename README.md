@@ -9,7 +9,7 @@ This repo implements the Garlic Tech development infrastucture. The infrastructu
 
 ## Development process
 
-tl;dr
+_tl;dr_
 
 ```
 npm run setup-dev
@@ -37,6 +37,8 @@ Some of the scripts can accept optional parameters, add then after the double hy
 The scripts start the appropriate docker containers implementing the required operation and containing the required, pre-installed, configured software required by the operation.
 This approach is much superior to the local installation approach: you do not have to install all the development packages for each components.
 
+In the ```docker```folder, you can find the basic, generated docker files and scripts. In most cases, they should be enough, but you can freely modify them, to implement some more complicated scenarios.
+
 The next sections describe the individual scripts.
 
 ### The webpack based workflows
@@ -61,6 +63,8 @@ Builds the application-specific development Docker image. You have to build it w
 * the ```garlictech-webpack``` image changes and you want to integrate the changes
 * the ```package.json``` file changes
 
+The build combines two docker_compose files in the docker folder of the project (they are also generated). See the ```docker/build.sh``` script in your application folder. The main docker file is in the root of the application folder.
+
 ### Start 
 
 This script can be invoked without 'run':
@@ -71,6 +75,33 @@ or
 
 ``` npm run start```
 
-It launches the webpack development server and stars watching files. You can access your site in http://localhost:8081. If you change something in ```src```, then it reloads the files in the browser. If you want a different folder.
+It launches the webpack development server and stars watching files. You can access your site in http://localhost:8081. If you change something in ```src```, then it reloads the files in the browser. 
 
+### unittest
 
+It launches the unit tests. How it is run is based on the content of NODE_ENV (in the ```.env``` file). If it is development, then the unittest dows not exit, it watches file changes and
+re-runs the tests when something changes. If NODE_ENV is not development, it does not watch: runs the tests once then exits.
+
+### stop
+
+Stops the webpack dev server. Locally, you can do it with Ctrl-C, it is relevant in CI environments, for example, to stop the server programmatically.
+
+### bash
+
+Use bash inside the app container. It is good to inspect what is going on internally. It launches the webpack container containing your app and gives you a bash shell.
+
+### :docker commands
+
+Do not use them. They are used internally, inside the container.
+
+### e2e-test
+
+Executes the protractor bases e2e tests. It uses a different container, based on ```garlictech-protractor```. What it does:
+
+* Builds a container implementing your tests. It uses ```e2e/Dockerfile``` to build the test container. Installs the special dependencies in ```e2e/package.json```.
+* Mounts ```e2e/src``` folder and launches the container.
+* Inside the container, it starts a headless Chrome based Selenium server, then start the protractor that executes the tests.
+
+The protractor is pre-configured inside the container.
+
+The test assumes that the application/site (the webpack server) also runs.

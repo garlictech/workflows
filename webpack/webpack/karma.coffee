@@ -31,7 +31,6 @@ module.exports = (dirname, webpackConfig) ->
       colors: true
       logLevel: "debug"
       frameworks: ['mocha', 'sinon-chai']
-      # browsers : ['Chrome']
       browsers: ['PhantomJS_custom']
       captureTimeout: 60000
       reportSlowerThan: 500
@@ -49,7 +48,6 @@ module.exports = (dirname, webpackConfig) ->
         exitOnResourceError: true
 
       plugins : [
-        # 'karma-chrome-launcher',
         'karma-phantomjs-launcher',
         'karma-mocha',
         'karma-mocha-reporter',
@@ -67,9 +65,6 @@ module.exports = (dirname, webpackConfig) ->
 
     result.preprocessors[packageConfig.main] = ['webpack']
     result.preprocessors[packageConfig.unittest] = ['webpack']
-
-    result.webpack.plugins.push new webpack.ProvidePlugin
-      UnitTest: 'garlictech-workflows-client/dist/test/unit'
 
     config.set result
     return config

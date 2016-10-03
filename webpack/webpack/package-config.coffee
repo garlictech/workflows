@@ -24,7 +24,7 @@ module.exports = (dirname) ->
     template = path.join PATHS.dev, 'index.html'
     contentBase = PATHS.dev
 
-  unittest = "./src/test/unit/test.coffee"
+  unittest = "./test/unit/index.coffee"
 
   moduleName: packageConfig.name ? throw Error "Name field should be present in package.json"
   main: packageConfig.main ? throw Error "Main field should be present in package.json"
