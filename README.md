@@ -108,6 +108,8 @@ Executes the protractor bases e2e tests. It uses a different container, based on
 * Builds a container implementing your tests. It uses ```e2e/Dockerfile``` to build the test container. Installs the special dependencies in ```e2e/package.json```.
 * Mounts ```e2e/src``` folder and launches the container.
 * Inside the container, it starts a headless Chrome based Selenium server, then start the protractor that executes the tests.
+* You can add some test-specific dependencies to the local ```package.json``` file, they are installed before running the tests.
+* The protactor image pre-installs some test packages. Check them in the [Dockerfile of protractor](https://github.com/garlictech/docker-images/blob/master/protractor/Dockerfile]).
 
 The protractor is pre-configured inside the container.
 
@@ -134,6 +136,99 @@ Well, this is a disadvantage now, to be solved. Actually, you cannot really use 
 
 To be automated!
 
+## How to adapt a module based on the old workflow
+
+* Remove the following files from your old project:
+
+__WARNING__: we do not need those files, but we may need their functionality. In case that you did not modify their content after the previous project generation,
+you can safely remove the files. Otherwise, you need to re-implement their functions elsewhere. It is especially true for the content of ```webpack.common.config.js```, ```src/test```, ```e2e```.
+
+```
+PROJECTDIR=<my_project_folder>
+cd "$PROJECTDIR"
+rm -r webpack.common.config.js webpack.config.js karma.conf.js coffeelint.json gulpfile.coffee node_modules scripts .jshintrc src/test
+```
+
+* Generate an empty project with the garlictech generator, it will serve as reference.
+
+```pushd /tmp
+mkdir testapp
+cd testapp
+yo garlic-webapp --skip-install
+```
+
+* Copy the following files to your project dir:
+
+```
+cp -r docker scripts .env .travis.yml .gitignore  .npmignore Dockerfile dev-site hooks "$PROJECTDIR"
+cd e2e
+cp Dockerfile package.json $PROJECTDIR/e2e
+```
+
+Now, we modify some files. We assume that the angular module name of the example project is ```Garlictech.Localize```. Use your module name accordingly.
+
+### dev-site
+
+You have to modify this folder only if your project is a module (in ```package.json```: garlic.type property is "module"). Otherwise, simply delete this folder.
+
+Update ```index.html``` and ```dev-app/index.coffee``` to reflect your angular module name (for example, instead of 
+```Garlictech.Testapp```, write ```Garlictech.Localize``` everywhere). This is an empty "site" that ```npm start``` uses. Consider porting the content of the old
+e2e tests, because formerly, the e2e test was used for ```npm start``` a module project.
+
+### e2e
+
+* Move your test code so ```src```:
+
+```pushd e2e
+mkdir src
+mv pages/ scenarios/ src/
+```
+* Copy the base protractor config file here:
+
+```
+cp /tmp/testapp/e2e/src/protractor.conf.js .
+popd
+```
+
+* Port your old test-app if needed
+
+Mind that e2e tests will test the site itself. Site is what webpack starts: if it is a module project, then it will start the site in ```dev-site```, otherwise, the thing in ```src/index.html```.
+So, consider porting the relevant content of ```e2e/index.html``` and ```e2e/test-app``` to ```dev-site```.
+
+* Remove the two files
+
+```
+rm -r e2e/index.html e2e/test-app
+```
+
+### hooks
+
+Here, add your old webpack or karma hooks here (the ones that were in ```webpack.common.config.js```, if you needed this). Tn those files, you can access the whole
+webpack and karma config, after the docker container configured them. Customize them here.
+
+Also, you can add some hooks to travis (in travis folder). The script names reflect the travis phases. Currently, only ```before_install``` is supported, add your stuff
+to this script. Do not remove the existing content unless you know what your are doing. Anyway, it is under your full control, add hooks and modify 
+```.travis.yml``` as you wish.
+
+### package.json
+
+* The ```scripts``` section must contain this, as is:
+
+```
+"start": "docker/start.sh",
+"stop": "docker/stop.sh",
+"unittest": "docker/unittest.sh",
+"build": "docker/build.sh",
+"e2e-test": "docker/e2e-test.sh",
+"bash": "docker/bash.sh",
+"gulp": "docker/gulp.sh",
+"setup-dev": "scripts/setup-dev.sh",
+"start:docker": "scripts/start.sh",
+"unittest:docker": "scripts/unittest.sh"
+```
+
+* Remove ```garlic.unittest``` feauture.
+* Remove ```garlictech-workflows-client``` from the all of the dependencies.
 
 
-
+Now, you can try the new workflow.
