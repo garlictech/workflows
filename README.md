@@ -12,7 +12,6 @@ This repo implements the Garlic Tech development infrastucture. The infrastructu
 Before able to use the workflows, you have to 
 
 * install docker and provision a docker machine
-* ```DOCKER_USERNAME``` and ```DOCKER_PASSWORD``` environment variables must be set, in order to be able to pull images from docker.garlictech.com.
 
 ## Development process
 
