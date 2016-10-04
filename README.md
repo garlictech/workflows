@@ -229,5 +229,4 @@ to this script. Do not remove the existing content unless you know what your are
 * Remove ```garlic.unittest``` feauture.
 * Remove ```garlictech-workflows-client``` from the all of the dependencies.
 
-
 Now, you can try the new workflow.
