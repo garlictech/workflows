@@ -1,4 +1,4 @@
-FROM docker.garlictech.com/garlictech-base-image
+FROM garlictech2/base-image
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
 RUN mkdir /app

@@ -8,7 +8,7 @@ getPaths = (dirname, dist) ->
   dist: path.join dirname, dist
   dev: path.join dirname, 'dev-site'
   node: path.join dirname, 'node_modules'
-  workflow_node: path.resolve "#{__dirname}/../node_modules"
+  workflow_node: path.resolve "node_modules"
   bower: path.join dirname, 'bower_components'
 
 module.exports = (dirname) ->

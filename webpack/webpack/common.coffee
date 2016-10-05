@@ -1,7 +1,7 @@
 path = require 'path'
 _ = require 'lodash'
 webpack = require 'webpack'
-plugins = require('webpack-load-plugins') {config: '/package.json'}
+plugins = require('webpack-load-plugins') {config: '/app/package_internal.json'}
 
 #related to this bug: https://github.com/jtangelder/sass-loader/issues/100
 process.env.UV_THREADPOOL_SIZE = 100

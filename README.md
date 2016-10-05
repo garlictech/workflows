@@ -71,6 +71,10 @@ Builds the application-specific development Docker image. You have to build it w
 
 The build combines two docker_compose files in the docker folder of the project (they are also generated). See the ```docker/build.sh``` script in your application folder. The main docker file is in the root of the application folder.
 
+You can pass docker_compose build parameters to the process like:
+
+```npm run build -- --no-cache```
+
 ### Start 
 
 This script can be invoked without 'run':

@@ -1,16 +1,15 @@
-FROM docker.garlictech.com/garlictech-base-image
+FROM garlictech2/base-image
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
-
-COPY ./package.json /
-
-RUN cd / && \
-  npm install coffee -g --silent && \
-  npm install --silent
 
 RUN mkdir /app 
 WORKDIR /app
+COPY ./package.json /app
+
+RUN npm install coffee -g --silent && \
+  npm install --silent
 
 COPY . /app
+RUN mv /app/package.json /app/package_internal.json
 
 VOLUME /app/src
 VOLUME /app/dev-app

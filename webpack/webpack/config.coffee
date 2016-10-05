@@ -2,7 +2,7 @@ _ = require 'lodash'
 fs = require 'fs'
 path = require 'path'
 webpack = require 'webpack'
-plugins = require('webpack-load-plugins')()
+plugins = require('webpack-load-plugins') {config: '/app/package_internal.json'}
 
 module.exports = (dirname) ->
   commonConfig = (require './common') dirname
