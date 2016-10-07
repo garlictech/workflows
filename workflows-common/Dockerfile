@@ -13,5 +13,3 @@ RUN npm install -g --silent gulp coffee && \
 
 COPY . /app
 VOLUME /app/project
-
-ENTRYPOINT ["gulp"]

@@ -1,4 +1,4 @@
-p = require('gulp-load-plugins')()
+p = require('gulp-load-plugins') {config: '/app/package_internal.json'}
 path = require 'path'
 
 GLOBAL._ = require 'lodash'
@@ -19,12 +19,9 @@ module.exports =
 
 
   GetConfig: (c) ->
-    srcRoot = c.srcRoot ? "src"
-    buildRoot = c.buildRoot ? "dist"
-
-    root: c.root
-    base: path.join c.root, srcRoot
-    buildRoot: buildRoot
-    srcRoot: srcRoot
-    unittestEntry: path.join buildRoot, 'test', 'unit', 'index.js'
-    systemtestEntry: path.join buildRoot, 'test', 'system', 'index.js'
+    # srcRoot = c.srcRoot ? "src"
+    # buildRoot = c.buildRoot ? "dist"
+    root: "/app/project"
+    base: "/app/project/src"
+    buildRoot: "/app/project/dist"
+    srcRoot: "/app/project/src"

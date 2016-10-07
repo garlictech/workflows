@@ -15,6 +15,4 @@ module.exports = (_gulp, config) ->
 
   gulp.task 'watch', require('./watch')(gulp, config)
 
-  require('./bump')(gulp, config)
-
   return gulp

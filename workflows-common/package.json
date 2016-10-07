@@ -3,20 +3,29 @@
     "chai": "^3.5.0",
     "coffee-script": "1.x.x",
     "coffeelint": "1.x.x",
-    "gulp-bump": "^2.1.0",
     "gulp-cached": "1.x.x",
     "gulp-coffee": "2.x.x",
     "gulp-coffeelint": "0.x.x",
     "gulp-debounced-watch": "1.x.x",
     "gulp-filter": "4.x.x",
-    "gulp-git": "1.x.x",
     "gulp-help": "1.x.x",
     "gulp-load-plugins": "1.x.x",
     "gulp-size": "^2.1.0",
-    "gulp-tag-version": "1.x.x",
     "gulp-using": "0.x.x",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
-    "lodash": "^4.16.3"
+    "lodash": "^4.16.3",
+    "commitizen": "^2.8.6",
+    "cz-conventional-changelog": "^1.2.0",
+    "semantic-release": "^4.3.5"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "cd /app/project; git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
