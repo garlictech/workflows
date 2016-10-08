@@ -23,11 +23,13 @@ npm run build
 npm run start
 npm run unittest
 npm run e2e-test
+git add .
+npm run commit
 ```
 
 The process assumes that you either:
 
-* generated the service boilerplate with the garlictech yeomen generator
+* generated the service boilerplate with the [garlictech yeoman generator](https://github.com/garlictech/generator-garlic-webapp/)
 * or you implement the same file and folder structure manually - however, we do not recommend this approach. The generated projects automatically provide all the required configurations.
 
 The main and generic development procedures are implemented in npm scripts. You can get a list of them by running
@@ -128,6 +130,17 @@ For example, get all the available gulp tasks:
 
 So, add the gulp commands after ```npm run gulp``` instead of ```gulp```.
 
+### commit
+
+```npm run commit```
+
+We use [semantic release](https://github.com/semantic-release/semantic-release) and [commitizen](https://github.com/commitizen/cz-cli) to commit our code to the repos. Travis then determines the version numbering and publishes a new version to npm.
+
+The garlictech generators prepare your project to use these features automatically. The required software and the workflow implementation are in the [workflows-common](https://github.com/garlictech/workflows/tree/master/workflows-common) docker image.
+
+Actually, we follow the open source sw development guidelines, adapted to private environments. We suggest [this egghead tutorial](https://egghead.io/courses/how-to-write-an-open-source-javascript-library).
+
+
 ## Installing packages
 
 Well, this is a disadvantage now, to be solved. Actually, you cannot really use npm install locally. Whay you should do:
@@ -215,22 +228,71 @@ to this script. Do not remove the existing content unless you know what your are
 
 ### package.json
 
-* The ```scripts``` section must contain this, as is:
+* It must contain these parts:
 
 ```
-"start": "docker/start.sh",
-"stop": "docker/stop.sh",
-"unittest": "docker/unittest.sh",
-"build": "docker/build.sh",
-"e2e-test": "docker/e2e-test.sh",
-"bash": "docker/bash.sh",
-"gulp": "docker/gulp.sh",
-"setup-dev": "scripts/setup-dev.sh",
-"start:docker": "scripts/start.sh",
-"unittest:docker": "scripts/unittest.sh"
+"version": "0.0.0-semantically-released",
+"scripts": {
+  "start": "docker/start.sh",
+  "stop": "docker/stop.sh",
+  "unittest": "docker/unittest.sh",
+  "build": "docker/build.sh",
+  "e2e-test": "docker/e2e-test.sh",
+  "bash": "docker/bash.sh",
+  "gulp": "docker/gulp.sh",
+  "setup-dev": "scripts/setup-dev.sh",
+  "start:docker": "scripts/start.sh",
+  "unittest:docker": "scripts/unittest.sh",
+  "commit": "docker/commit.sh",
+  "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+},
+"config": {
+  "commitizen": {
+    "path": "/app/node_modules/cz-conventional-changelog"
+  }
+}
 ```
 
 * Remove ```garlic.unittest``` feauture.
 * Remove ```garlictech-workflows-client``` from the all of the dependencies.
+
+### .travis.yml
+
+Your file should look like this:
+
+```
+language: node_js
+node_js:
+  - '5'
+sudo: required
+services:
+  - docker
+before_install:
+  - hooks/travis/before_install.sh
+  - docker/login.sh
+install:
+  - npm run build
+before_script:
+  - npm start -- -d
+script:
+  - npm run unittest
+  - npm run e2e-test
+after_script:
+  - npm run stop
+notifications:
+  slack:
+    rooms:
+      secure: <SECRET STUFF>
+cache:
+  directories: node_modules
+after_success:
+  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run semantic-release'
+branches:
+  only:
+    - master
+    - stable
+```
+
+The ```after_success``` part pulls in the semantic releasing process.
 
 Now, you can try the new workflow.
