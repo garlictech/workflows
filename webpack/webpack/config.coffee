@@ -11,7 +11,6 @@ module.exports = (dirname) ->
   conf = _.assign commonConfig,
     entry:
       release: './src/'
-      devapp: './dev-site/dev-app'
     output:
       path: commonConfig.PATHS.dist
       filename: "#{packageConfig.moduleName}.[name].bundle.js"
@@ -32,6 +31,10 @@ module.exports = (dirname) ->
       host: '0.0.0.0'
       watchOptions:
         poll: 1000
+
+
+  if packageConfig.appType is 'module'
+    conf.entry.devapp = './dev-site/dev-app'
 
   # if not packageConfig.commonChunksDisabled
   #   conf.entry[packageConfig.commonsName] = packageConfig.commons

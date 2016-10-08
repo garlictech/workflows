@@ -19,8 +19,9 @@ module.exports = (dirname) ->
   commonsName = 'commons'
   unittestName = 'unittest'
   contentBase = PATHS.src
+  appType = packageConfig.garlic?.type
 
-  if packageConfig.garlic?.type is 'module'
+  if appType is 'module'
     template = path.join PATHS.dev, 'index.html'
     contentBase = PATHS.dev
 
@@ -37,3 +38,4 @@ module.exports = (dirname) ->
   contentBase: contentBase
   commons: _.keys packageConfig.dependencies
   PATHS: PATHS
+  appType: appType
