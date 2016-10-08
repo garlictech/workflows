@@ -20,7 +20,7 @@
     "semantic-release": "^4.3.5"
   },
   "scripts": {
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "scripts/semantic-release.sh",
     "commit": "cd /app/project; git-cz"
   },
   "config": {
