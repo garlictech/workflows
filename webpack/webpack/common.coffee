@@ -24,6 +24,7 @@ module.exports = (dirname) ->
       loaders: [
         {test: /\.js$/, loader: 'jshint!ng-annotate?add=true', exclude: /node_modules|bower_components|vendor|dist\/|~/}
         {test: /\.scss$/, loader: plugins.extractText.extract('style-loader', "css?sourceMap!postcss!sass?sourceMap")}
+        {test: /\.less$/, loader: plugins.extractText.extract('style-loader', 'css?sourceMap!postcss|less?sourceMap')}
         {test: /\.css$/, loader: plugins.extractText.extract("style-loader", "css!postcss")}
         {test: /\.coffee$/, loader: 'ng-annotate?add=true!coffee'}
         {test: /\.jade$/, loader: "html!jade-html"}
