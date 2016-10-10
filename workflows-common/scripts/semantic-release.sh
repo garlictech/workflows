@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 cd project
 
 if [ -n "${GIT_USERNAME}" ]; then

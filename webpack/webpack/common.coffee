@@ -35,6 +35,7 @@ module.exports = (dirname) ->
         {test: /\.gif$/, loader: 'url?mimetype=image/gif&limit=10000'}
         {test: /\.png$/, loader: 'url?mimetype=image/png&limit=10000'}
         {test: /\.json$/, loader: 'json'}
+        {test: /\.(yaml|yml)$/, loader: 'json!yaml'}
         {test: /foundation\..*\.js$/, loader: 'babel', query: {presets: ['react', 'es2015']}}
       ]
       postLoaders: [

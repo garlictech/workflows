@@ -22,7 +22,7 @@ npm run setup-dev
 npm run build
 npm run start
 npm run unittest
-npm run e2e-test
+npm run e2etest
 git add .
 npm run commit
 ```
@@ -106,7 +106,7 @@ Use bash inside the app container. It is good to inspect what is going on intern
 
 Do not use them. They are used internally, inside the container.
 
-### e2e-test
+### e2etest
 
 Executes the protractor bases e2e tests. It uses a different container, based on ```garlictech-protractor```. What it does:
 
@@ -237,7 +237,7 @@ to this script. Do not remove the existing content unless you know what your are
   "stop": "docker/stop.sh",
   "unittest": "docker/unittest.sh",
   "build": "docker/build.sh",
-  "e2e-test": "docker/e2e-test.sh",
+  "e2etest": "docker/e2etest.sh",
   "bash": "docker/bash.sh",
   "gulp": "docker/gulp.sh",
   "setup-dev": "scripts/setup-dev.sh",
@@ -276,7 +276,7 @@ before_script:
   - npm start -- -d
 script:
   - npm run unittest
-  - npm run e2e-test
+  - npm run e2etest
 after_script:
   - npm run stop
 notifications:
@@ -296,3 +296,19 @@ branches:
 The ```after_success``` part pulls in the semantic releasing process.
 
 Now, you can try the new workflow.
+
+## Container services
+
+### Webpack
+
+The webpack container provides:
+
+* webpack builds
+* webpack dev server with watch
+* karma unit test runner with watch
+
+The container pre-installs ans configures several webpack loaders, karma frameworks/plugins, font-awesome, angualar, lodash, etc. So, you do not need to add those dependencies
+to your package.json. This enables using consistent dependency versions across independent modules, and makes the install/build times faster. The full list of available dependencies can be found
+[here](https://github.com/garlictech/workflows/blob/master/webpack/package.json).
+
+

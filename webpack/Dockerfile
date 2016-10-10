@@ -5,8 +5,8 @@ RUN mkdir /app 
 WORKDIR /app
 COPY ./package.json /app
 
-RUN npm install coffee -g --silent && \
-  npm install --silent
+RUN npm install coffee bower -g --silent && \
+  npm install
 
 COPY . /app
 RUN mv /app/package.json /app/package_internal.json
