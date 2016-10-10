@@ -35,7 +35,7 @@ module.exports = (dirname) ->
         {test: /\.gif$/, loader: 'url?mimetype=image/gif&limit=10000'}
         {test: /\.png$/, loader: 'url?mimetype=image/png&limit=10000'}
         {test: /\.json$/, loader: 'json'}
-        {test: /lodash/, loader: 'exports?_'}
+        {test: /foundation\..*\.js$/, loader: 'babel', query: {presets: ['react', 'es2015']}}
       ]
       postLoaders: [
         # {test: /\.coffee/, loader: 'istanbul-instrumenter', exclude: 'node_modules|unit'}
@@ -47,7 +47,10 @@ module.exports = (dirname) ->
     ]
 
     sassLoader: {
-      includePaths: [ path.join(PATHS.node, 'normalize-scss', 'sass')]
+      includePaths: [
+        path.join(PATHS.node, 'normalize-scss', 'sass'),
+        path.join(PATHS.node, 'foundation-sites', 'scss')
+      ]
     },
     
     plugins: [

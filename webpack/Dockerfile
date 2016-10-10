@@ -14,6 +14,7 @@ RUN mv /app/package.json /app/package_internal.json
 VOLUME /app/src
 VOLUME /app/dev-app
 VOLUME /app/hooks
+VOLUME /app/dist
 
 EXPOSE 8081
 CMD ["npm", "run", "start:docker"]
