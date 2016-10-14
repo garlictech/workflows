@@ -5,9 +5,9 @@ config = _.pick commonConfig, ['GulpSrc', 'HandleError']
 
 config.GetConfig = (c) ->
   cfg = commonConfig.GetConfig c
-  cfg.serverEntry = path.join cfg.buildRoot, 'server.js'
-  cfg.unittestEntry = path.join 'app', 'test', 'unit', 'index.js'
-  # cfg.systemtestEntry = path.join buildRoot, 'test', 'system', 'index.js'
+  cfg.serverEntry = path.join cfg.buildRoot, 'index.js'
+  cfg.systemtestEntry = "/app/test/system/index.js"
+  cfg.unittestEntry = "/app/test/unit/index.js"
   return cfg
 
 module.exports = config

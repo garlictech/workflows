@@ -14,14 +14,10 @@ module.exports =
 
 
   HandleError: (err) ->
-    console.log err
-    process.exit 1
 
 
   GetConfig: (c) ->
-    # srcRoot = c.srcRoot ? "src"
-    # buildRoot = c.buildRoot ? "dist"
-    root: "/app/project"
-    base: "/app/project/src"
-    buildRoot: "/app/project/dist"
-    srcRoot: "/app/project/src"
+    root: c.root
+    base: "#{c.root}/src"
+    buildRoot: "#{c.root}/dist"
+    srcRoot: "#{c.root}/src"

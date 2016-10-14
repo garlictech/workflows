@@ -1,0 +1,4 @@
+before(function() {
+  require('../common');
+});
+ 

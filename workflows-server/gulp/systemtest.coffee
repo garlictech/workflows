@@ -6,11 +6,9 @@ module.exports = (gulp, c) ->
 
   return ->
     p.env.set NODE_ENV: "test"
-    gulp.src [config.systemtestEntry, "#{config.buildRoot}/**/*system-tests.js"], {read: false}
+    gulp.src [config.systemtestEntry, "#{config.buildRoot}/index.js", "#{config.buildRoot}/**/*system-tests.js"], {read: false}
     .pipe p.spawnMocha
       reporter: 'spec'
       ui: 'bdd'
       recursive: true
-    .once 'error', (err) ->
-      console.log err
-      common.HandleError()
+    .once 'error', (err) -> common.HandleError()

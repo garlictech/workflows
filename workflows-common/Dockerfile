@@ -12,4 +12,3 @@ RUN npm install -g --silent gulp coffee && \
   git config --global user.name "Garlic Tech Ltd."
 
 COPY . /app
-VOLUME /app/project

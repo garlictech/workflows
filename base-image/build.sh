@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-source ../scripts/build.sh base-image
+source ../scripts/build.sh "${PWD##*/}"

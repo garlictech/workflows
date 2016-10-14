@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-source ../scripts/build.sh workflows-common
+source ../scripts/build.sh "${PWD##*/}"

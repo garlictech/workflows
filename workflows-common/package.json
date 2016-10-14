@@ -25,7 +25,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "/app/node_modules/cz-conventional-changelog"
     }
   }
 }

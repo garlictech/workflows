@@ -9,3 +9,4 @@ module.exports = (gulp, c) ->
       env:
         NODE_ENV: 'development'
       script: "#{config.serverEntry}"
+      watch: "#{config.buildRoot}"

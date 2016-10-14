@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-source ../scripts/build.sh protractor
+source ../scripts/build.sh "${PWD##*/}"

@@ -17,7 +17,7 @@ module.exports = (_gulp, config) ->
 
   gulp.task 'compile', fileTypes
 
-  gulp.task 'watch', require('./watch')(gulp, config, fileTypes)
+  gulp.task 'watch', ['build'], require('./watch')(gulp, config, fileTypes)
   
   gulp.task 'unittest', require('./unittest')(gulp, config)
 
@@ -27,10 +27,8 @@ module.exports = (_gulp, config) ->
   
   gulp.task 'webserver', require('./webserver')(gulp, config)
   
-  gulp.task 'default', ['build'], ->
+  gulp.task 'default', ->
     gulp.start 'watch'
     gulp.start 'webserver'
-
-  require('/app/gulp_common/bump')(gulp, config)
 
   return gulp
