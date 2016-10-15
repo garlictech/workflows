@@ -15,6 +15,15 @@ RUN cd /app && \
     debug \
     app-module-path \
     garlictech-common-server \
+    eslint \
+    eslint-config-loopback \
+    nsp \
+    garlictech-common-server \
+    loopback-boot \
+    loopback-component-explorer \
+    strong-error-handler \
+    loopback-datasource-juggler \
+    loopback \
     yargs && \
     mv /app/gulp /app/gulp_common
 

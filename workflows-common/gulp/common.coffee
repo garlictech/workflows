@@ -17,7 +17,8 @@ module.exports =
 
 
   GetConfig: (c) ->
-    root: c.root
-    base: "#{c.root}/src"
-    buildRoot: "#{c.root}/dist"
-    srcRoot: "#{c.root}/src"
+    res = c
+    c.base = "#{c.root}/#{c.src}"
+    c.buildRoot = "#{c.root}/dist"
+    c.srcRoot = "#{c.root}/#{c.src}"
+    return res

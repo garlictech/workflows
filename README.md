@@ -61,7 +61,36 @@ to pull in the module and do something with the code in the browser.
 
 ### setup-dev
 
-It creates a default ```.env``` file that sets ```NODE_ENV=development```. You should execute it once, right after cloning the repo.
+ ```NODE_ENV=development```. You should execute it once, right after cloning the repo.
+It creates a default ```.env``` file that sets various environment variables. Here, we list all the potential variables. Depending on your project, you may not find all of them - the missing variables are irrelevant.
+
+* `NODE_ENV`
+
+Default: `development`. In this case, and, when you develop frontend stuff with karma, the `npm run unittest` command does not exit, it watches file changes.
+
+* `DOCKER_USER`
+
+The docker registry username.
+
+* `DOCKER_PASSWORD`
+
+The docker registry password. Mind that it is stored un-encrypted, so please, do not loose your computer.
+
+* `DOCKER_REGISTRY`
+
+The docker registry of the project.
+
+* `PROJECT`
+
+The project slug. Basically, it is the repo part of the github slug.
+
+* `TARGET_IMAGE_NAME`
+
+The Docker image of the service. Basically, it is the repo part of the github slug.
+
+* `SCOPE`
+
+Your organization. The organization part of the github slug.
 
 ### build
 

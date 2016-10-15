@@ -2,7 +2,7 @@ gulp = require 'gulp'
 
 config =
   root: "/app/project"
-  src: "src"
+  src: "server"
 
 require('./gulp')(gulp, config)
 return gulp

@@ -5,4 +5,4 @@ WORKDIR /app
 
 RUN npm install --silent garlictech-common-server
 
-CMD ["node", "/app/index.js"]
+CMD ["node", "/app/server.js"]
