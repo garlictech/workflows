@@ -126,7 +126,9 @@ TBD
 
 TBD
 
+### Handling and encrypting secrets
 
+TBD
 
 
 ### Debugging the server
@@ -135,6 +137,13 @@ When you set the `DEBUG` environment variable to true, then all the processes (s
 and will wait for a debugger. Attach the debugger and continue.
 
 A good debugger is built in the free [Visual Studio Code](https://code.visualstudio.com/?utm_expid=101350005-28.R1T8FshdTBWEfZjY0s7XKQ.0&utm_referrer=https%3A%2F%2Fwww.google.hu%2F) tool.
+
+
+### Things to consider during development
+
+* There are some pre-installed npm packages in the server-common image. You do not have to add them to package.json, they are available readily. Actually, they are installed by installing the
+[garlictech-common-server](https://github.com/garlictech/garlictech-common-server) package. See the actual list of preinstalled packages [here](https://github.com/garlictech/garlictech-common-server/blob/master/package.json).
+
 
 ## Client side development process
 
