@@ -70,6 +70,7 @@ make build
 make start
 make unittest
 make systemtest
+make smoketest
 git add .
 npm run commit
 ```
@@ -81,7 +82,7 @@ As you can see, in server side, we use Make, because it provides extreme flexibi
 When you set the `DEBUG` environment variable to true, then all the processes (server, test, etc.) will stop at the beginning of the execution,
 and will wait for a debugger. Attach the debugger and continue.
 
-A good debugger is the free [Visual Studio Code](https://code.visualstudio.com/?utm_expid=101350005-28.R1T8FshdTBWEfZjY0s7XKQ.0&utm_referrer=https%3A%2F%2Fwww.google.hu%2F) tool.
+A good debugger is built in the free [Visual Studio Code](https://code.visualstudio.com/?utm_expid=101350005-28.R1T8FshdTBWEfZjY0s7XKQ.0&utm_referrer=https%3A%2F%2Fwww.google.hu%2F) tool.
 
 ## Client side development process
 
