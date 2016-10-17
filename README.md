@@ -12,8 +12,78 @@ This repo implements the Garlic Tech development infrastucture. The infrastructu
 Before able to use the workflows, you have to 
 
 * install docker and provision a docker machine
+* DOCKER_USER env. variable must contain the user name of the private docker registry
+* DOCKER_PASSWORD env. variable must contain the password for the private docker registry
 
-## Development process
+## General concerns
+
+### Start local development
+
+After cloning the repo:
+
+```
+npm run setup-dev
+```
+
+It creates a default ```.env``` file that sets various environment variables. Here, we list all the potential variables. Depending on your project, you may not find all of them - the missing variables are irrelevant.
+
+Mind, that this file is created and filled in readily when you generate the project. 
+
+* `NODE_ENV`
+
+Default: `development`. In this case, and, when you develop frontend stuff with karma, the `npm run unittest` command does not exit, it watches file changes.
+
+* `DOCKER_REGISTRY`
+
+The (private) docker registry of the project.
+
+* `PROJECT`
+
+The project slug. Basically, it is the repo part of the github slug.
+
+* `TARGET_IMAGE_NAME`
+
+The Docker image of the service. Basically, it is the repo part of the github slug.
+
+* `SCOPE`
+
+Your organization. The organization part of the github slug.
+
+### Installing packages
+
+Well, this is a disadvantage now, to be solved. Actually, you cannot really use npm install locally. Whay you should do:
+
+* Go to the container: ```npm run bash```
+* Install the package here, as you wish: ```npm install```
+* Cat the ```package.json```, and copy the added line from (dev, peer) dependencies
+* Paste the line to the appropriate place in your local ```package.json```.
+
+To be automated!
+
+## Server side development
+
+_tl;dr_
+
+```
+npm run setup-dev
+make build
+make start
+make unittest
+make systemtest
+git add .
+npm run commit
+```
+
+As you can see, in server side, we use Make, because it provides extreme flexibility. For the individual commands, read the makefile comments inside the file, they should be obvious.
+
+### Debugging the server
+
+When you set the `DEBUG` environment variable to true, then all the processes (server, test, etc.) will stop at the beginning of the execution,
+and will wait for a debugger. Attach the debugger and continue.
+
+A good debugger is the free [Visual Studio Code](https://code.visualstudio.com/?utm_expid=101350005-28.R1T8FshdTBWEfZjY0s7XKQ.0&utm_referrer=https%3A%2F%2Fwww.google.hu%2F) tool.
+
+## Client side development process
 
 _tl;dr_
 
@@ -59,38 +129,7 @@ application based logic. The build process copies ```package.json``` to into the
 to pull in the module and do something with the code in the browser.
 * ```hooks```: you can supplement or change the webpack, karma and the travis configutration here. You have direct access to the internal configurations inside the webpack contaier. See examples later. Its usage is optional.
 
-### setup-dev
 
- ```NODE_ENV=development```. You should execute it once, right after cloning the repo.
-It creates a default ```.env``` file that sets various environment variables. Here, we list all the potential variables. Depending on your project, you may not find all of them - the missing variables are irrelevant.
-
-* `NODE_ENV`
-
-Default: `development`. In this case, and, when you develop frontend stuff with karma, the `npm run unittest` command does not exit, it watches file changes.
-
-* `DOCKER_USER`
-
-The docker registry username.
-
-* `DOCKER_PASSWORD`
-
-The docker registry password. Mind that it is stored un-encrypted, so please, do not loose your computer.
-
-* `DOCKER_REGISTRY`
-
-The docker registry of the project.
-
-* `PROJECT`
-
-The project slug. Basically, it is the repo part of the github slug.
-
-* `TARGET_IMAGE_NAME`
-
-The Docker image of the service. Basically, it is the repo part of the github slug.
-
-* `SCOPE`
-
-Your organization. The organization part of the github slug.
 
 ### build
 
@@ -168,18 +207,6 @@ We use [semantic release](https://github.com/semantic-release/semantic-release) 
 The garlictech generators prepare your project to use these features automatically. The required software and the workflow implementation are in the [workflows-common](https://github.com/garlictech/workflows/tree/master/workflows-common) docker image.
 
 Actually, we follow the open source sw development guidelines, adapted to private environments. We suggest [this egghead tutorial](https://egghead.io/courses/how-to-write-an-open-source-javascript-library).
-
-
-## Installing packages
-
-Well, this is a disadvantage now, to be solved. Actually, you cannot really use npm install locally. Whay you should do:
-
-* Go to the container: ```npm run bash```
-* Install the package here, as you wish: ```npm install```
-* Cat the ```package.json```, and copy the added line from (dev, peer) dependencies
-* Paste the line to the appropriate place in your local ```package.json```.
-
-To be automated!
 
 ## How to adapt a module based on the old workflow
 
