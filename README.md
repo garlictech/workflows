@@ -122,7 +122,8 @@ Add as many fixtures, support files, `*-unit-test.js` files as you wish to such 
 
 ### System tests
 
-TBD
+* Add your system tests under `test/system` folder. All the tests should go here.
+* Mocha will pull in index.js and all the files following the `-system-test.{js,coffee} pattern.
 
 ### Smoke tests
 
