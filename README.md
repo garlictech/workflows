@@ -77,6 +77,58 @@ npm run commit
 
 As you can see, in server side, we use Make, because it provides extreme flexibility. For the individual commands, read the makefile comments inside the file, they should be obvious.
 
+
+### setup-dev
+
+* Creates the .env file with defaults. This file is ignored from github. Contains some specific environment variables.
+* Creates an empty tokens.env. If your service needs security tokens, add them here. This file is also ignored in github. Do not check it in, keep is safe!
+If your tests need tokens, [encrypt the file with travis](https://docs.travis-ci.com/user/encrypting-files/), check in to github the encrypted file, add its decryption instructions to the `before_script` section in `.travis.yml`.
+Mind, that tests using tokens are not available in PR-s during travis builds, for security reasons. Also mind, that this file is required anyway, even if it is empty. So, your travis build should 
+create an empty one in `before_script`.
+
+### build
+
+Builds the development service image(s). Uses `Dockerile.dev`. The image is derived from `workflows-server`, pulled from your
+organization docker registry.
+
+### start
+
+Start the development service. It uses `docker/docker-compose.yml`.
+
+### unittest
+
+Execute the unit tests once.
+
+### System test
+
+Execute the system tests.
+
+### commit
+
+We use commitizen ti create commit comments. It is important to use it, because, in Travis side, releases are created
+by parsing the commit comments. If the system cannot detect that it is a change with functional improvments, then it will
+not publish a new release, so the changes will not be integrated automatically into the end product. More info:
+
+* [commtizen](https://github.com/commitizen/cz-cli)
+* [semantic release](https://github.com/semantic-release/semantic-release)
+
+## How to write tests
+
+### Unit tests
+
+TBD
+
+### System tests
+
+TBD
+
+### Smoke tests
+
+TBD
+
+
+
+
 ### Debugging the server
 
 When you set the `DEBUG` environment variable to true, then all the processes (server, test, etc.) will stop at the beginning of the execution,
@@ -129,8 +181,6 @@ application based logic. The build process copies ```package.json``` to into the
 * ```dev-site```: if the project is an angular module, it does not have an official ```index.html```. In this case, webpack will look for the index in this file. Use this folder during the development, 
 to pull in the module and do something with the code in the browser.
 * ```hooks```: you can supplement or change the webpack, karma and the travis configutration here. You have direct access to the internal configurations inside the webpack contaier. See examples later. Its usage is optional.
-
-
 
 ### build
 
