@@ -77,7 +77,6 @@ npm run commit
 
 As you can see, in server side, we use Make, because it provides extreme flexibility. For the individual commands, read the makefile comments inside the file, they should be obvious.
 
-
 ### setup-dev
 
 * Creates the .env file with defaults. This file is ignored from github. Contains some specific environment variables.
@@ -116,7 +115,10 @@ not publish a new release, so the changes will not be integrated automatically i
 
 ### Unit tests
 
-TBD
+* Add the unit tests next to the component to be tested. For example, tests for `server/stuff` should go to `server/stuff/test/stuff-unit-test.js.
+Add as many fixtures, support files, `*-unit-test.js` files as you wish to such a folder.
+* `js` and `coffee` files are supported for the moment.
+* in `test/unit/index.js`, pull in global constructs that should be available for all the tests. But do not add tests here. 
 
 ### System tests
 
