@@ -33,6 +33,7 @@
     "GarlicTest": false,
     "sinon": false,
     "assert": false,
-    "config": false
+    "config": false,
+    "UnitTest": false
   }
 }

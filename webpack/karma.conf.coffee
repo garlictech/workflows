@@ -4,4 +4,6 @@ require('./hooks/webpack') webpackConfig
 karmaConfig = require('./webpack/karma') __dirname, webpackConfig
 require('./hooks/karma') karmaConfig
 
-module.exports = karmaConfig
+module.exports = (config) ->
+  config.set karmaConfig
+  return config

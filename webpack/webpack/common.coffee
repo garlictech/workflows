@@ -85,6 +85,9 @@ module.exports = (dirname) ->
     resolveLoader:
       root: PATHS.workflow_node
 
+
+  conf.plugins.push new webpack.ProvidePlugin {devConfig: "dev-config.json"}
+  
   if not IsDev
     conf.plugins = _.concat conf.plugins, [
       # new webpack.optimize.UglifyJsPlugin
