@@ -225,6 +225,9 @@ It launches the webpack development server and stars watching files. You can acc
 It launches the unit tests. How it is run is based on the content of NODE_ENV (in the ```.env``` file). If it is development, then the unittest dows not exit, it watches file changes and
 re-runs the tests when something changes. If NODE_ENV is not development, it does not watch: runs the tests once then exits.
 
+In your unit test code, you can use a global variable called `UnitTest`. They contain some utility functions, they are especially good to inject dependencies with names containing dots :)
+Read their docs in the [source code](https://github.com/garlictech/workflows/blob/master/webpack/test/unit/unit-test-base.coffee). 
+
 ### stop
 
 Stops the webpack dev server. Locally, you can do it with Ctrl-C, it is relevant in CI environments, for example, to stop the server programmatically.
