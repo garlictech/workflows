@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if [ "$TRAVIS_EVENT_TYPE" == "pull_request" ]; then  
+  echo "Dependent projects are not released in pull request."
+else
+  scripts/semantic-release
+fi

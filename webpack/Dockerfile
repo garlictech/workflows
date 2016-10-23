@@ -6,7 +6,8 @@ WORKDIR /app
 COPY ./package.json /app
 
 RUN npm install coffee bower -g --silent && \
-  npm install
+  npm install --silent && \
+  npm cache clean
 
 COPY . /app
 RUN mv /app/package.json /app/package_internal.json

@@ -3,7 +3,10 @@ MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 RUN cd / && \
   npm install -g --silent coffee && \
-  npm install \
+  npm install --silent \
     chai \
     chai-as-promised \
-    coffee-script
+    bluebird \
+    request \
+    coffee-script && \
+  npm cache clean

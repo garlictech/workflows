@@ -1,0 +1,12 @@
+#! /usr/bin/env coffee
+yaml = require 'node-yaml'
+_ = require 'lodash'
+jsonfile = require 'jsonfile'
+execute = require('child_process').execSync
+
+yaml.read '../../dependencies.yml',
+  encoding: 'utf8'
+  schema: yaml.schema.defaultSafe,
+.then (data) ->
+  for dep in data[process.env.TRAVIS_REPO_SLUG]
+    execute "scripts/notify_dependencies #{dep}", {stdio:[0,1,2]}

@@ -4,11 +4,10 @@ _ = require 'lodash'
 require 'colors'
 
 getPaths = (dirname, dist) ->
-  src: path.join dirname, 'src'
+  src: path.join dirname, 'project/src'
   dist: path.join dirname, dist
-  dev: path.join dirname, 'dev-site'
+  dev: path.join dirname, 'project/dev-site'
   node: path.join dirname, 'node_modules'
-  workflow_node: path.resolve "node_modules"
   bower: path.join dirname, 'bower_components'
 
 module.exports = (dirname) ->
