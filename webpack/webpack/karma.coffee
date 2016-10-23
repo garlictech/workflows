@@ -46,15 +46,6 @@ module.exports = (dirname, webpackConfig) ->
     phantomjsLauncher:
       exitOnResourceError: true
 
-    plugins : [
-      'karma-phantomjs-launcher',
-      'karma-mocha',
-      'karma-mocha-reporter',
-      'karma-sinon-chai',
-      'karma-webpack'
-      # 'karma-coverage'
-    ]
-
     reporters: ['mocha']
     # reporters: ['mocha', 'coverage']
 
@@ -67,5 +58,6 @@ module.exports = (dirname, webpackConfig) ->
 
   karmaConfig.preprocessors[packageConfig.main] = ['webpack']
   karmaConfig.preprocessors[packageConfig.unittest] = ['webpack']
+
 
   return karmaConfig
