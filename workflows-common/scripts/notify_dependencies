@@ -4,9 +4,12 @@ _ = require 'lodash'
 jsonfile = require 'jsonfile'
 execute = require('child_process').execSync
 
+console.log "Dependency notification. Dependency tree: "
+
 yaml.read '../dependencies.yml',
   encoding: 'utf8'
   schema: yaml.schema.defaultSafe,
 .then (data) ->
+  console.log data
   for dep in data[process.env.TRAVIS_REPO_SLUG]
     execute "scripts/notify_dependency #{dep}", {stdio:[0,1,2]}
