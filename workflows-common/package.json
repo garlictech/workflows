@@ -22,7 +22,7 @@
     "jsonfile": "2.3.1"
   },
   "scripts": {
-    "semantic-release": "scripts/semantic-release.sh",
+    "semantic-release": "scripts/semantic-release",
     "commit": "cd /app/project; git-cz"
   },
   "config": {
