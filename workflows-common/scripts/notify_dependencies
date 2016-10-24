@@ -12,4 +12,4 @@ yaml.read '../dependencies.yml',
 .then (data) ->
   console.log data
   for dep in data[process.env.TRAVIS_REPO_SLUG]
-    execute "scripts/notify_dependency #{dep}", {stdio:[0,1,2]}
+    execute "./notify_dependency.sh #{dep}", {stdio:[0,1,2]}
