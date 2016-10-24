@@ -3,6 +3,6 @@ set -e
 if [ "$TRAVIS_EVENT_TYPE" == "pull_request" ]; then  
   echo "Dependent projects are not released in pull request."
 else
-  scripts/semantic-release
+  npm run semantic-release
   scripts/notify_dependencies
 fi
