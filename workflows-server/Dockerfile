@@ -25,7 +25,8 @@ RUN cd /app && \
     loopback-datasource-juggler \
     loopback \
     yargs && \
-    mv /app/gulp /app/gulp_common
+    mv /app/gulp /app/gulp_common && \
+    npm cache clean
 
 COPY . /app
 RUN mv /app/package.json /app/package_internal.json

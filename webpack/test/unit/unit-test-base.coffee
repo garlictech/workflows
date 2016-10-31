@@ -1,6 +1,5 @@
 require 'angular'
 require 'angular-mocks'
-chai.should()
 
 # This file is exported to the global scope under UnitTest.
 module.exports =

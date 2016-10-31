@@ -1,3 +1,3 @@
 webpackConfig = require('./webpack/config') __dirname
-require('./hooks/webpack') webpackConfig
+require('./project/hooks/webpack') webpackConfig
 module.exports = webpackConfig

@@ -9,12 +9,13 @@ RUN apt-get update && apt-get install -y \
 
 RUN cd / && \
   npm install -g --silent coffee && \
-  npm install \
+  npm install --silent \
     chai \
     chai-as-promised \
     coffee-script \
     lodash \
     bluebird \
-    request
+    request && \
+  npm cache clean
 
 ADD protractor.sh /protractor.sh

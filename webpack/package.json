@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "angular": "^1.5",
+    "angular-cookies": "^1.5",
     "angular-mocks": "^1.5",
     "angular-ui-router": "0.3.x",
     "angular-animate": "^1.5",

@@ -252,7 +252,11 @@ Executes the protractor bases e2e tests. It uses a different container, based on
 
 The protractor is pre-configured inside the container.
 
-The test assumes that the application/site (the webpack server) also runs.
+The tests start an individual webpack-dev-server with the project to be tested. You can add other docker_compose commands like that:
+
+```npm run e2etest down```
+
+The above command equals to ```docker_compose <all service files> down```, and stops all services required by the e2e test.
 
 ### gulp
 
