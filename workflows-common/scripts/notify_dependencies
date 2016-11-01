@@ -10,8 +10,9 @@ yaml.read '../dependencies.yml',
   encoding: 'utf8'
   schema: yaml.schema.defaultSafe,
 .then (data) ->
-  console.log data
+  console.log "ALL DEPENDENCIES: ", data
   console.log "REPO SLUG: ", process.env.TRAVIS_REPO_SLUG, data[process.env.TRAVIS_REPO_SLUG]
+  console.log "DEPENDENCIES OF SLUG: ", data[process.env.TRAVIS_REPO_SLUG]
   for dep in data[process.env.TRAVIS_REPO_SLUG]
     console.log "Executing: ./notify_dependency.sh #{dep}"
-    execute "./notify_dependency.sh #{dep}", {stdio:[0,1,2]}
+    execute "#{__dirname}/notify_dependency.sh #{dep}", {stdio:[0,1,2]}

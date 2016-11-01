@@ -29,4 +29,4 @@ RUN cd /app && \
     npm cache clean
 
 COPY . /app
-RUN mv /app/package.json /app/package_internal.json
+RUN cp /app/package.json /app/package_internal.json
