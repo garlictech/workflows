@@ -252,11 +252,29 @@ Executes the protractor bases e2e tests. It uses a different container, based on
 
 The protractor is pre-configured inside the container.
 
-The tests start an individual webpack-dev-server with the project to be tested. You can add other docker_compose commands like that:
+The tests start an individual webpack-dev-server with the project to be tested, and they start the required dependencies. You can use the following options as well:
 
-```npm run e2etest down```
+```npm run e2etest stop```
 
 The above command equals to ```docker_compose <all service files> down```, and stops all services required by the e2e test.
+
+```npm run e2etest bash```
+
+Starts an e2e test container with a bash session.
+
+```npm run e2etest -- <parameters>```
+
+Pass the parameters to the e2e test service.
+
+#### Debugging e2e tests
+
+It is quite difficult to figure out why your tests failed without seeing them in the browser. So, the protractor workflow image provides you a VNC session with a running Chrome browser, attached to the test.
+Start the test like this:
+
+```npm run e2etest -- --elementExplorer```
+
+The test starts, and stops immediately, waiting for a vnc session. Download a VNC client, start it, and attach
+
 
 ### gulp
 
