@@ -17,8 +17,10 @@ module.exports =
 
 
   GetConfig: (c) ->
+    srcs = if not _.isArray(c.src) then [c.src] else c.src
+
     res = c
-    c.base = "#{c.root}/#{c.src}"
+    c.base = "#{c.root}"
     c.buildRoot = "#{c.root}/dist"
-    c.srcRoot = "#{c.root}/#{c.src}"
+    c.srcRoots = _.map srcs, (s) -> "#{c.root}/#{s}"
     return res

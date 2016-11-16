@@ -8,7 +8,7 @@ module.exports = (gulp, c) ->
 
   return ->
     p.env.set NODE_ENV: "test"
-    gulp.src [config.systemtestEntry, "#{config.buildRoot}/index.js", "#{config.buildRoot}/**/*system-tests.js"], {read: false}
+    gulp.src [config.systemtestEntry, "#{config.buildRoot}/src/index.js", "#{config.buildRoot}/**/*system-tests.js"], {read: false}
     .pipe p.spawnMocha
       debugBrk: DEBUG
       reporter: 'spec'

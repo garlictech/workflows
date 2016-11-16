@@ -6,5 +6,7 @@ module.exports = (gulp, c) ->
 
   return ->
     _.forEach common.WatchFileTypes, (type) ->
-      watch ["#{config.srcRoot}/**/*.#{type}"], {debounceTimeout: 1000}, ->
+      files = _.map config.srcRoots, (dir) -> "#{dir}/**/*.#{type}"
+      
+      watch files, {debounceTimeout: 1000}, ->
         gulp.start 'build'

@@ -19,11 +19,6 @@ RUN cd /app && \
     eslint-config-loopback \
     nsp \
     garlictech-common-server \
-    loopback-boot \
-    loopback-component-explorer \
-    strong-error-handler \
-    loopback-datasource-juggler \
-    loopback \
     yargs && \
     mv /app/gulp /app/gulp_common && \
     npm cache clean

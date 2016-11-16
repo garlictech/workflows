@@ -6,4 +6,4 @@ WORKDIR /app
 RUN npm install --silent --production garlictech-common-server && \
   npm cache clean
 
-CMD ["node", "/app/server.js"]
+CMD ["node", "/app/server/server.js"]

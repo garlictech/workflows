@@ -8,6 +8,7 @@ module.exports = (gulp, c, fileTypes) ->
     _.forEach fileTypes, (type) ->
       unittestTaskName = "unittest after compiling #{type}"
       gulp.task unittestTaskName, [type], -> gulp.start 'unittest'
+      files = _.map config.srcRoots, (dir) -> "#{dir}/**/*.#{type}"
 
-      watch ["#{config.srcRoot}/**/*.#{type}"], {debounceTimeout: 1000}, ->
+      watch files, {debounceTimeout: 1000}, ->
         gulp.start unittestTaskName

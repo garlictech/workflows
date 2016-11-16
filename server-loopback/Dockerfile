@@ -6,5 +6,6 @@ RUN npm install --silent \
     loopback-component-explorer \
     strong-error-handler \
     loopback-datasource-juggler \
+    loopback-connector-mongodb \
     loopback && \
     npm cache clean

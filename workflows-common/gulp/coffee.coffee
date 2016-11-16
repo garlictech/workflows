@@ -5,7 +5,7 @@ p = require('gulp-load-plugins') {config: '/app/package_internal.json'}
 module.exports = (gulp, c) ->
   config = common.GetConfig c
   common.WatchFileTypes.push 'coffee'
-  coffeeFiles = ["#{config.srcRoot}/**/*.coffee"]
+  coffeeFiles = _.map config.srcRoots, (dir) -> "#{dir}/**/*.coffee"
 
   return ->
     common.GulpSrc gulp, coffeeFiles, 'coffee', {base: config.base}
