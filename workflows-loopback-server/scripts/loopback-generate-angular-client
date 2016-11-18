@@ -19,4 +19,4 @@ appname = if match then match[1] else appname
 appname = "#{_.upperFirst _.camelCase yorc['generator-garlic-webapp'].scope}.#{_.upperFirst _.camelCase appname}Api"
 
 fs.mkdirsSync clientRoot
-execute "lb-ng -m '#{appname}' -s -u 'http://localhost:3000' ../../server/server.js index.js"
+execute "lb-ng -m '#{appname}' -s -u 'http://localhost:3000' ../../dist/server/server.js index.js"
