@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "api-check": "7.5.5",
     "angular": "^1.5",
     "angular-cookies": "^1.5",
     "angular-mocks": "^1.5",
@@ -77,6 +78,8 @@
     "sinon-chai": "^2.8.0",
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
+    "ts-loader": "1.2.2",
+    "typescript": "2.0.10",
     "url-loader": "^0.5.7",
     "yaml-loader": "^0.4.0",
     "webpack": "^1.12.x",

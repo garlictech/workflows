@@ -27,6 +27,7 @@ module.exports = (dirname) ->
         {test: /\.less$/, loader: plugins.extractText.extract('style-loader', 'css?sourceMap!postcss|less?sourceMap')}
         {test: /\.css$/, loader: plugins.extractText.extract("style-loader", "css!postcss")}
         {test: /\.coffee$/, loader: 'ng-annotate?add=true!coffee'}
+        {test: /\.ts$/, loader: 'ts-loader'}
         {test: /\.jade$/, loader: "html!jade-html"}
         {test: /\.html$/, loader: 'html'}
         {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&minetype=application/font-woff"}
@@ -66,7 +67,7 @@ module.exports = (dirname) ->
     ]
     
     resolve:
-      extensions: ["", ".webpack.js", ".web.js", ".js", ".coffee", ".jade", ".html", ".scss", '.css', '.json']
+      extensions: ["", ".webpack.js", ".web.js", ".js", ".coffee", ".ts", ".jade", ".html", ".scss", '.css', '.json']
       
       root: [
         PATHS.workflow_node
