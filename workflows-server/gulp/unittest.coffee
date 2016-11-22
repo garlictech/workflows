@@ -7,7 +7,7 @@ module.exports = (gulp, c) ->
   config = common.GetConfig c
 
   return ->
-    gulp.src [config.unittestEntry, "#{config.buildRoot}/globals.js", "#{config.buildRoot}/**/*unit-tests.js"], {read: false}
+    gulp.src [config.unittestEntry, "#{config.buildRoot}/**/globals.js", "#{config.buildRoot}/**/*unit-tests.js"], {read: false}
     .pipe p.spawnMocha
       debugBrk: DEBUG
       reporter: 'spec'

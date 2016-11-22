@@ -12,7 +12,7 @@ if [ -z "$GIT_EMAIL" ]; then
   exit 0
 fi
 
-git config --global user.email $GIT_USERNAME
-git config --global user.name $GIT_EMAIL
+git config --global user.email "$GIT_USERNAME"
+git config --global user.name "$GIT_EMAIL"
 cd /app/project
 git-cz

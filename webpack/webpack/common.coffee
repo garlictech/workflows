@@ -44,7 +44,7 @@ module.exports = (dirname) ->
       ]
       noParse: []
 
-    postcss: -> [ require('precss'), require('postcss-normalize'),
+    postcss: -> [ require('precss'),
       require('autoprefixer')({browsers: ['last 2 versions', 'safari 5','ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']})
     ]
 
@@ -64,6 +64,12 @@ module.exports = (dirname) ->
         allChunks: true
 
       new webpack.ResolverPlugin (new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin "bower.json", ["main"])
+
+      new webpack.ProvidePlugin
+        _: "lodash"
+        jQuery: 'jquery'
+        $: 'jquery'
+        jquery: 'jquery'
     ]
     
     resolve:
@@ -86,8 +92,6 @@ module.exports = (dirname) ->
     resolveLoader:
       root: PATHS.workflow_node
 
-
-  conf.plugins.push new webpack.ProvidePlugin {devConfig: "dev-config.json"}
   
   if not IsDev
     conf.plugins = _.concat conf.plugins, [
