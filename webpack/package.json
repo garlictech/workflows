@@ -86,5 +86,7 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-load-plugins": "^0.1.2",
     "webfontloader": "^1.6.26"
-  }
+  },
+  "optionalDependencies": {},
+  "devDependencies": {}
 }

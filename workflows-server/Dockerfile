@@ -2,7 +2,7 @@ FROM garlictech2/workflows-common
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
 RUN cd /app && \
-  npm install --silent --save \
+  yarn add  \
     mocha \
     gulp-env \
     gulp-nodemon \
@@ -21,7 +21,7 @@ RUN cd /app && \
     garlictech-common-server \
     yargs && \
     mv /app/gulp /app/gulp_common && \
-    npm cache clean
+    yarn cache clean
 
 COPY . /app
 RUN cp /app/package.json /app/package_internal.json

@@ -3,6 +3,7 @@
 # Push an empty commit to the github repos defining machines using this service.
 # The machines will pull the latest image and restart the server.
 set -e
+. scripts/common.sh
 REPO="https://${GH_USER}:${GH_TOKEN}@github.com/${1}"
 LOCAL_REPO=/tmp/machine_repo
 git clone $REPO $LOCAL_REPO

@@ -26,6 +26,8 @@ module.exports = (_gulp, config) ->
   gulp.task 'build', ['compile']
   
   gulp.task 'webserver', require('./webserver')(gulp, config)
+
+  gulp.task 'debug', require('./debug')(gulp, config)
   
   gulp.task 'default', ->
     gulp.start 'watch'

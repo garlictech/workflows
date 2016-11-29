@@ -5,12 +5,11 @@ RUN mkdir /app 
 WORKDIR /app
 COPY ./package.json /app
 
-RUN yarn global add coffee-script bower && \
+RUN yarn global add coffee coffee-script bower --flat && \
   yarn install && \
   yarn cache clean
 
 COPY . /app
-RUN mv /app/package.json /app/package_internal.json
 
 EXPOSE 8081
 ENV TERM=xterm

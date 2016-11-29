@@ -5,9 +5,8 @@ RUN mkdir /app
 WORKDIR /app
 COPY package.json /app
 
-RUN npm install -g --silent gulp coffee-script && \
-  npm install --silent && \
-  npm link gulp && \
-  npm cache clean
+RUN yarn global add gulp coffee-script && \
+  yarn install && \
+  yarn cache clean
 
 COPY . /app
