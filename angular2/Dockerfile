@@ -5,12 +5,11 @@ RUN mkdir /app 
 WORKDIR /app
 COPY ./package.json /app
 
-RUN yarn global add coffee coffee-script bower --flat && \
+RUN yarn global add coffee coffee-script bower && \
   yarn install && \
   yarn cache clean
 
 COPY . /app
 
-EXPOSE 8081
-ENV TERM=xterm
-CMD ["npm", "run", "start:docker"]
+EXPOSE 8081 9876
+CMD ["npm", "start"]
