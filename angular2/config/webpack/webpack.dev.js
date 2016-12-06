@@ -20,7 +20,7 @@ try {
   throw 'Please rebuild DLL first by running `npm run build:dll`';
 }
 
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
@@ -91,3 +91,5 @@ module.exports = webpackMerge(commonConfig, {
     stats: 'minimal'
   }
 });
+
+module.exports = config;

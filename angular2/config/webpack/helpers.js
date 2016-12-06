@@ -11,5 +11,9 @@ module.exports = {
   systemRoot: function(args) {
     args = Array.prototype.slice.call(arguments, 0);
     return path.join.apply(path, ['/app'].concat(args));
+  },
+
+  isCi: function() {
+    return process.env.CI === 'true';
   }
 };

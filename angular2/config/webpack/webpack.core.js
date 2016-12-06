@@ -5,6 +5,7 @@ const _ = require('lodash');
 const constants = require('./constants');
 const helpers = require('./helpers');
 const envMap = _.mapValues(env, v => JSON.stringify(v));
+const ProgressBar = require('progress-bar-webpack-plugin');
 
 if (!envMap.APP_ENV) {
   envMap.APP_ENV = '"development"';
@@ -13,7 +14,7 @@ if (!envMap.APP_ENV) {
   console.log('APP_ENV is ' + envMap.APP_ENV);
 }
 
-module.exports = {
+var config = {
   resolve: {
     extensions: ['.js', '.ts'],
     modules: ['node_modules', helpers.root('src')]
@@ -23,9 +24,9 @@ module.exports = {
       'process.env': envMap
     }),
     new webpack.ProvidePlugin({
-        jQuery: 'jquery',
-        $: 'jquery',
-        jquery: 'jquery'
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery'
     }),
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
@@ -34,3 +35,9 @@ module.exports = {
     )
   ]
 };
+
+if (!helpers.isCi()) {
+  config.plugins.push(new ProgressBar());
+}
+
+module.exports = config;
