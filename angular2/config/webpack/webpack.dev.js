@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const commonConfig = require('./webpack.common.js');
@@ -77,7 +76,6 @@ var config = webpackMerge(commonConfig, {
       { filepath: constants.DLL_DIST + '/vendorDll.dll.js', includeSourcemap: false }
     ]),
     new webpack.HotModuleReplacementPlugin(),
-    new DashboardPlugin(),
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true

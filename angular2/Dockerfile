@@ -1,13 +1,13 @@
 FROM garlictech2/base-image
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-RUN mkdir /app 
-WORKDIR /app
-COPY ./package.json /app
+RUN mkdir -p /app && \
+  yarn global add coffee coffee-script bower
 
-RUN yarn global add coffee coffee-script bower && \
-  yarn install && \
-  yarn cache clean
+WORKDIR /app
+
+ADD package.json yarn.lock /app/
+RUN yarn
 
 COPY . /app
 

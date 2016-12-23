@@ -32,12 +32,13 @@ module.exports = function(config, webpackConfig) {
 
     remapCoverageReporter: {
       'text-summary': null,
-      'json': './coverage/coverage.json',
-      'html': './coverage/html',
-      'lcovonly': './coverage/lcov.info'
+      'json': './reports/coverage/coverage.json',
+      'html': './reports/coverage/html',
+      'lcovonly': './reports/coverage/lcov.info'
     },
 
     reporters: ['mocha', 'coverage', 'remap-coverage'],
+    hostname: '0.0.0.0',
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

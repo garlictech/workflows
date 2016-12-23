@@ -39,7 +39,13 @@ Mind, that in Angular 1, we used Mocha, however in Angular 2, we use Jasmine. Th
 
 Run the unit tests, and start watching. When the test/source files change, karma will re-run the tests. 
 
+In watching mode, navigate to http://localhost:9876, to see the debug output of karma. Here, you can inspect the full test code and go to the exact code lines where an error happened (in the development tools of the browser). Configure this port in `docker/docker-compose.net.yml`.
+
+#### Coverage report
+
 At the end of each test run, you will receive a test coverage report. Mind, that we should keep it at 100%, later, we will force build failure in CI if the coverage is less, than 100!
+
+You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after teh very first test run. _Warning_: it is a mounted folder, so it will disappear after shutting down the unit test runner!
 
 ## Starting the project
 
@@ -56,3 +62,9 @@ Log in to the container and see its actual content:
 ```npm run bash```
 
 The command opens a bash session where you can directly change the development container. Mind, that those changes are not persistent, you loose them when you exit.
+
+## Supportes technologies
+
+### File types
+
+Supported files (by their extension): `js, ts, jade, pug, scss, css, html, json, coffee, png, jpeg, jpg, gif, svg, woff, woff2, ttf, eot, ico`
