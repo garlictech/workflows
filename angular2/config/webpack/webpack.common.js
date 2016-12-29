@@ -10,8 +10,8 @@ const isProd = process.env.npm_lifecycle_event === 'build';
 
 const entry = {
   'polyfills': './project/src/dll/polyfills.ts',
-  'style': './project/src/style.ts',
-  'vendor': './project/src/vendor.ts',
+  'style': './project/src/app/styles/index.ts',
+  'vendor': './project/src/dll/vendor.dll.ts',
   'app': './project/src/main.ts'
 };
 
@@ -49,6 +49,14 @@ module.exports = webpackMerge(coreConfig, {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw-loader!postcss-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
+        test: /\.coffee$/,
+        loader: 'coffee'
       }
     ]
   },

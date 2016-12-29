@@ -12,29 +12,27 @@ module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   module: {
-    rules: [
-      {
-        enforce: 'post',
-        test: /\.ts$/,
-        loaders: ['@ngtools/webpack'],
-        exclude: [/\.(spec|e2e)\.ts$/]
-      }
-    ]
+    rules: [{
+      enforce: 'post',
+      test: /\.ts$/,
+      loaders: ['@ngtools/webpack'],
+      exclude: [/\.(spec|e2e)\.ts$/]
+    }]
   },
 
   entry: {
-    'app': './src/main-ngc.ts'
+    'app': '/app/project/src/main-ngc.ts'
   },
 
   output: {
-    path: helpers.root('dist'),
+    path: helpers.systemRoot('dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
   },
 
   plugins: [
     new ngtools.AotPlugin({
-      tsConfigPath: 'src/tsconfig-aot.json',
+      tsConfigPath: '/app/tsconfig-aot.json',
       typeCheck: false
     }),
     new webpack.NoErrorsPlugin(),
@@ -52,17 +50,15 @@ module.exports = webpackMerge(commonConfig, {
       }
     }),
     new CompressionPlugin({
-        asset: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.js$/,
-        threshold: 10240,
-        minRatio: 0.8
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$/,
+      threshold: 10240,
+      minRatio: 0.8
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './src/public/images',
-        to: './images'
-      }
-    ])
+    new CopyWebpackPlugin([{
+      from: '/app/project/src/public/images',
+      to: './images'
+    }])
   ]
 });

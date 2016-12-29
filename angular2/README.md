@@ -7,6 +7,29 @@ The main concepts are the same than that of the Angular 1 based development, imp
 * The project is based on the [Angular Webpack Starter](https://github.com/AngularClass/angular2-webpack-starter) project, learn about the used tehchnology/dependencies there. The generated starting code implements a TODO list app that you have to turn into the real application/module.
 * The code has some really good code samples, and it has 100% test coverage - we should keep this ratio.
 
+## Organizing the project, files
+
+* Unit tests: see [unit test organization](#unit-testing).
+* Place all the services, components, etc. to separate folders. Name the folders after the component name.
+* Use `index.ts` for the file defining the component (so, not `foo.component.ts`).
+* Import the component using the folder name, and let webpack to resolve the `index.ts`.
+
+## Dependency management
+
+There are two files for dependencies: `package.json` and `package_project.json`.
+
+The `package.json` defines the project properties for NPM. Its dependencies sections may include packages, however, the Docker based build system ingnores this file. You should use the packages for local development only, to please your code editor: if you install the dependencies locally, the editor will find them and won't report 'undefined' errors, etc.
+
+The real dependencies should go to `package_project.json`. The build system will merge its content with the `package.json` file in the container, and install the project-specific packages as well. So, add those dependencies only that you cannot find in the container, for performance reasons.
+
+## Start development
+
+After cloning the project, do not forget setting it up:
+
+`npm run setup`
+
+It will create some important folders and files.
+
 ## Build commands
 
 Webpack, Karma, etc. run in a development Docker container. So, you must not install npm dependencies in the local development folder, doing so will cause failures. The development commands mount the source code into the continer.
@@ -25,6 +48,13 @@ Builds the development container. It is a 'light' build, it uses Docker cache, e
 
 It rebuilds everything: pulls the latest base container and disables the Docker cache. Use it when the bse container changes, or when you want to integrate a newer version of a dependency.
 
+### `npm run build:prod`
+
+It creates the production build:
+
+* AOT-compile the project and creates the dist folder
+* Creates an nginx-based docker image serving the web site
+
 ### Webpack hook
 
 Webpack is pre-configured in the base container. If you need, you can customize webpack further: you can access the webpack configuration object in `hooks/webpack/webpack.js`, and modify the config. The container will call this function as the last step of preparing the webpack config. 
@@ -34,6 +64,11 @@ Webpack is pre-configured in the base container. If you need, you can customize 
 The base container preinstalls and configures the Karma test runner with Jasmine test framework and PhantomJS headless browser. Similarly to the webpack hook, you can access both the test Webpack configuraion (`hooks/webpack/webpack.test.js`) and the Karma configuration (`hooks/webpack/karma.js`).
 
 Mind, that in Angular 1, we used Mocha, however in Angular 2, we use Jasmine. The reason is: the seed project uses Jasmine in the sample tests, in fact, the basic concepts of the two frameworks are the same.
+
+### Project organization, files
+
+* Add the unit tests under a `test` subfolder in a module/component folder. This is just a recommendation, the system will find the test files wherever you place them.
+* Name them like `foo.spec.ts`. The `spec.ts` part is the Jasmine standard, and it is important. Karma will execute spec files only.
 
 ### `npm run unittest`
 
@@ -52,6 +87,10 @@ You can access the coverage report in your project folder, under `reports/covera
 ### `npm start`
 
 It launches a webpack dev server in the container, and start watching project source changes. Access the site at http://localhost:8081. The internal container always uses the port 8081, you can map this port to somewhere else in `docker/docker-compose.net.yml` in the project folder.
+
+### `npm start:docker`
+
+Starts the (previously built) Docker/nginx based web server.
 
 ## Debugging
 
