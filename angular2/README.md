@@ -2,6 +2,20 @@
 
 The main concepts are the same than that of the Angular 1 based development, implemented in the `webpack` container.
 
+_tl;dr_
+
+```
+npm run setup
+npm run build:docker
+npm run unittest
+npm run build:prod
+
+npm start
+npm run start:docker
+git add .
+npm run commit
+```
+
 ## General concepts
 
 * The project is based on the [Angular Webpack Starter](https://github.com/AngularClass/angular2-webpack-starter) project, learn about the used tehchnology/dependencies there. The generated starting code implements a TODO list app that you have to turn into the real application/module.
@@ -16,11 +30,17 @@ The main concepts are the same than that of the Angular 1 based development, imp
 
 ## Dependency management
 
-There are two files for dependencies: `package.json` and `package_project.json`.
+The dependencies should go to `package.json`, as usual. The build system will merge its content with the `package.json` file in the container, and install the project-specific packages as well. So, add those dependencies only that you cannot find in the container, for performance reasons.
 
-The `package.json` defines the project properties for NPM. Its dependencies sections may include packages, however, the Docker based build system ingnores this file. You should use the packages for local development only, to please your code editor: if you install the dependencies locally, the editor will find them and won't report 'undefined' errors, etc.
+Mind, that only teh following keys are merged: `dependencies, peerDependencies, devDependencies, garlic`.
 
-The real dependencies should go to `package_project.json`. The build system will merge its content with the `package.json` file in the container, and install the project-specific packages as well. So, add those dependencies only that you cannot find in the container, for performance reasons.
+However, you can should use the packages for local development as well, to please your code editor: if you install all the the required dependencies locally (both project-specific ones and the ones that the container provides), the editor will find them and won't report 'undefined' errors, etc.
+
+## Project types
+
+There are two project types: `site` and `module`. Site is a full-blown web site with `index.html`. Module is an Angular2 module, to be reused by other modules and sites.
+
+In case of modules, you can find a folder called `dev-site`. Here, you can build a test site for the module: you can test the functionalities in a real site, and you can use e2e test as well. The development site is not part of the module.
 
 ## Start development
 

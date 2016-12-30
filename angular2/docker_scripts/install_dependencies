@@ -8,5 +8,6 @@ remotePjson = fs.readJsonSync process.argv[2]
 _.assign localPjson.dependencies, remotePjson.dependencies
 _.assign localPjson.devDependencies, remotePjson.devDependencies
 _.assign localPjson.optionalDependencies, remotePjson.optionalDependencies
+localPjson.garlic = remotePjson.garlic
 
 fs.outputJsonSync '/app/package.json', localPjson

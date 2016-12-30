@@ -1,6 +1,12 @@
 "use strict";
 var path = require('path');
 var _root = path.resolve('/app/project');
+var fs = require('fs');
+
+const packageConfig = JSON.parse(fs.readFileSync("/app/package.json", 'utf8'));
+const appType = packageConfig.garlic.type || 'site';
+const isApp = appType === 'site';
+const appEntryBase = path.join(path.sep, 'app', 'project', (isApp ? 'src' : 'dev-site'));
 
 module.exports = {
   root: function(args) {
@@ -15,5 +21,32 @@ module.exports = {
 
   isCi: function() {
     return process.env.CI === 'true';
+  },
+
+  contentBase: function() {
+    return path.join(appEntryBase, 'public');
+  },
+
+  appEntryBase: function() {
+    return path.join(appEntryBase, 'app');
+  },
+
+  appEntrypoint: function() {
+    return path.join(appEntryBase, 'main.ts');
+  },
+
+  appEntrypointProd: function() {
+    return path.join(appEntryBase, 'main-ngc.ts');
+  },
+
+  isApp: function() {
+    return isApp;
+  },
+
+  appCssPaths: function() {
+    return [
+      path.join(_root, 'src', 'app'),
+      path.join(_root, 'dev-site')
+    ]
   }
 };

@@ -20,7 +20,7 @@ if (!envMap.APP_ENV) {
 var config = {
   resolve: {
     extensions: ['.js', '.ts', '.scss'],
-    modules: ['node_modules', helpers.root('src')]
+    modules: ['app', 'src', 'node_modules']
   },
   module: {
     rules: [{
@@ -29,7 +29,7 @@ var config = {
       },
       {
         test: /\.scss$/,
-        exclude: helpers.root('src', 'app'),
+        exclude: helpers.appCssPaths(),
         loader: ExtractTextPlugin
           .extract({
             fallbackLoader: "style-loader",
@@ -38,7 +38,7 @@ var config = {
       },
       {
         test: /\.scss$/,
-        include: helpers.root('src', 'app'),
+        include: helpers.appCssPaths(),
         loader: 'raw-loader!postcss-loader!sass-loader'
       }
     ]

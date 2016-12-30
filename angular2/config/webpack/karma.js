@@ -27,7 +27,7 @@ module.exports = function(config, webpackConfig) {
     },
 
     coverageReporter: {
-      type: 'in-memory'
+      type: 'in-memory',
     },
 
     remapCoverageReporter: {
@@ -37,7 +37,14 @@ module.exports = function(config, webpackConfig) {
       'lcovonly': './reports/coverage/lcov.info'
     },
 
-    reporters: ['mocha', 'coverage', 'remap-coverage'],
+    thresholdReporter: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100
+    },
+
+    reporters: ['mocha', 'coverage', 'remap-coverage', 'threshold'],
     hostname: '0.0.0.0',
     port: 9876,
     colors: true,

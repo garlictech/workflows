@@ -84,7 +84,7 @@ var config = webpackMerge(commonConfig, {
 
   devServer: {
     hot: true,
-    contentBase: '/app/project/src/public',
+    contentBase: helpers.contentBase(),
     historyApiFallback: true,
     stats: 'minimal'
   }

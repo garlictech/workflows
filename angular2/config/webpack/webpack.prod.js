@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const webpackMerge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -21,7 +22,7 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   entry: {
-    'app': '/app/project/src/main-ngc.ts'
+    'app': helpers.appEntrypointProd()
   },
 
   output: {
@@ -33,7 +34,8 @@ module.exports = webpackMerge(commonConfig, {
   plugins: [
     new ngtools.AotPlugin({
       tsConfigPath: '/app/tsconfig-aot.json',
-      typeCheck: false
+      typeCheck: true,
+      entryModule: `${helpers.appEntryBase()}/app.module#AppModule`
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
@@ -57,7 +59,7 @@ module.exports = webpackMerge(commonConfig, {
       minRatio: 0.8
     }),
     new CopyWebpackPlugin([{
-      from: '/app/project/src/public/images',
+      from: path.join(helpers.contentBase(), 'images'),
       to: './images'
     }])
   ]

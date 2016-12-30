@@ -1,3 +1,4 @@
+var path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,10 +11,15 @@ const isProd = process.env.npm_lifecycle_event === 'build';
 
 const entry = {
   'polyfills': './project/src/dll/polyfills.ts',
-  'style': './project/src/app/styles/index.ts',
   'vendor': './project/src/dll/vendor.dll.ts',
-  'app': './project/src/main.ts'
+  'app': helpers.appEntrypoint(),
+  'style': './project/src/app/styles/index.ts'
 };
+
+const htmlWebpackEntry = {
+  template: path.join(helpers.contentBase(), 'index.html'),
+  favicon: path.join(helpers.contentBase(), 'favicon.ico')
+}
 
 module.exports = webpackMerge(coreConfig, {
   entry: entry,
@@ -30,7 +36,7 @@ module.exports = webpackMerge(coreConfig, {
       {
         test: /\.html$/,
         loader: 'html-loader',
-        exclude: helpers.root('src', 'public')
+        exclude: helpers.contentBase()
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -38,7 +44,7 @@ module.exports = webpackMerge(coreConfig, {
       },
       {
         test: /\.css$/,
-        exclude: helpers.root('src', 'app'),
+        exclude: helpers.appCssPaths(),
         loader: ExtractTextPlugin
           .extract({
             fallbackLoader: "style-loader",
@@ -47,16 +53,16 @@ module.exports = webpackMerge(coreConfig, {
       },
       {
         test: /\.css$/,
-        include: helpers.root('src', 'app'),
+        include: helpers.appCssPaths(),
         loader: 'raw-loader!postcss-loader'
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.coffee$/,
-        loader: 'coffee'
+        loader: 'coffee-loader'
       }
     ]
   },
@@ -68,10 +74,7 @@ module.exports = webpackMerge(coreConfig, {
       name: ['vendorDll', 'vendor', 'app', 'style', 'polyfills']
     }),
 
-    new HtmlWebpackPlugin({
-      favicon: 'project/src/public/favicon.ico',
-      template: 'project/src/public/index.html'
-    }),
+    new HtmlWebpackPlugin(htmlWebpackEntry),
 
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -83,5 +86,4 @@ module.exports = webpackMerge(coreConfig, {
       }
     })
   ]
-
 });
