@@ -37,14 +37,7 @@ module.exports = function(config, webpackConfig) {
       'lcovonly': './reports/coverage/lcov.info'
     },
 
-    thresholdReporter: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100
-    },
-
-    reporters: ['mocha', 'coverage', 'remap-coverage', 'threshold'],
+    reporters: ['mocha', 'coverage', 'remap-coverage'],
     hostname: '0.0.0.0',
     port: 9876,
     colors: true,
