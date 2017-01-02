@@ -19,7 +19,7 @@ if (!envMap.APP_ENV) {
 
 var config = {
   resolve: {
-    extensions: ['.js', '.ts', '.scss'],
+    extensions: ['.js', '.ts', '.pug', '.jade', '.scss', '.css', '.json'],
     modules: ['app', 'src', 'node_modules']
   },
   module: {
