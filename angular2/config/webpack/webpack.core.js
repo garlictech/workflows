@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const env = require('dotenv').config({ silent: true });
 const _ = require('lodash');
+const path = require('path');
 
 const constants = require('./constants');
 const helpers = require('./helpers');
@@ -57,7 +58,18 @@ var config = {
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       constants.CONTEXT_REPLACE_REGEX,
       helpers.root('./src') // location of your src
-    )
+    ),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        sassLoader: {
+          includePaths: [
+            path.join(path.sep, 'app', 'node_modules', 'normalize-scss', 'sass'),
+            path.join(path.sep, 'app', 'node_modules', 'foundation-sites', 'scss'),
+            path.join(path.sep, 'app', 'node_modules', 'compass-mixins', 'lib', 'compass')
+          ]
+        },
+      }
+    })
   ]
 };
 

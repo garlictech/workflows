@@ -10,8 +10,7 @@ module.exports = webpackMerge(coreConfig, {
   devtool: 'inline-source-map',
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|ts)$/,
         enforce: 'post',
         loader: 'istanbul-instrumenter-loader',
@@ -38,7 +37,6 @@ module.exports = webpackMerge(coreConfig, {
       {
         test: /\.html$/,
         loader: 'html-loader'
-
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)/,
