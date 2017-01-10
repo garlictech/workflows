@@ -3,7 +3,6 @@ MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 WORKDIR /app
 
-RUN npm install --silent --production garlictech-common-server && \
-  npm cache clean
+RUN yarn add --production garlictech-common-server
 
 CMD ["node", "/app/server/server.js"]

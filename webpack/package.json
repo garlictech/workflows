@@ -60,7 +60,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "lodash": "^4.13.1",
-    "material-colors": "^1.0",
+    "material-colors": "^1.2.5",
     "mocha": "^2.3.x",
     "node-sass": "^3.7.0",
     "normalize-scss": "^5.0.3",

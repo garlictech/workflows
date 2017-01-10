@@ -1,12 +1,10 @@
 FROM garlictech2/base-image
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-RUN mkdir /app
-WORKDIR /app
-COPY package.json /app
+COPY deps.json /app
 
-RUN yarn global add gulp coffee-script && \
-  yarn install && \
-  yarn cache clean
+RUN yarn add lodash fs-extra && \
+  scripts/install_dependencies deps.json && \
+  rm deps.json
 
 COPY . /app

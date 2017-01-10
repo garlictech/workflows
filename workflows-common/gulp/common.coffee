@@ -1,4 +1,4 @@
-p = require('gulp-load-plugins') {config: '/app/package_internal.json'}
+p = require('gulp-load-plugins') {config: '/node_tmp/package.json'}
 path = require 'path'
 
 GLOBAL._ = require 'lodash'

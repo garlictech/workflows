@@ -1,5 +1,5 @@
 common = require './common'
-p = require('gulp-load-plugins') {config: '/app/package_internal.json'}
+p = require('gulp-load-plugins') {config: '/node_tmp/package.json'}
 
 # handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->

@@ -3,9 +3,7 @@ var path = require('path');
 var _root = path.resolve('/app/project');
 var fs = require('fs');
 
-const packageConfig = JSON.parse(fs.readFileSync("/app/package.json", 'utf8'));
-const appType = packageConfig.garlic.type || 'site';
-const isApp = appType === 'site';
+const isApp = !fs.exists('/app/project/dev-site');
 const appEntryBase = path.join(path.sep, 'app', 'project', (isApp ? 'src' : 'dev-site'));
 
 module.exports = {

@@ -1,0 +1,15 @@
+#! /usr/bin/env node
+const fs = require('fs-extra');
+const _ = require('lodash');
+const execute = require('child_process').execSync;
+
+const localPjson = fs.readJsonSync('package.json');
+const remotePjson = fs.readJsonSync(process.argv[2]);
+var newDeps = {};
+_.assign(newDeps, remotePjson.dependencies, remotePjson.devDependencies, remotePjson.optionalDependencies, remotePjson.peerDependencies);
+
+if (_.keys(newDeps).length !== 0) {
+  _.assign(localPjson.dependencies, newDeps);
+  fs.outputJsonSync('package.json', localPjson);
+  execute("yarn", { stdio: [0, 1, 2] });
+}

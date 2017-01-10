@@ -10,7 +10,7 @@ apt-get clean
 rm -rf /var/lib/apt/lists/*
 cd /
 
-npm install -g --silent coffee
+npm install -g --silent coffee yarn
 
 npm install --silent \
   chai \
