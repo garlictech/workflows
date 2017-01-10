@@ -3,7 +3,7 @@ var path = require('path');
 var _root = path.resolve('/app/project');
 var fs = require('fs');
 
-const isApp = !fs.exists('/app/project/dev-site');
+const isApp = !fs.existsSync('/app/project/dev-site');
 const appEntryBase = path.join(path.sep, 'app', 'project', (isApp ? 'src' : 'dev-site'));
 
 module.exports = {
