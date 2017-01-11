@@ -60,11 +60,11 @@ Before starting, you have to build the development Docker container with some of
 
 Add your dependencies to `package.json` as usual. But mind, that you should not keep the `node_modules` folder anyway! The build process will install the dependencies in the development container. There are some packages pre-installed in the base docker container (see them in the corresponding [package.json](https://github.com/garlictech/workflows/blob/master/angular2/package.json) file). You don't have to add them to the project `package.json`, doing so will not harm (unless there is a big version clash somewhere), but it may slow down your builds.
 
-### `npm run build:dev`
+### `npm run build:docker`
 
 Builds the development container. It is a 'light' build, it uses Docker cache, etc. It provides fast rebuild, but it cannot detect if the base docker image changes, or the versions of the dependencies change.
 
-### `npm run build:dev:all`
+### `npm run build:docker:all`
 
 It rebuilds everything: pulls the latest base container and disables the Docker cache. Use it when the bse container changes, or when you want to integrate a newer version of a dependency.
 
