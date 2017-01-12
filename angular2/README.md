@@ -6,6 +6,7 @@ _tl;dr_
 
 ```
 npm run setup
+yarn
 npm run build:docker
 npm run unittest
 npm run build:prod
@@ -55,10 +56,6 @@ It will create some important folders and files.
 Webpack, Karma, etc. run in a development Docker container. So, you must not install npm dependencies in the local development folder, doing so will cause failures. The development commands mount the source code into the continer.
 
 Before starting, you have to build the development Docker container with some of the build commands below. Webpack, Karma, etc. all run in that container. You can define the development Docker container in `Dockerfile.dev`: extend it if you have to add something more. Don't remove sections marked as "don't remove", unless you know what you do.
-
-## Dependencies, development build
-
-Add your dependencies to `package.json` as usual. But mind, that you should not keep the `node_modules` folder anyway! The build process will install the dependencies in the development container. There are some packages pre-installed in the base docker container (see them in the corresponding [package.json](https://github.com/garlictech/workflows/blob/master/angular2/package.json) file). You don't have to add them to the project `package.json`, doing so will not harm (unless there is a big version clash somewhere), but it may slow down your builds.
 
 ### `npm run build:docker`
 

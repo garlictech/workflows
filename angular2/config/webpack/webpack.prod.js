@@ -58,9 +58,9 @@ module.exports = webpackMerge(commonConfig, {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new CopyWebpackPlugin([{
-      from: path.join(helpers.contentBase(), 'images'),
-      to: './images'
-    }])
+    // new CopyWebpackPlugin([{
+    //   from: path.join(helpers.contentBase(), 'images'),
+    //   to: './images'
+    // }])
   ]
 });
