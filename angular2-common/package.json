@@ -20,7 +20,7 @@
     "tslint": "tslint",
     "lint": "npm run tslint \"src/**/*.ts\"",
     "prebuild": "npm run clean:build",
-    "build:prod": "webpack --config config/webpack/webpack.prod.js --profile --progress --bail",
+    "build:prod": "webpack --config config/webpack/webpack.prod.js --profile --bail",
     "build:dll": "webpack --config config/webpack/webpack.dll.js --profile --bail",
     "serve:build": "run-s build serve",
     "clean": "run-p clean:*",
