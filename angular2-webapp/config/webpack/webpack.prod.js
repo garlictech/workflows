@@ -9,7 +9,7 @@ const ngtools = require('@ngtools/webpack');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
-var config = webpackMerge(commonConfig, {
+module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   module: {
@@ -21,6 +21,10 @@ var config = webpackMerge(commonConfig, {
     }]
   },
 
+  entry: {
+    'app': helpers.appEntrypointProd()
+  },
+
   output: {
     path: helpers.systemRoot('dist'),
     filename: '[name].[hash].js',
@@ -28,8 +32,13 @@ var config = webpackMerge(commonConfig, {
   },
 
   plugins: [
+    new ngtools.AotPlugin({
+      tsConfigPath: '/app/tsconfig-aot.json',
+      typeCheck: true,
+      entryModule: `${helpers.appEntryBase()}/app.module#AppModule`
+    }),
     new webpack.NoErrorsPlugin(),
-
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin({
       filename: '[name].[hash].css',
       allChunks: true
@@ -48,12 +57,10 @@ var config = webpackMerge(commonConfig, {
       test: /\.js$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+    // new CopyWebpackPlugin([{
+    //   from: path.join(helpers.contentBase(), 'images'),
+    //   to: './images'
+    // }])
   ]
 });
-
-config.entry = {
-  'style': '/app/project/src/app/styles/index.ts'
-};
-
-module.exports = config;
