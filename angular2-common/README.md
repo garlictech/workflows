@@ -33,7 +33,7 @@ npm run commit
 
 The dependencies should go to `package.json`, as usual. The build system will merge its content with the `package.json` file in the container, and install the project-specific packages as well. So, add those dependencies only that you cannot find in the container, for performance reasons.
 
-Mind, that only teh following keys are merged: `dependencies, peerDependencies, devDependencies, garlic`.
+Mind, that only the following keys are merged: `dependencies, peerDependencies, devDependencies, garlic`.
 
 However, you can should use the packages for local development as well, to please your code editor: if you install all the the required dependencies locally (both project-specific ones and the ones that the container provides), the editor will find them and won't report 'undefined' errors, etc.
 
