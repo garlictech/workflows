@@ -13,6 +13,7 @@ yaml.read '../dependencies.yml',
   console.log "ALL DEPENDENCIES: ", data
   console.log "REPO SLUG: ", process.env.TRAVIS_REPO_SLUG, data[process.env.TRAVIS_REPO_SLUG]
   console.log "DEPENDENCIES OF SLUG: ", data[process.env.TRAVIS_REPO_SLUG]
-  for dep in data[process.env.TRAVIS_REPO_SLUG]
-    console.log "Executing: ./notify_dependency.sh #{dep}"
-    execute "#{__dirname}/notify_dependency.sh #{dep}", {stdio:[0,1,2]}
+  if data[process.env.TRAVIS_REPO_SLUG]?
+    for dep in data[process.env.TRAVIS_REPO_SLUG]
+      console.log "Executing: ./notify_dependency.sh #{dep}"
+      execute "#{__dirname}/notify_dependency.sh #{dep}", {stdio:[0,1,2]}

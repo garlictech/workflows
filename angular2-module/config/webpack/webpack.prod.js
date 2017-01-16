@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const webpackMerge = require('webpack-merge');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const ngtools = require('@ngtools/webpack');
@@ -9,7 +9,7 @@ const ngtools = require('@ngtools/webpack');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   module: {
@@ -21,10 +21,6 @@ module.exports = webpackMerge(commonConfig, {
     }]
   },
 
-  entry: {
-    'app': helpers.appEntrypointProd()
-  },
-
   output: {
     path: helpers.systemRoot('dist'),
     filename: '[name].[hash].js',
@@ -32,13 +28,8 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
-    new ngtools.AotPlugin({
-      tsConfigPath: '/app/tsconfig-aot.json',
-      typeCheck: true,
-      entryModule: `${helpers.appEntryBase()}/app.module#AppModule`
-    }),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+
     new ExtractTextPlugin({
       filename: '[name].[hash].css',
       allChunks: true
@@ -57,10 +48,12 @@ module.exports = webpackMerge(commonConfig, {
       test: /\.js$/,
       threshold: 10240,
       minRatio: 0.8
-    }),
-    // new CopyWebpackPlugin([{
-    //   from: path.join(helpers.contentBase(), 'images'),
-    //   to: './images'
-    // }])
+    })
   ]
 });
+
+config.entry = {
+  'style': '/app/project/src/app/styles/index.ts'
+};
+
+module.exports = config;

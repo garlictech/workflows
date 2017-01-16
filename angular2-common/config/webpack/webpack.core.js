@@ -26,7 +26,7 @@ var config = {
   module: {
     rules: [{
         test: /\.(jade|pug)$/,
-        loader: 'pug-html-loader'
+        loader: 'pug-ng-html-loader'
       },
       {
         test: /\.scss$/,
@@ -34,13 +34,15 @@ var config = {
         loader: ExtractTextPlugin
           .extract({
             fallbackLoader: "style-loader",
-            loader: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader', 'sass-loader']
+            loader: ['css-loader' + (isProd ? '?minimize' : ''), 'sass-loader']
+              // loader: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader', 'sass-loader']
           })
       },
       {
         test: /\.scss$/,
         include: helpers.appCssPaths(),
-        loader: 'raw-loader!postcss-loader!sass-loader'
+        // loader: 'raw-loader!postcss-loader!sass-loader'
+        loader: 'raw-loader!sass-loader'
       }
     ]
   },

@@ -9,21 +9,12 @@ const coreConfig = require('./webpack.core');
 
 const isProd = process.env.npm_lifecycle_event === 'build';
 
-const entry = {
-  'polyfills': './project/src/dll/polyfills.ts',
-  'vendor': './project/src/dll/vendor.dll.ts',
-  'app': helpers.appEntrypoint(),
-  'style': './project/src/app/styles/index.ts'
-};
-
 const htmlWebpackEntry = {
   template: path.join(helpers.contentBase(), 'index.html'),
   favicon: path.join(helpers.contentBase(), 'favicon.ico')
-}
+};
 
 module.exports = webpackMerge(coreConfig, {
-  entry: entry,
-
   module: {
     rules: [{
         enforce: 'pre',
@@ -35,7 +26,7 @@ module.exports = webpackMerge(coreConfig, {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        loader: 'raw-loader',
         exclude: helpers.contentBase()
       },
       {
@@ -48,13 +39,15 @@ module.exports = webpackMerge(coreConfig, {
         loader: ExtractTextPlugin
           .extract({
             fallbackLoader: "style-loader",
-            loader: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
+            loader: ['css-loader' + (isProd ? '?minimize' : '')]
+              // loader: ['css-loader' + (isProd ? '?minimize' : ''), 'postcss-loader']
           })
       },
       {
         test: /\.css$/,
         include: helpers.appCssPaths(),
-        loader: 'raw-loader!postcss-loader'
+        // loader: 'raw-loader!postcss-loader'
+        loader: 'raw-loader'
       },
       {
         test: /\.json$/,
