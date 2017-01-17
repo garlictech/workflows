@@ -32,26 +32,24 @@ var config = webpackMerge(commonConfig, {
   module: {
     rules: [{
         test: /\.ts$/,
-        loaders: [
-          'awesome-typescript-loader',
-          'angular2-template-loader',
-          '@angularclass/hmr-loader'
-        ],
-        // query: {
-        //   forkChecker: true
-        // },
+        loaders: 'awesome-typescript-loader',
+        query: {
+          forkChecker: true
+        },
         exclude: [
           /node_modules/
         ]
       },
-      // {
-      //   test: /\.ts$/,
-      //   loaders: [
-      //   ],
-      //   exclude: [
-      //     /node_modules/
-      //   ]
-      // },
+      {
+        test: /\.ts$/,
+        loaders: [
+          'angular2-template-loader',
+          '@angularclass/hmr-loader'
+        ],
+        exclude: [
+          /node_modules/
+        ]
+      },
       {
         test: /\.ts$/,
         loaders: [
