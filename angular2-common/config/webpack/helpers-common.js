@@ -26,6 +26,14 @@ module.exports = function(config) {
       return path.join(config.appEntryBase, 'app');
     },
 
+    appEntrypoint: function() {
+      return path.join(config.appEntryBase, 'main.ts');
+    },
+
+    appEntrypointProd: function() {
+      return path.join(config.appEntryBase, 'main-ngc.ts');
+    },
+
     appCssPaths: function() {
       return [
         path.join(_root, 'src', 'app'),

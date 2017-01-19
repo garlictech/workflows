@@ -26,12 +26,13 @@ module.exports = webpackMerge(coreConfig, {
       },
       {
         test: /\.html$/,
-        loader: 'raw-loader',
+        loader: 'html-loader',
         exclude: helpers.contentBase()
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
+          // loader: 'url-loader?limit=5000&name=assets/[name].[hash].[ext]'
       },
       {
         test: /\.css$/,

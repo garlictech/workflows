@@ -9,6 +9,8 @@ const ngtools = require('@ngtools/webpack');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
@@ -28,7 +30,8 @@ module.exports = webpackMerge(commonConfig, {
   output: {
     path: helpers.systemRoot('dist'),
     filename: '[name].[hash].js',
-    chunkFilename: '[id].[hash].chunk.js'
+    chunkFilename: '[id].[hash].chunk.js',
+    publicPath: '/',
   },
 
   plugins: [
@@ -38,7 +41,11 @@ module.exports = webpackMerge(commonConfig, {
       entryModule: `${helpers.appEntryBase()}/app.module#AppModule`
     }),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
+      mangle: {
+        keep_fnames: true
+      }
+    }),
     new ExtractTextPlugin({
       filename: '[name].[hash].css',
       allChunks: true
@@ -57,7 +64,7 @@ module.exports = webpackMerge(commonConfig, {
       test: /\.js$/,
       threshold: 10240,
       minRatio: 0.8
-    }),
+    })
     // new CopyWebpackPlugin([{
     //   from: path.join(helpers.contentBase(), 'images'),
     //   to: './images'
