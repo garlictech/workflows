@@ -1,7 +1,7 @@
 FROM garlictech2/base-image
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-RUN yarn global add coffee coffee-script gulp
+RUN yarn global add coffee coffee-script gulp firebase-tools
 
 COPY deps.json /app
 
