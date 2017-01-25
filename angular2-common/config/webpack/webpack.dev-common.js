@@ -32,13 +32,23 @@ var config = webpackMerge(commonConfig, {
   module: {
     rules: [{
         test: /\.ts$/,
-        loaders: 'awesome-typescript-loader',
-        query: {
-          forkChecker: true
-        },
         exclude: [
           /node_modules/
-        ]
+        ],
+        use: [{
+          loader: 'awesome-typescript-loader',
+          options: {
+            forkChecker: true
+          }
+          // }, {
+          //   loader: 'babel-loader',
+          //   options: {
+          //     babelrc: false,
+          //     presets: ['es2015'],
+          //     plugins: ['transform-object-rest-spread']
+          //   }
+        }]
+
       },
       {
         test: /\.ts$/,
