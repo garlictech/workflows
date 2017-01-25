@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const path = require('path');
+const fs = require('fs');
 const webpackMerge = require('webpack-merge');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -11,7 +11,7 @@ const helpers = require('./helpers');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   module: {
@@ -65,9 +65,11 @@ module.exports = webpackMerge(commonConfig, {
       threshold: 10240,
       minRatio: 0.8
     })
-    // new CopyWebpackPlugin([{
-    //   from: path.join(helpers.contentBase(), 'images'),
-    //   to: './images'
-    // }])
   ]
 });
+
+if (fs.existsSync(helpers.prodHookFile())) {
+  require(helpers.prodHookFile())(config);
+}
+
+module.exports = config;

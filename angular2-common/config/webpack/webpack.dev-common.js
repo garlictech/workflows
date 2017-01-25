@@ -7,6 +7,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 const constants = require('./constants');
 const helpers = require('./helpers');
+const fs = require('fs');
 
 let polyfillsManifest;
 let vendorManifest;
@@ -38,17 +39,16 @@ var config = webpackMerge(commonConfig, {
         use: [{
           loader: 'awesome-typescript-loader',
           options: {
-            forkChecker: true
+            forkChecker: true,
+            useBabel: true,
+            usePrecompiledFiles: true,
+            useCache: true,
+            babelOptions: {
+              "presets": ["angular"],
+              "plugins": ["transform-object-rest-spread"]
+            }
           }
-          // }, {
-          //   loader: 'babel-loader',
-          //   options: {
-          //     babelrc: false,
-          //     presets: ['es2015'],
-          //     plugins: ['transform-object-rest-spread']
-          //   }
         }]
-
       },
       {
         test: /\.ts$/,
@@ -99,5 +99,9 @@ var config = webpackMerge(commonConfig, {
     stats: 'minimal'
   }
 });
+
+if (fs.existsSync(helpers.devHookFile())) {
+  config = webpackMerge(config, require(helpers.devHookFile()));
+}
 
 module.exports = config;

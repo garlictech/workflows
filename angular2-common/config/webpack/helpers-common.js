@@ -39,6 +39,18 @@ module.exports = function(config) {
         path.join(_root, 'src', 'app'),
         path.join(_root, 'dev-site')
       ]
+    },
+
+    devHookFile: function() {
+      return path.join(_root, 'hooks', 'webpack', 'webpack.dev.js');
+    },
+
+    prodHookFile: function() {
+      return path.join(_root, 'hooks', 'webpack', 'webpack.prod.js');
+    },
+
+    karmaHookFile: function() {
+      return path.join(_root, 'hooks', 'karma', 'karma.conf.js');
     }
   };
 }
