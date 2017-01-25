@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 npm prune
-echo "NODE_ENV=production" >> .env
+npm run setup
+echo "export NODE_ENV=production" >> .env
