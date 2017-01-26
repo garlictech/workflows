@@ -49,6 +49,10 @@ module.exports = function(config) {
       return path.join(_root, 'hooks', 'webpack', 'webpack.prod.js');
     },
 
+    testHookFile: function() {
+      return path.join(_root, 'hooks', 'webpack', 'webpack.test.js');
+    },
+
     karmaHookFile: function() {
       return path.join(_root, 'hooks', 'karma', 'karma.conf.js');
     }

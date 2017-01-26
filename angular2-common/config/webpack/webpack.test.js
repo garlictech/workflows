@@ -1,12 +1,11 @@
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const path = require('path');
-const _ = require('lodash');
-
-const coreConfig = require('./webpack.core');
+const fs = require('fs');
 const helpers = require('./helpers');
 
-module.exports = webpackMerge(coreConfig, {
+const coreConfig = require('./webpack.core');
+
+var config = webpackMerge(coreConfig, {
+  entry: "dummy",
   devtool: 'inline-source-map',
 
   module: {
@@ -55,3 +54,9 @@ module.exports = webpackMerge(coreConfig, {
     ]
   }
 });
+
+if (fs.existsSync(helpers.testHookFile())) {
+  require(helpers.testHookFile())(config);
+}
+
+module.exports = config;
