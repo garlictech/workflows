@@ -1,11 +1,10 @@
 FROM garlictech2/base-image
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-RUN yarn global add coffee coffee-script bower
+RUN npm install -g --silent coffee coffee-script bower
 
-ADD package.json /app/
-
-RUN yarn
+ADD package.json package.shared.json /app/
+RUN scripts/install_dependencies /app/package.shared.json
 
 COPY . /app
 

@@ -1,0 +1,1 @@
+COMMON_UPDATED_PACKAGE_JSON=/app/package_project.updated.json

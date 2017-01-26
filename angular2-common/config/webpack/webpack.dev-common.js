@@ -39,14 +39,7 @@ var config = webpackMerge(commonConfig, {
         use: [{
           loader: 'awesome-typescript-loader',
           options: {
-            forkChecker: true,
-            useBabel: true,
-            usePrecompiledFiles: true,
-            useCache: true,
-            babelOptions: {
-              "presets": ["angular"],
-              "plugins": ["transform-object-rest-spread"]
-            }
+            forkChecker: true
           }
         }]
       },

@@ -12,8 +12,8 @@ WORKDIR /app
 RUN cd $(npm root -g)/npm && \
   npm install --silent fs-extra && \
   sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js && \
-  npm install --silent -g yarn@0.17.9 npm && \
+  npm install --silent -g npm && \
   cd /app && \
-  yarn add lodash fs-extra
+  npm install --save --silent lodash fs-extra
   
 ADD . /app
