@@ -40,7 +40,7 @@ var config = webpackMerge(commonConfig, {
       typeCheck: true,
       entryModule: `${helpers.appEntryBase()}/app.module#AppModule`
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
       mangle: {
         keep_fnames: true

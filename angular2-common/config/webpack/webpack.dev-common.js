@@ -24,8 +24,8 @@ var config = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
-    path: helpers.root('dist'),
-    publicPath: 'http://localhost:8081/',
+    path: helpers.systemRoot('dist'),
+    publicPath: '/',
     filename: '[name].js',
     chunkFilename: '[id].chunk.js'
   },

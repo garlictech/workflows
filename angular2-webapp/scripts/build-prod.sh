@@ -2,4 +2,5 @@
 
 set -e
 npm run clean:build
-webpack --config config/webpack/webpack.prod.js --profile --bail
+# Until they are AOT competible...
+webpack --config config/webpack/webpack.dev.js --profile --bail
