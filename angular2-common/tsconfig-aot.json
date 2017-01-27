@@ -21,7 +21,14 @@
   "exclude": [
     "**/*.spec.ts",
     "main-ngc.ts",
-    "main.ts"
+    "main.ts",
+    "node_modules",
+    "coverage",
+    "dist",
+    "e2e",
+    "project/src/main-ngc.ts",
+    "project/src/test.ts",
+    "report"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,
@@ -29,7 +36,6 @@
     "useCache": false
   },
   "angularCompilerOptions": {
-    "entryModule": "/app/project/src/app/app.module#AppModule",
-    "skipMetadataEmit": true
+    "skipMetadataEmit": false
   }
 }
