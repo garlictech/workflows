@@ -1,9 +1,9 @@
 FROM garlictech2/base-image
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-RUN yarn global add coffee coffee-script gulp firebase-tools
+RUN npm install -g --silent coffee coffee-script gulp firebase-tools
 
-COPY deps.json /app
+COPY package.json deps.json /app/
 
 RUN scripts/install_dependencies deps.json
 
