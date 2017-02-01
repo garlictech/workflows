@@ -1,8 +1,7 @@
-FROM garlictech2/base-image
+FROM garlictech2/workflows-base
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-WORKDIR /app
-
-RUN yarn add --production garlictech-common-server
+ADD package.json /app/
+RUN scripts/install_dependencies /app/package.json
 
 CMD ["node", "/app/server/server.js"]

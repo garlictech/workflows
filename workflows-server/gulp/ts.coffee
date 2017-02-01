@@ -1,5 +1,6 @@
 common = require './common'
-p = require('gulp-load-plugins') {config: '/node_tmp/package.json'}
+p = require('gulp-load-plugins')()
+#  {config: '/node_tmp/package.json'}
 tsProject = p.typescript.createProject "./tsconfig.json"
 
 # handle src coffeescript files: static compilation

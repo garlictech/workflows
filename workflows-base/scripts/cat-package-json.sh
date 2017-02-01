@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-. scripts/common.sh
+. scripts/deps-common.sh
 
 cat $COMMON_UPDATED_PACKAGE_JSON

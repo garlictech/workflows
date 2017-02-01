@@ -7,5 +7,6 @@
     "commitizen": {
       "path": "/app/node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }

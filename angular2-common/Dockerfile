@@ -1,7 +1,7 @@
-FROM garlictech2/base-image
+FROM garlictech2/workflows-base
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-RUN npm install -g --silent coffee coffee-script bower
+RUN npm install -g bower
 
 ADD package.json package.shared.json /app/
 RUN scripts/install_dependencies /app/package.shared.json
