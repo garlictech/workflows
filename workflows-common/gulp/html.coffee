@@ -1,6 +1,5 @@
 common = require './common'
 p = require('gulp-load-plugins')()
-#  {config: '/node_tmp/package.json'}
 
 # handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->
@@ -8,5 +7,5 @@ module.exports = (gulp, c) ->
   files = _.map config.srcRoots, (dir) -> "#{dir}/**/*.html"
 
   return ->
-    common.GulpSrc gulp, files, 'html', {base: config.base}
+    common.GulpSrc gulp, files, 'html', {base: "#{config.base}/src"}
     .pipe gulp.dest config.buildRoot

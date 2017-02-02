@@ -1,5 +1,4 @@
 p = require('gulp-load-plugins')()
-#  {config: '/app/deps.json'}
 path = require 'path'
 
 global._ = require 'lodash'

@@ -1,6 +1,5 @@
 common = require './common'
 p = require('gulp-load-plugins')()
-#  {config: '/node_tmp/package.json'}
 
 DEBUG = process.env.DEBUG?
 

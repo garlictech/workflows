@@ -1,6 +1,5 @@
 common = require './common'
 p = require('gulp-load-plugins')()
-#  {config: '/app/deps.json'}
 merge = require 'merge-stream'
 
 module.exports = (gulp, c) ->

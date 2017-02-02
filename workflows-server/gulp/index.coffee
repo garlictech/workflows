@@ -8,7 +8,7 @@ module.exports = (_gulp, config) ->
   for name in commonFileTypes
     gulp.task name, require("/app/gulp_common/#{name}")(gulp, config)
 
-  serverFileTypes = ['js', 'json', 'html', 'tpl']
+  serverFileTypes = ['js', 'json', 'tpl']
 
   for name in serverFileTypes
     gulp.task name, require("./#{name}")(gulp, config)

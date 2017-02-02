@@ -1,6 +1,5 @@
 common = require './common'
 p = require('gulp-load-plugins')()
-# {config: '/app/deps.json'}
 
 # handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->
