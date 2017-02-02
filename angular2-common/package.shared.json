@@ -9,16 +9,20 @@
     "@angular/platform-browser-dynamic": "2.4.5",
     "@angular/router": "3.4.5",
     "rxjs": "^5.0.1",
-    "@types/lodash": "^4.14.41",
-    "@types/node": "^7.0.4",
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.1",
+    "ngrx-store-logger": "^0.1.7",
+
+    "ng2-redux": "^5.1.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.41",
+    "@types/node": "^7.0.4",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "^3.0.2",
     "@types/jasmine": "^2.5.36",
     "codelyzer": "^2.0.0-beta.4",
-    "@types/node": "6.0.51",
     "jasmine-core": "~2.5.2"
   }
 }

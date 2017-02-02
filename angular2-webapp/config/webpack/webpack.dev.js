@@ -5,10 +5,10 @@ const webpackMerge = require('webpack-merge');
 const helpers = require('./helpers');
 const devCommonConfig = require('./webpack.dev-common.js');
 
-var config = webpackMerge(devCommonConfig, {});
+var wpConfig = webpackMerge(devCommonConfig, {});
 
 if (fs.existsSync(helpers.devHookFile())) {
-  require(helpers.devHookFile())(config);
+  require(helpers.devHookFile())(wpConfig);
 }
 
-module.exports = config;
+module.exports = wpConfig;

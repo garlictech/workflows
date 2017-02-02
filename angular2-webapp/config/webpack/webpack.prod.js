@@ -11,7 +11,7 @@ const helpers = require('./helpers');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-var config = webpackMerge(commonConfig, {
+var wpConfig = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   module: {
@@ -64,12 +64,17 @@ var config = webpackMerge(commonConfig, {
       test: /\.js$/,
       threshold: 10240,
       minRatio: 0.8
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENV': JSON.stringify(ENV)
+      }
     })
   ]
 });
 
 if (fs.existsSync(helpers.prodHookFile())) {
-  require(helpers.prodHookFile())(config);
+  require(helpers.prodHookFile())(wpConfig);
 }
 
-module.exports = config;
+module.exports = wpConfig;

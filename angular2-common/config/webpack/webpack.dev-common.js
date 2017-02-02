@@ -11,7 +11,8 @@ const fs = require('fs');
 
 let polyfillsManifest;
 let vendorManifest;
-const isProd = process.env.npm_lifecycle_event === 'build';
+const isBuild = process.env.npm_lifecycle_event === 'build';
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 try {
   polyfillsManifest = require(helpers.systemRoot(constants.DLL_DIST, 'polyfills-manifest.json'));
@@ -56,7 +57,7 @@ var config = webpackMerge(commonConfig, {
       {
         test: /\.ts$/,
         loaders: [
-          'angular2-router-loader?loader=system&genDir=src&aot=' + isProd
+          'angular2-router-loader?loader=system&genDir=src&aot=' + isBuild
         ],
         exclude: [
           /node_modules/
@@ -82,6 +83,11 @@ var config = webpackMerge(commonConfig, {
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENV': JSON.stringify(ENV)
+      }
     })
   ],
 
