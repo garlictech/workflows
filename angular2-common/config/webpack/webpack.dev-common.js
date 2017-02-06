@@ -12,7 +12,7 @@ const fs = require('fs');
 let polyfillsManifest;
 let vendorManifest;
 const isBuild = process.env.npm_lifecycle_event === 'build';
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
 
 try {
   polyfillsManifest = require(helpers.systemRoot(constants.DLL_DIST, 'polyfills-manifest.json'));
