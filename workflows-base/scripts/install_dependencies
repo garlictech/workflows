@@ -11,5 +11,5 @@ _.assign(newDeps, remotePjson.dependencies, remotePjson.devDependencies, remoteP
 if (_.keys(newDeps).length !== 0) {
   _.assign(localPjson.dependencies, newDeps);
   fs.outputJsonSync('package.json', localPjson);
-  execute("npm install --silent --color true", { stdio: [0, 1, 2] });
+  execute("npm install --color true", { stdio: [0, 1, 2] });
 }

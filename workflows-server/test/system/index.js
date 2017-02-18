@@ -5,5 +5,3 @@ var config = {};
 try {
   config = require('/app/project/dist/config');
 } catch (err) {}
-
-require("garlictech-common-server/dist/globals")(config);

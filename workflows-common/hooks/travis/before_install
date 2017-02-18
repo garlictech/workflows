@@ -1,4 +1,2 @@
 #!/usr/bin/env bash
-npm prune
-npm run setup
 echo "export NODE_ENV=production" >> .env

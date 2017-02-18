@@ -1,28 +1,29 @@
 {
   "dependencies": {
-    "@angular/core": "2.4.5",
-    "@angular/common": "2.4.5",
-    "@angular/compiler": "2.4.5",
-    "@angular/forms": "2.4.5",
-    "@angular/http": "2.4.5",
-    "@angular/platform-browser": "2.4.5",
-    "@angular/platform-browser-dynamic": "2.4.5",
-    "@angular/router": "3.4.5",
-    "rxjs": "^5.0.1",
+    "@angular/common": "2.4.6",
+    "@angular/compiler": "2.4.6",
+    "@angular/core": "2.4.6",
+    "@angular/forms": "2.4.6",
+    "@angular/http": "2.4.6",
+    "@angular/platform-browser": "2.4.6",
+    "@angular/platform-browser-dynamic": "2.4.6",
+    "@angular/router": "3.4.6",
+    "rxjs": "5.0.2",
     "lodash": "^4.17.2",
     "@ngrx/core": "^1.2.0",
     "@ngrx/store": "^2.2.1",
-    "ngrx-store-logger": "^0.1.7",
-
-    "ng2-redux": "^5.1.2"
+    "ngrx-store-logger": "^0.1.7"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.41",
-    "@types/node": "^7.0.4",
-    "@angularclass/hmr": "^1.2.2",
-    "@angularclass/hmr-loader": "^3.0.2",
-    "@types/jasmine": "^2.5.36",
-    "codelyzer": "^2.0.0-beta.4",
-    "jasmine-core": "~2.5.2"
+    "@types/node": "^7.0.0",
+    "@angularclass/hmr": "~1.2.2",
+    "@angularclass/hmr-loader": "~3.0.2",
+    "@types/jasmine": "^2.2.34",
+    "codelyzer": "~2.0.0-beta.4",
+    "jasmine-core": "^2.5.2",
+    "tslib": "^1.5.0",
+    "tslint": "~4.4.2",
+    "typescript": "~2.1.5"
   }
 }

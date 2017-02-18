@@ -21,6 +21,11 @@ module.exports =
 
     res = c
     c.base = "#{c.root}"
-    c.buildRoot = "#{c.root}/dist"
+    c.buildRoot = "/app/dist"
     c.srcRoots = _.map srcs, (s) -> "#{c.root}/#{s}"
     return res
+
+
+  GetCompilableDistFiles: (config, fileType) ->
+    _.flatten _.map config.srcRoots, (dir) -> ["#{dir}/**/*.#{fileType}"]
+    # _.flatten _.map config.srcRoots, (dir) -> ["#{dir}/**/*.#{fileType}", "!#{dir}/**/test/*"]

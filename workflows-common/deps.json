@@ -13,16 +13,19 @@
     "gulp-load-plugins": "^1.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-size": "^2.1.0",
-    "gulp-sass": "^3.1.0",
     "gulp-minify": "0.0.14",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.4",
     "gulp-using": "^0.1.1",
     "gulp-uglifycss": "^1.0.6",
+    "gulp-jasmine": "^2.4.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
     "commitizen": "^2.9.5",
     "merge-stream": "^1.0.1",
     "cz-conventional-changelog": "^1.2.0",
     "semantic-release": "4.3.5",
-    "node-yaml": "^3.0.3"
+    "node-yaml": "^3.0.3",
+    "typescript": "2.1.6"
   }
 }

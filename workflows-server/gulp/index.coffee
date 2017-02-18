@@ -3,12 +3,12 @@ common = require './common'
 module.exports = (_gulp, config) ->
   gulp = require('gulp-help') _gulp
   config = common.GetConfig config
-  commonFileTypes = ['coffee']
+  commonFileTypes = ['coffee', 'js']
 
   for name in commonFileTypes
     gulp.task name, require("/app/gulp_common/#{name}")(gulp, config)
 
-  serverFileTypes = ['js', 'json', 'tpl']
+  serverFileTypes = ['json', 'tpl']
 
   for name in serverFileTypes
     gulp.task name, require("./#{name}")(gulp, config)

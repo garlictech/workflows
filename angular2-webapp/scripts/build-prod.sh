@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
 set -e
-npm run clean:build
-# Until they are AOT competible...
-webpack --config config/webpack/webpack.dev.js --profile --bail
+npm run clean:dist
+webpack --config config/webpack.prod.js  --progress --profile --bail
