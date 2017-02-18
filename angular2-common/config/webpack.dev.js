@@ -109,7 +109,7 @@ module.exports = function(options) {
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
-          include: [helpers.projectRoot('src', 'app ', 'styles')]
+          include: [helpers.projectRoot('src', 'app', 'styles')]
         },
 
         /*
@@ -120,7 +120,7 @@ module.exports = function(options) {
         {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
-          include: [helpers.projectRoot('src', 'app ', 'styles')]
+          include: [helpers.projectRoot('src', 'app', 'styles')]
         },
 
       ]

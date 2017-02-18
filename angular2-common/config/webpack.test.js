@@ -125,6 +125,12 @@ module.exports = function(options) {
           exclude: [helpers.siteRoot('index.html')]
         },
 
+        {
+          test: /\.scss$/,
+          use: ['to-string-loader', 'css-loader', 'sass-loader'],
+          // exclude: [helpers.projectRoot('src', 'app', 'styles')]
+        },
+
         /**
          * Raw loader support for *.html
          * Returns file content as string
