@@ -100,7 +100,6 @@ module.exports = function(options) {
           }],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
-
         /*
          * css loader support for *.css files (styles directory only)
          * Loads external css styles into the DOM, supports HMR
@@ -112,9 +111,8 @@ module.exports = function(options) {
           include: [helpers.projectRoot('src', 'app', 'styles')]
         },
 
-        /*
-         * sass loader support for *.scss files (styles directory only)
-         * Loads external sass styles into the DOM, supports HMR
+        /* scss loader support for *.scss files (styles directory only)
+         * Loads external scss styles into the DOM, supports HMR
          *
          */
         {
@@ -122,7 +120,6 @@ module.exports = function(options) {
           use: ['style-loader', 'css-loader', 'sass-loader'],
           include: [helpers.projectRoot('src', 'app', 'styles')]
         },
-
       ]
 
     },

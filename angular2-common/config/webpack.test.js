@@ -12,6 +12,9 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
+const webpackMerge = require('webpack-merge');
+
+const coreConfig = require('./webpack.core.js');
 
 /**
  * Webpack Constants
@@ -24,7 +27,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function(options) {
-  return {
+  var _config = webpackMerge(coreConfig({ env: ENV }), {
 
     /**
      * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
@@ -114,24 +117,6 @@ module.exports = function(options) {
         },
 
         /**
-         * Raw loader support for *.css files
-         * Returns file content as string
-         *
-         * See: https://github.com/webpack/raw-loader
-         */
-        {
-          test: /\.css$/,
-          loader: ['to-string-loader', 'css-loader'],
-          exclude: [helpers.siteRoot('index.html')]
-        },
-
-        {
-          test: /\.scss$/,
-          use: ['to-string-loader', 'css-loader', 'sass-loader'],
-          // exclude: [helpers.projectRoot('src', 'app', 'styles')]
-        },
-
-        /**
          * Raw loader support for *.html
          * Returns file content as string
          *
@@ -142,12 +127,29 @@ module.exports = function(options) {
           loader: 'raw-loader',
           exclude: [helpers.siteRoot('index.html')]
         },
-
         {
           test: /\.(jade|pug)$/,
           loader: 'pug-ng-html-loader'
         },
-
+        /*
+         * css loader support for *.css files (styles directory only)
+         * Loads external css styles into the DOM, supports HMR
+         *
+         */
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+          include: [helpers.projectRoot('src', 'app', 'styles')]
+        },
+        /* scss loader support for *.scss files (styles directory only)
+         * Loads external scss styles into the DOM, supports HMR
+         *
+         */
+        {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+          include: [helpers.projectRoot('src', 'app', 'styles')]
+        },
         /**
          * Instruments JS files with Istanbul for subsequent code coverage reporting.
          * Instrument only testing sources.
@@ -249,5 +251,7 @@ module.exports = function(options) {
       setImmediate: false
     }
 
-  };
+  });
+
+  return _config;
 }

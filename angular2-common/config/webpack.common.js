@@ -1,14 +1,14 @@
 /**
  * @author: @AngularClass
  */
-
-const webpack = require('webpack');
+"use strict";
 const helpers = require('./helpers');
 
 /*
  * Webpack Plugins
  */
 // problem with copy-webpack-plugin
+const webpackMerge = require('webpack-merge');
 const AssetsPlugin = require('assets-webpack-plugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
@@ -20,7 +20,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
-
+const coreConfig = require('./webpack.core.js');
 /*
  * Webpack Constants
  */
@@ -38,9 +38,9 @@ const METADATA = {
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function(options) {
-  isProd = options.env === 'production';
-  return {
+  const isProd = options.env === 'production';
 
+  var _config = webpackMerge(coreConfig(options), {
     /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
      * This is enabled by default in watch mode.
@@ -144,28 +144,6 @@ module.exports = function(options) {
           use: 'json-loader'
         },
 
-        /*
-         * to string and css loader support for *.css files (from Angular components)
-         * Returns file content as string
-         *
-         */
-        {
-          test: /\.css$/,
-          use: ['to-string-loader', 'css-loader'],
-          exclude: [helpers.projectRoot('src', 'app', 'styles')]
-        },
-
-        /*
-         * to string and sass loader support for *.scss files (from Angular components)
-         * Returns compiled css content as string
-         *
-         */
-        {
-          test: /\.scss$/,
-          use: ['to-string-loader', 'css-loader', 'sass-loader'],
-          exclude: [helpers.projectRoot('src', 'app', 'styles')]
-        },
-
         /* Raw loader support for *.html
          * Returns file content as string
          *
@@ -179,12 +157,7 @@ module.exports = function(options) {
         {
           test: /\.(jade|pug)$/,
           loader: 'pug-ng-html-loader'
-        },
-        {
-          test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file-loader?name=assets/[name].[hash].[ext]'
-            // loader: 'url-loader?limit=5000&name=assets/[name].[hash].[ext]'
-        },
+        }
 
       ],
 
@@ -375,6 +348,7 @@ module.exports = function(options) {
       clearImmediate: false,
       setImmediate: false
     }
+  });
 
-  };
-}
+  return _config;
+};

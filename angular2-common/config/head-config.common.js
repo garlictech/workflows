@@ -14,6 +14,8 @@
  *
  */
 module.exports = {
-  link: [],
+  link: [
+    { rel: 'icon', href: "/assets/favicon.ico" },
+  ],
   meta: []
 };
