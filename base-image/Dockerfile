@@ -2,8 +2,9 @@ FROM node:6.6
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 RUN apt-get update && \
-  apt-get install -y vim && \
+  apt-get install -y --no-install-recommends vim && \
   apt-get clean && \
+  rm -rf /var/lib/apt/* && \
   mkdir -p /app/
 
 WORKDIR /app
@@ -12,6 +13,7 @@ WORKDIR /app
 RUN cd $(npm root -g)/npm && \
   npm install --silent fs-extra && \
   sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js && \
-  npm install --silent -g npm
+  npm install --silent -g npm && \
+  rm -rf /tmp/*
 
 ADD . /app

@@ -1,11 +1,6 @@
 {
-  "dependencies": {
+  "devDependencies": {
     "eslint-config-loopback": "^7.0.1",
-    "loopback": "^3.1.1",
-    "loopback-boot": "^2.23.0",
-    "loopback-component-explorer": "^4.0.0",
-    "loopback-connector-mongodb": "^1.17.0",
-    "loopback-datasource-juggler": "^3.1.1",
     "strongloop": "^6.0.3"
   }
 }

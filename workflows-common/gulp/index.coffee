@@ -1,7 +1,7 @@
 module.exports = (_gulp, config) ->
   gulp = require('gulp-help') _gulp
 
-  fileTypes = ['coffee', 'css', 'html', 'ts', 'js']
+  fileTypes = ['coffee', 'css', 'html', 'ts', 'js', 'es6']
 
   for name in fileTypes
     gulp.task name, require("./#{name}")(gulp, config)

@@ -1,16 +1,25 @@
 common = require './common'
 p = require('gulp-load-plugins')()
-tsProject = p.typescript.createProject "tsconfig.json"
+merge = require 'merge2'
 
-# handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->
   config = common.GetConfig c
   common.WatchFileTypes.push 'ts'
+  files =  common.GetCompilableDistFiles config, "ts"
+
+  tsProject = p.typescript.createProject
+    "target": "es6",
+    "module": "commonjs"
+  , p.typescript.reporter.longReporter()
 
   return ->
-    tsResult = tsProject.src()
-    .pipe p.cached 'ts'
-    .pipe p.using {}
-    .pipe p.size()
+    tsResult = common.GulpSrc gulp, files, 'ts', {base: config.base}
+    .pipe p.sourcemaps.init()
+    .pipe p.sourcemaps.write()
     .pipe(tsProject())
-    tsResult.js.pipe gulp.dest config.buildRoot
+
+    merge [
+      tsResult.pipe p.sourcemaps.write()
+      tsResult.dts.pipe(gulp.dest config.buildRoot),
+      tsResult.js.pipe gulp.dest config.buildRoot
+    ]

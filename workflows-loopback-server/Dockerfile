@@ -1,9 +1,11 @@
 FROM garlictech2/workflows-server
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-COPY deps.json /app
+COPY deps.json package.shared.json /app/
 
-RUN scripts/install_dependencies deps.json && \
-  rm /app/deps.json
+RUN scripts/merge-packages.sh && \
+    npm install && \
+    npm cache clean
 
 COPY . /app
+RUN rm deps.json package.shared.json

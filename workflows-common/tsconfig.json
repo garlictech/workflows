@@ -5,9 +5,6 @@
     "outDir": "project/dist"
   },
   "include": [
-    "project/src/**/*.ts"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
+    "project/**/*.ts"
   ]
 }
