@@ -1,4 +1,4 @@
-FROM node:6.6
+FROM node:6
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 RUN apt-get update && \
