@@ -1,11 +1,13 @@
 FROM garlictech2/workflows-base
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-RUN npm install -g --silent bower
+RUN npm install -g bower
 
-ADD package.json package.shared.json /app/
+COPY deps.json package.shared.json /app/
 
-RUN scripts/install_dependencies /app/package.shared.json
+RUN scripts/merge-packages.sh && \
+  npm install && \
+  rm deps.json package.shared.json
 
 COPY . /app
 
