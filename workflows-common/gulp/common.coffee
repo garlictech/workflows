@@ -21,7 +21,7 @@ module.exports =
 
     res = c
     c.base = "#{c.root}"
-    c.buildRoot = "/app/dist"
+    c.buildRoot = c.dist
     c.srcRoots = _.map srcs, (s) -> "#{c.root}/#{s}"
     return res
 
