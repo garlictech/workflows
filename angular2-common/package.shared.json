@@ -13,7 +13,8 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/store": "^2.2.1",
     "ngrx-store-logger": "^0.1.7",
-    "@ngrx/router-store": "^1.2.5"
+    "@ngrx/router-store": "^1.2.5",
+    "@ngrx/effects": "^2.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.41",

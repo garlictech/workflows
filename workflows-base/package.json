@@ -1,7 +1,8 @@
 {
   "scripts": {
     "semantic-release": "scripts/semantic-release",
-    "commit": "scripts/commit.sh"
+    "commit": "scripts/commit.sh",
+    "travis": "scripts/travis.sh $@"
   },
   "config": {
     "commitizen": {

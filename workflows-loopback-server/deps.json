@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "eslint-config-loopback": "^7.0.1",
-    "strongloop": "^6.0.3"
+    "eslint-config-loopback": "^7.0.1"
   }
 }
