@@ -9,3 +9,4 @@ module.exports = (gulp, c) ->
   return ->
     common.GulpSrc gulp, files, 'html', {base: "#{config.base}/src"}
     .pipe gulp.dest config.dist
+    .on 'error', -> common.HandleError()

@@ -20,3 +20,4 @@ module.exports = (gulp, c) ->
       .pipe p.minify()
       .pipe p.uglifycss()
       .pipe gulp.dest config.dist
+      .on 'error', -> common.HandleError()

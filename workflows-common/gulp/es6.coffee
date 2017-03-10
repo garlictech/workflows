@@ -17,3 +17,4 @@ module.exports = (gulp, c) ->
       "comments": true,
       "compact": false
     .pipe gulp.dest config.buildRoot
+    .on 'error', -> common.HandleError()

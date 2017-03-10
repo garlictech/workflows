@@ -4,8 +4,9 @@ p = require('gulp-load-plugins')()
 # handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->
   config = common.GetConfig c
-  files = coffeeFiles = common.GetCompilableDistFiles config, "js"
+  files = common.GetCompilableDistFiles config, "js"
 
   return ->
     common.GulpSrc gulp, files, 'js', {base: config.base}
     .pipe gulp.dest config.buildRoot
+    .on 'error', -> common.HandleError()

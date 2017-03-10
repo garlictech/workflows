@@ -17,6 +17,7 @@ module.exports = (gulp, c) ->
     .pipe p.sourcemaps.init()
     .pipe p.sourcemaps.write()
     .pipe(tsProject())
+    .on 'error', -> common.HandleError()
 
     merge [
       tsResult.pipe p.sourcemaps.write()

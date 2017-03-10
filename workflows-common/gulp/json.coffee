@@ -4,8 +4,9 @@ p = require('gulp-load-plugins')()
 # handle src coffeescript files: static compilation
 module.exports = (gulp, c) ->
   config = common.GetConfig c
-  files = _.map config.srcRoots, (dir) -> "#{dir}/**/*.json"
+  files = common.GetCompilableDistFiles config, "js"
 
   return ->
     common.GulpSrc gulp, files, 'json', {base: config.base}
     .pipe gulp.dest config.buildRoot
+    .on 'error', -> common.HandleError()

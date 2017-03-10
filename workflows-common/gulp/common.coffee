@@ -14,6 +14,7 @@ module.exports =
 
 
   HandleError: (err) ->
+    @emit 'end'
 
 
   GetConfig: (c) ->
