@@ -14,4 +14,3 @@ module.exports = (gulp, c) ->
       ui: 'bdd'
       recursive: true
     # .pipe p.jasmine()
-    .once 'error', -> common.HandleError()
