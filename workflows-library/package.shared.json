@@ -1,4 +1,7 @@
 {
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "nock": "^9.0.2",
+    "supertest": "^2.0.1"
+  }
 }

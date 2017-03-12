@@ -16,5 +16,9 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "nock": "^9.0.2",
+    "supertest": "^2.0.1"
   }
 }
