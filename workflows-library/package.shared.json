@@ -2,6 +2,8 @@
   "devDependencies": {},
   "dependencies": {
     "nock": "^9.0.2",
-    "supertest": "^2.0.1"
+    "supertest": "^2.0.1",
+    "@types/express": "^4.0.35",
+    "@types/passport": "^0.3.3"
   }
 }
