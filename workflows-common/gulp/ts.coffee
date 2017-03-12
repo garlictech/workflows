@@ -9,7 +9,8 @@ module.exports = (gulp, c) ->
 
   tsProject = p.typescript.createProject
     "target": "es5",
-    "module": "commonjs"
+    "module": "commonjs",
+    "declaration": true
   , p.typescript.reporter.longReporter()
 
   return ->
