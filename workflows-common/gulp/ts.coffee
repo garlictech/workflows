@@ -8,7 +8,7 @@ module.exports = (gulp, c) ->
   files =  common.GetCompilableDistFiles config, "ts"
 
   tsProject = p.typescript.createProject
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs"
   , p.typescript.reporter.longReporter()
 
