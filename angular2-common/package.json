@@ -41,6 +41,7 @@
     "unittest": "karma start",
     "tslint": "tslint",
     "typedoc": "typedoc",
+    "travis": "scripts/travis.sh $@",
     "version": "npm run build",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
     "watch:dev": "npm run build:dev -- --watch",
