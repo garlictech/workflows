@@ -9,19 +9,22 @@ module.exports = (gulp, c) ->
 
   tsProject = p.typescript.createProject
     "target": "es5",
-    "module": "commonjs",
+    "module": "commonjs"
     "declaration": true
+    "lib": ["es6"]
   , p.typescript.reporter.longReporter()
 
   return ->
     tsResult = common.GulpSrc gulp, files, 'ts', {base: config.base}
     .pipe p.sourcemaps.init()
-    .pipe p.sourcemaps.write()
     .pipe(tsProject())
     .on 'error', -> common.HandleError()
 
     merge [
-      tsResult.pipe p.sourcemaps.write()
-      tsResult.dts.pipe(gulp.dest config.buildRoot),
-      tsResult.js.pipe gulp.dest config.buildRoot
+      tsResult.dts
+      .pipe(gulp.dest config.buildRoot),
+
+      tsResult.js
+      .pipe p.sourcemaps.write('.', {addComment: false})
+      .pipe gulp.dest config.buildRoot
     ]
