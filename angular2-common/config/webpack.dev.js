@@ -98,7 +98,7 @@ module.exports = function(options) {
               configFile: 'tslint.json'
             }
           }],
-          exclude: [/\.(spec|e2e)\.ts|node_modules$/]
+          exclude: [/\.(spec|e2e)\.ts$/, helpers.root('node_modules')]
         },
         /*
          * css loader support for *.css files (styles directory only)
