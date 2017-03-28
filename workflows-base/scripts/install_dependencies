@@ -8,8 +8,12 @@ const remotePjson = fs.readJsonSync(process.argv[2]);
 var newDeps = {};
 _.assign(newDeps, remotePjson.dependencies, remotePjson.devDependencies, remotePjson.optionalDependencies, remotePjson.peerDependencies);
 
+
 if (_.keys(newDeps).length !== 0) {
-  _.assign(localPjson.dependencies, newDeps);
+  _.assign(localPjson.dependencies, remotePjson.dependencies);
+  _.assign(localPjson.devDependencies, remotePjson.devDependencies);
+  _.assign(localPjson.optionalDependencies, remotePjson.optionalDependencies);
+  _.assign(localPjson.peerDependencies, remotePjson.peerDependencies);
   fs.outputJsonSync('package.json', localPjson);
   execute("npm install --color true", { stdio: [0, 1, 2] });
 }
