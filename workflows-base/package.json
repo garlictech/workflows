@@ -9,7 +9,11 @@
       "path": "/app/node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^2.1.2",
+    "lodash": "^4.17.4",
+    "merge": "^1.2.0"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "peerDependencies": {}
