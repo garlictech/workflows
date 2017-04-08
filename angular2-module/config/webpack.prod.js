@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
-const commonConfig = require('./webpack.common-prod.js'); // the settings that are common to prod and dev
+const commonConfig = require('./webpack.common-prod'); // the settings that are common to prod and dev
 
 /**
  * Webpack Plugins
