@@ -8,8 +8,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmit": true,
-    "noEmitHelpers": true,
     "importHelpers": true,
     "strictNullChecks": false,
     "lib": [
@@ -21,7 +19,6 @@
       "node_modules/@types"
     ],
     "types": [
-      "hammerjs",
       "node"
     ]
   },
@@ -31,7 +28,8 @@
     "./**/*spec.ts",
     "./**/test/spec.ts",
     "./**/*.e2e.ts",
-    "dev-site"
+    "dev-site",
+    "e2e"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
@@ -39,7 +37,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "./compiled",
-    "skipMetadataEmit": true
+    "skipMetadataEmit": false
   },
   "compileOnSave": false,
   "buildOnSave": false,

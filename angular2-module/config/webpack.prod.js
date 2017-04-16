@@ -6,6 +6,7 @@ const fs = require('fs');
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common-prod'); // the settings that are common to prod and dev
+const projectPJson = require('../package_project.json');
 
 /**
  * Webpack Plugins
@@ -69,8 +70,9 @@ module.exports = function(env) {
        * See: http://webpack.github.io/docs/configuration.html#output-filename
        */
       filename: '[name].bundle.js',
-      library: "example-lib",
-      libraryTarget: 'commonjs',
+      library: projectPJson.name.replace('@', '').replace('/', '-'),
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
 
       /**
        * The filename of the SourceMaps for the JavaScript files.
@@ -222,6 +224,11 @@ module.exports = function(env) {
           },
 
         }
+      }),
+      new UglifyJsPlugin({
+        minimize: true,
+        sourceMap: true,
+        include: /\.min.bundle\.js$/,
       }),
 
       /**

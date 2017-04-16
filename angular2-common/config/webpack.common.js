@@ -204,6 +204,10 @@ module.exports = function(options) {
       new CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
       }),
+      new CommonsChunkPlugin({
+        name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+        minChunks: Infinity
+      }),
 
       /**
        * Plugin: ContextReplacementPlugin

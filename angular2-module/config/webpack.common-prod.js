@@ -21,6 +21,8 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
 const coreConfig = require('./webpack.core.js');
+const projectPJson = require('../package_project.json');
+
 /*
  * Webpack Constants
  */
@@ -56,7 +58,10 @@ module.exports = function(options) {
      *
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
-    entry: helpers.projectRoot('src/index.ts'),
+    entry: {
+      "main": helpers.projectRoot('src/index.ts'),
+      "main.min": helpers.projectRoot('src/index.ts')
+    },
 
     /*
      * Options affecting the resolving of modules.
@@ -119,7 +124,8 @@ module.exports = function(options) {
             {
               loader: 'awesome-typescript-loader',
               options: {
-                configFileName: 'tsconfig.webpack.json'
+                configFileName: helpers.root('tsconfig.webpack.json'),
+                declaration: false
               }
             },
             {
@@ -185,20 +191,20 @@ module.exports = function(options) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
        * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
        */
-      new CommonsChunkPlugin({
-        name: 'polyfills',
-        chunks: ['polyfills']
-      }),
-      // This enables tree shaking of the vendor modules
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        chunks: ['main'],
-        minChunks: module => /node_modules/.test(module.resource)
-      }),
-      // Specify the correct order the scripts will be injected in
-      new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor'].reverse()
-      }),
+      // new CommonsChunkPlugin({
+      //   name: 'polyfills',
+      //   chunks: ['polyfills']
+      // }),
+      // // This enables tree shaking of the vendor modules
+      // new CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   chunks: ['main'],
+      //   minChunks: module => /node_modules/.test(module.resource)
+      // }),
+      // // Specify the correct order the scripts will be injected in
+      // new CommonsChunkPlugin({
+      //   name: ['polyfills', 'vendor'].reverse()
+      // }),
 
       /**
        * Plugin: ContextReplacementPlugin
@@ -257,7 +263,12 @@ module.exports = function(options) {
         disabled: !AOT,
         tsConfig: helpers.root('tsconfig.webpack.json'),
         resourceOverride: helpers.root('config/resource-override.js')
-      })
+      }),
+
+      new CopyWebpackPlugin([{
+        from: helpers.projectRoot('src', 'assets'),
+        to: helpers.projectRoot("dist", "assets")
+      }]),
 
     ],
 
