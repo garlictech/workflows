@@ -37,6 +37,7 @@ const METADATA = webpackMerge(commonConfig({
 });
 
 module.exports = function(env) {
+  "use strict";
   var _config = webpackMerge(commonConfig({
     env: ENV
   }), {
