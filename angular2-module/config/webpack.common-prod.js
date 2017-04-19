@@ -201,10 +201,14 @@ module.exports = function(options) {
         chunks: ['main'],
         minChunks: module => /node_modules/.test(module.resource)
       }),
-      // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor'].reverse()
+        name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+        minChunks: Infinity
       }),
+      // Specify the correct order the scripts will be injected in
+      // new CommonsChunkPlugin({
+      //   name: ['polyfills', 'vendor'].reverse()
+      // }),
 
       /**
        * Plugin: ContextReplacementPlugin
