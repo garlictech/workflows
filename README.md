@@ -1,6 +1,6 @@
 # The Garlictech development workflows and images
 
-This repo implements the Garlic Tech development infrastucture. The infrastructure is based on Docker containers, because:
+This repo implements the Garlic Tech development infrastructure. The infrastructure is mainly based on Docker containers, because:
 
 * it provides a standardized, virtualized development environment
 * you can develop services in the same environment like the production environment
@@ -11,7 +11,7 @@ This repo implements the Garlic Tech development infrastucture. The infrastructu
 
 Before able to use the workflows, you have to 
 
-* install docker and provision a docker machine
+* install docker
 * DOCKER_USER env. variable must contain the user name of the private docker registry
 * DOCKER_PASSWORD env. variable must contain the password for the private docker registry
 
@@ -19,12 +19,32 @@ Before able to use the workflows, you have to
 
 ### Local development
 
-1. The first step is always clone your repo :) Then, build the development Docker container. The development Docker container is actually one of the workflow-* containers configured configured for the particular project/repo.
+These steps describe the development flow generally. We describe the individual differences/details in the docs of the specialized workflows. A generally valid summary:
 
-`npm run build:dev`
+1. Create a private fork of the Github repo you are working on
+2. Clone the repo
+3. Build the development docker containers: these containers execute the development tasks like compilation, testing, etc.
+4. Set up the local development environment: it fetches some files that must be present in the local folder from the latest containers. For instance. the latest tslint file defining the coding styles, etc.
+5. Start a watcher: it may be a development server, a gulp watcher, whatever. Generally, they mount your code into the development container, watch file changes, recompile them, they may execute the unit tests automatically, etc.
+6. Test your code (lint, unit test, system test, prod build) locally
+7. Commit the code using semantic versioning/[semantic release](https://github.com/semantic-release/semantic-release), fill in the appropriate commit info.
+8. Create a pull request. Travis CI will pick up your PR, builds and tests your changes. Fix any errors it reveals until all the tests pass.
+9. Send a review request, and address to at least one reviewer.
+10. Implement the change requests (build, test, commit, travis loop happens again)
+11. Somebody approves and merges your PR to the master - Travis CI checks, builds and deploys your code.
+
+### Installing npm dependencies
+
+Well, this has some minor inconveniences, compered to the "undockerized" development: whatever dependencies you install, you have to inject them into the development container as well. Follow these steps:
+
+* Install the package locally, with any of the `--save*` options. The point is: the dependency must get to the `package.json` file. Technically, installing the local package is not really necessary, only writing the package file is required, because nothing runs in the host machine. However, your code editor may require the local files to check your code.
+* Rebuild the development container (`npm run build`, `npm run build:dev`, depending on the nature of the project)
+* Restart the watchers/dev containers in order to use your changes.
 
 
-After cloning the repo:
+
+
+*BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
 
 ```
 npm run setup
@@ -58,14 +78,7 @@ Your organization. The organization part of the github slug.
 
 ### Installing packages
 
-Well, this is a disadvantage now, to be solved. Actually, you cannot really use npm install locally. Whay you should do:
 
-* Go to the container: ```npm run bash```
-* Install the package here, as you wish: ```npm install```
-* Cat the ```package.json```, and copy the added line from (dev, peer) dependencies
-* Paste the line to the appropriate place in your local ```package.json```.
-
-To be automated!
 
 ## Server side development
 
