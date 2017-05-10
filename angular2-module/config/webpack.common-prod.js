@@ -34,77 +34,25 @@ const METADATA = {
   isDevServer: helpers.isWebpackDevServer()
 };
 
-/*
- * Webpack configuration
- *
- * See: http://webpack.github.io/docs/configuration.html#cli
- */
 module.exports = function(options) {
   const isProd = options.env === 'production';
 
   var _config = webpackMerge(coreConfig(options), {
-    /*
-     * Cache generated modules and chunks to improve performance for multiple incremental builds.
-     * This is enabled by default in watch mode.
-     * You can pass false to disable it.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#cache
-     */
-    //cache: false,
+    cache: false,
 
-    /*
-     * The entry point for the bundle
-     * Our Angular.js app
-     *
-     * See: http://webpack.github.io/docs/configuration.html#entry
-     */
     entry: {
       "main": helpers.srcRoot(),
       "main.min": helpers.srcRoot()
     },
 
-    /*
-     * Options affecting the resolving of modules.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#resolve
-     */
     resolve: {
-
-      /*
-       * An array of extensions that should be used to resolve modules.
-       *
-       * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
-       */
       extensions: ['.ts', '.js', '.json', '.pug', '.scss', '.css'],
-
       // An array of directory names to be resolved to the current directory
-      modules: [helpers.projectRoot('src'), helpers.root('node_modules')],
-
+      modules: [helpers.srcRoot('src'), helpers.root('node_modules')],
     },
 
-    /*
-     * Options affecting the normal modules.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module
-     */
     module: {
-
-      rules: [
-
-        /*
-         * Typescript loader support for .ts
-         *
-         * Component Template/Style integration using `angular2-template-loader`
-         * Angular 2 lazy loading (async routes) via `ng-router-loader`
-         *
-         * `ng-router-loader` expects vanilla JavaScript code, not TypeScript code. This is why the
-         * order of the loader matter.
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         * See: https://github.com/shlomiassaf/ng-router-loader
-         */
-        {
+      rules: [{
           test: /\.ts$/,
           use: [{
               loader: '@angularclass/hmr-loader',
@@ -113,7 +61,7 @@ module.exports = function(options) {
                 prod: isProd
               }
             },
-            { // MAKE SURE TO CHAIN VANILLA JS CODE, I.E. TS COMPILATION OUTPUT.
+            {
               loader: 'ng-router-loader',
               options: {
                 loader: 'async-import',
@@ -134,22 +82,10 @@ module.exports = function(options) {
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
-
-        /*
-         * Json loader support for *.json files.
-         *
-         * See: https://github.com/webpack/json-loader
-         */
         {
           test: /\.json$/,
           use: 'json-loader'
         },
-
-        /* Raw loader support for *.html
-         * Returns file content as string
-         *
-         * See: https://github.com/webpack/raw-loader
-         */
         {
           test: /\.html$/,
           use: 'html-loader',
@@ -159,16 +95,10 @@ module.exports = function(options) {
           test: /\.(jade|pug)$/,
           loader: 'pug-ng-html-loader'
         }
-
       ],
 
     },
 
-    /*
-     * Add additional plugins to the compiler.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#plugins
-     */
     plugins: [
       new AssetsPlugin({
         path: helpers.distRoot(),
@@ -176,35 +106,22 @@ module.exports = function(options) {
         prettyPrint: true
       }),
 
-      /*
-       * Plugin: ForkCheckerPlugin
-       * Description: Do type checking in a separate process, so webpack don't need to wait.
-       *
-       * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-       */
       new CheckerPlugin(),
-      /*
-       * Plugin: CommonsChunkPlugin
-       * Description: Shares common code between the pages.
-       * It identifies common modules and put them into a commons chunk.
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-       * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
-       */
+
       new CommonsChunkPlugin({
         name: 'polyfills',
         chunks: ['polyfills']
       }),
       // This enables tree shaking of the vendor modules
-      new CommonsChunkPlugin({
-        name: 'vendor',
-        chunks: ['main'],
-        minChunks: module => /node_modules/.test(module.resource)
-      }),
-      new CommonsChunkPlugin({
-        name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
-        minChunks: Infinity
-      }),
+      // new CommonsChunkPlugin({
+      //   name: 'vendor',
+      //   chunks: ['main'],
+      //   minChunks: module => /node_modules/.test(module.resource)
+      // }),
+      // new CommonsChunkPlugin({
+      //   name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+      //   minChunks: Infinity
+      // }),
       // Specify the correct order the scripts will be injected in
       // new CommonsChunkPlugin({
       //   name: ['polyfills', 'vendor'].reverse()
@@ -225,11 +142,6 @@ module.exports = function(options) {
           // your Angular Async Route paths relative to this root directory
         }
       ),
-      /**
-       * Plugin LoaderOptionsPlugin (experimental)
-       *
-       * See: https://gist.github.com/sokra/27b24881210b56bbaff7
-       */
       new LoaderOptionsPlugin({
         options: {
           sassLoader: {
@@ -262,7 +174,6 @@ module.exports = function(options) {
         /facade(\\|\/)math/,
         helpers.root('node_modules/@angular/core/src/facade/math.js')
       ),
-
       new ngcWebpack.NgcWebpackPlugin({
         disabled: !AOT,
         tsConfig: helpers.root('tsconfig.webpack.json'),
@@ -273,23 +184,7 @@ module.exports = function(options) {
         from: helpers.srcRoot('assets'),
         to: helpers.distRoot('assets')
       }]),
-
     ],
-
-    /*
-     * Include polyfills or mocks for various node stuff
-     * Description: Node configuration
-     *
-     * See: https://webpack.github.io/docs/configuration.html#node
-     */
-    node: {
-      global: true,
-      crypto: 'empty',
-      process: true,
-      module: false,
-      clearImmediate: false,
-      setImmediate: false
-    }
   });
 
   return _config;
