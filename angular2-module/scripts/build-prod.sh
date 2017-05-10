@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-npm run clean:dist
-tsc && tsc -m es6 --outDir dist/lib-esm
+rm -rf dist/ngx
+mkdir -p dist/ngx
+tsc --outDir dist/ngx/lib
+tsc -m es6 --outDir dist/ngx/lib-esm
 webpack --config config/webpack.prod.js  --progress --profile --bail

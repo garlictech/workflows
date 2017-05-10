@@ -14,7 +14,6 @@
       "es2015",
       "dom"
     ],
-    "outDir": "dist/lib",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -23,13 +22,11 @@
     ]
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    "./**/*spec.ts",
-    "./**/test/spec.ts",
-    "./**/*.e2e.ts",
-    "dev-site",
-    "e2e"
+    "./**/*spec.ts"
+  ],
+  "include": [
+    "src/ngx",
+    "src/common"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

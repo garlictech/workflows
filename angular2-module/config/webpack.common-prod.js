@@ -59,8 +59,8 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      "main": helpers.projectRoot('src/index.ts'),
-      "main.min": helpers.projectRoot('src/index.ts')
+      "main": helpers.srcRoot(),
+      "main.min": helpers.srcRoot()
     },
 
     /*
@@ -171,7 +171,7 @@ module.exports = function(options) {
      */
     plugins: [
       new AssetsPlugin({
-        path: helpers.projectRoot('dist'),
+        path: helpers.distRoot(),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
@@ -270,8 +270,8 @@ module.exports = function(options) {
       }),
 
       new CopyWebpackPlugin([{
-        from: helpers.projectRoot('src', 'assets'),
-        to: helpers.projectRoot("dist", "assets")
+        from: helpers.srcRoot('assets'),
+        to: helpers.distRoot('assets')
       }]),
 
     ],

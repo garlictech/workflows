@@ -62,7 +62,7 @@ module.exports = function(env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.projectRoot('dist'),
+      path: helpers.distRoot(),
 
       /**
        * Specifies the name of each output file on disk.
@@ -97,7 +97,7 @@ module.exports = function(env) {
             fallback: 'style-loader',
             loader: 'css-loader'
           }),
-          include: [helpers.projectRoot('src', 'app', 'styles')]
+          include: [helpers.srcRoot('styles')]
         },
 
         /*
@@ -109,7 +109,7 @@ module.exports = function(env) {
             fallback: 'style-loader',
             loader: 'css-loader!sass-loader'
           }),
-          include: [helpers.projectRoot('src', 'app', 'styles')]
+          include: [helpers.srcRoot('styles')]
         },
 
       ]

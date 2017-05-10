@@ -11,6 +11,8 @@ const EVENT = process.env.npm_lifecycle_event || '';
 var ROOT = path.resolve(__dirname, '..');
 var PROJECTROOT = path.resolve(__dirname, '..');
 var SITEROOT = path.resolve(__dirname, '..', 'src');
+var SRCROOT = path.resolve(__dirname, '..', 'src');
+var DISTROOT = path.resolve(__dirname, '..', 'dist');
 var HOOKROOT = path.resolve(__dirname, '..', 'hooks');
 
 function hasProcessFlag(flag) {
@@ -31,6 +33,8 @@ var hookRoot = path.join.bind(path, HOOKROOT);
 
 module.exports = function(config) {
   var siteRoot = path.join.bind(path, config.SITEROOT || SITEROOT);
+  var srcRoot = path.join.bind(path, config.SRCROOT || SRCROOT);
+  var distRoot = path.join.bind(path, config.DISTROOT || DISTROOT);
 
   return {
     isCi: function() {
@@ -51,6 +55,8 @@ module.exports = function(config) {
 
     projectRoot: projectRoot,
     siteRoot: siteRoot,
+    srcRoot: srcRoot,
+    distRoot: distRoot,
     hasProcessFlag: hasProcessFlag,
     hasNpmFlag: hasNpmFlag,
     isWebpackDevServer: isWebpackDevServer,
