@@ -1,59 +1,51 @@
 # Angular >2 (ngx) development
 
-_tl;dr_
-
-```
-# Build and develop the angular module library
-npm run ngx:build:dev
-npm run setup
-npm install
-npm run ngx:start
-npm run ngx:unittest
-npm run ngx:build:prod
-
-# Build and develop the backend
-npm run backend:build
-npm run backend:start
-npm run backend:unittest
-npm run backend:prod
-
-# Commit changes
-git add .
-npm run commit
-```
-
 ## General concepts
-
-Somehow, we want to implement the "Module as Service" concept :): an angular module may bring some backend functions implemented in a "serverless" environment (AWS lambdas, etc.)
 
 ## Organizing the project, files
 
-* Unit tests: see [unit test organization](#unit-testing).
+Generally, we use webpack to create bundles. The following file types are supported:
+
+* Code: Javascript, Typescript, Coffeescript
+* HTML: pure HTML, pug (ex-jade)
+* Styles: CSS, SCSS
+* Images: all the major image typoes. The system converts the small images into data URL-s, the rest will be emitted to the dist folder.
+* Supported file types: (by their extension): `js, ts, jade, pug, scss, css, html, json, coffee, png, jpeg, jpg, gif, svg, woff, woff2, ttf, eot, ico`
+* Static assets are stored in the `src/assets` folder. The folder is copied into the `dist` folder as is.
+
+Unit tests: see [unit test organization](#unit-testing).
+
+File naming conventions:
+
 * Place all the services, components, etc. to separate folders. Name the folders after the component name.
 * Use `index.ts` for the file defining the component (so, not `foo.component.ts`).
 * Import the component using the folder name, and let webpack to resolve the `index.ts`.
+* Don't use embedded styles and html-s. Use style and template url-s only. The template file must be `ui.{pug,html}`, the style file must be `style.{css,scss}`.
 
-## Dependency management
+In fact, you can use the [Garlictech Webapp Generator](https://github.com/garlictech/generator-garlic-webapp) to generate components, services, modules with the above file conventions:
 
-The dependencies should go to `package.json`, as usual. The build system will merge its content with the `package.json` file in the container, and install the project-specific packages as well. So, add those dependencies only that you cannot find in the container, for performance reasons.
+```
+yo garlic:webapp ng2-component
+yo garlic:webapp ng2-service
+yo garlic:webapp ng2-module
+```
 
-Mind, that only the following keys are merged: `dependencies, peerDependencies, devDependencies, garlic`.
-
-However, you can should use the packages for local development as well, to please your code editor: if you install all the the required dependencies locally (both project-specific ones and the ones that the container provides), the editor will find them and won't report 'undefined' errors, etc.
+Specify their root folder, their name, etc., and enjoy the scaffolding.
 
 ## Project types
 
-There are two project types: `site` and `module`. Site is a full-blown web site with `index.html`. Module is an Angular2 module, to be reused by other modules and sites.
+There are two project types: `site` and `module`. There are individual workflows handling those cases:
 
-In case of modules, you can find a folder called `dev-site`. Here, you can build a test site for the module: you can test the functionalities in a real site, and you can use e2e test as well. The development site is not part of the module.
+* [site/webapp](https://github.com/garlictech/workflows/tree/master/angular2-webapp)
+* [module](https://github.com/garlictech/workflows/tree/master/angular2-module)
 
 ## Start development
 
-After cloning the project, do not forget setting it up:
+After cloning the project and building the development conteiner, do not forget setting it up:
 
 `npm run setup`
 
-It will create some important folders and files.
+It will create/update some important files and update the dependencies (see its background in the [general workflow description](https://github.com/garlictech/workflows#installing-npm-dependencies))
 
 ## Build commands
 
@@ -61,57 +53,58 @@ Webpack, Karma, etc. run in a development Docker container. So, you must not ins
 
 Before starting, you have to build the development Docker container with some of the build commands below. Webpack, Karma, etc. all run in that container. You can define the development Docker container in `Dockerfile.dev`: extend it if you have to add something more. Don't remove sections marked as "don't remove", unless you know what you do.
 
-### `npm run build:docker`
-
-Builds the development container. It is a 'light' build, it uses Docker cache, etc. It provides fast rebuild, but it cannot detect if the base docker image changes, or the versions of the dependencies change.
-
-### `npm run build:docker:all`
-
-It rebuilds everything: pulls the latest base container and disables the Docker cache. Use it when the bse container changes, or when you want to integrate a newer version of a dependency.
-
-### `npm run build:prod`
-
-It creates the production build:
-
-* AOT-compile the project and creates the dist folder
-* Creates an nginx-based docker image serving the web site
-
-### Webpack hook
+### Webpack hooks
 
 Webpack is pre-configured in the base container. If you need, you can customize webpack further: you can access the webpack configuration object in `hooks/webpack/webpack.js`, and modify the config. The container will call this function as the last step of preparing the webpack config. 
 
 ## Unit testing
 
-The base container preinstalls and configures the Karma test runner with Jasmine test framework and PhantomJS headless browser. Similarly to the webpack hook, you can access both the test Webpack configuraion (`hooks/webpack/webpack.test.js`) and the Karma configuration (`hooks/webpack/karma.js`).
+We use Jasmine.
 
-Mind, that in Angular 1, we used Mocha, however in Angular 2, we use Jasmine. The reason is: the seed project uses Jasmine in the sample tests, in fact, the basic concepts of the two frameworks are the same.
+The base container preinstalls and configures the Karma test runner with Jasmine test framework and PhantomJS headless browser. Similarly to the webpack hook, you can access both the test Webpack configuraion (`docker/hooks/webpack/webpack.test.js`) and the Karma configuration (`docker/hooks/webpack/karma.js`).
+
+Run the unit tests, and start watching. When the test/source files change, karma will re-run the tests. 
+
+In watching mode, navigate to http://localhost:9876, to see the debug output of karma. Here, you can inspect the full test code and go to the exact code lines where an error happened (in the development tools of the browser). Configure this port in `docker/docker-compose.net.yml`.
 
 ### Project organization, files
 
 * Add the unit tests under a `test` subfolder in a module/component folder. This is just a recommendation, the system will find the test files wherever you place them.
 * Name them like `foo.spec.ts`. The `spec.ts` part is the Jasmine standard, and it is important. Karma will execute spec files only.
 
-### `npm run unittest`
-
-Run the unit tests, and start watching. When the test/source files change, karma will re-run the tests. 
-
-In watching mode, navigate to http://localhost:9876, to see the debug output of karma. Here, you can inspect the full test code and go to the exact code lines where an error happened (in the development tools of the browser). Configure this port in `docker/docker-compose.net.yml`.
-
 #### Coverage report
 
 At the end of each test run, you will receive a test coverage report. Mind, that we should keep it at 100%, later, we will force build failure in CI if the coverage is less, than 100!
 
-You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after teh very first test run. _Warning_: it is a mounted folder, so it will disappear after shutting down the unit test runner!
+You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after the very first test run.
 
-## Starting the project
+## Common npm commands
 
-### `npm start`
+See the rest of the scripts at the individual project descriptions.
 
-It launches a webpack dev server in the container, and start watching project source changes. Access the site at http://localhost:8081. The internal container always uses the port 8081, you can map this port to somewhere else in `docker/docker-compose.net.yml` in the project folder.
+### `npm run clean`
 
-### `npm start:docker`
+Clean the dist folder and the build artifacts.
 
-Starts the (previously built) Docker/nginx based web server.
+### `npm run lint`
+
+Execute the linter.
+
+### `npm run commit`
+
+Commit the git changes. It will use commitizen, to create proper commit comments. You should not use `git commit` directly!
+
+### `npm run release`
+
+Releses the project: tags the sources in Github, creates CHANGELOG, and publishes the project to the npm repository. Actually, you should not use it directly: Travis should release a project exclusively.
+
+### `npm run npm`
+
+Basically, for internal usage: executes npm commands inside the development container.
+
+### `npm run travis`
+
+Used by Travis CI only.
 
 ## Debugging
 
@@ -123,8 +116,6 @@ Log in to the container and see its actual content:
 
 The command opens a bash session where you can directly change the development container. Mind, that those changes are not persistent, you loose them when you exit.
 
-## Supportes technologies
+## The `docker` folder
 
-### File types
-
-Supported files (by their extension): `js, ts, jade, pug, scss, css, html, json, coffee, png, jpeg, jpg, gif, svg, woff, woff2, ttf, eot, ico`
+The folder contains some scripts and Docker compose files: they compose the Docker based development infrastructure. You can finetune them. The most important file is the `docker-compose.dependencies.yml` file: add all the external docker services that you need during the development, etc.

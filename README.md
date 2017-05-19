@@ -9,7 +9,7 @@ This repo implements the Garlic Tech development infrastructure. The infrastruct
 
 ## Pre-requistes
 
-Before able to use the workflows, you have to 
+Before being able to use the workflows, you have to
 
 * install docker
 
@@ -36,20 +36,30 @@ These steps describe the development flow generally. We describe the individual 
 10. Implement the change requests (build, test, commit, travis loop happens again)
 11. Somebody approves and merges your PR to the master - Travis CI checks, builds and deploys your code.
 
+Generally, you can develop in Javascript, Coffeescript, Typescript: the build system supports all these files, you can even mix them. At the end, you get a pure javascript production build.
+
 ### Installing npm dependencies
 
 Well, this has some minor inconveniences, compered to the "undockerized" development: whatever dependencies you install, you have to inject them into the development container as well. Follow these steps:
 
 * Install the package locally, with any of the `--save*` options. The point is: the dependency must get to the `package.json` file. Technically, installing the local package is not really necessary, only writing the package file is required, because nothing runs in the host machine. However, your code editor may require the local files to check your code.
-* Rebuild the development container (`npm run build`, `npm run build:dev`, depending on the nature of the project)
+* Rebuild the development container (`npm run build`, `npm run ngx:build:dev`, depending on the nature of the project)
 * Restart the watchers/dev containers in order to use your changes.
+
+Mind, that when you execute `npm run setup`, the command will update the dependencies to the ones that the docker dev container supports!
+
+Only the following keys are merged: `dependencies, peerDependencies, devDependencies`.
 
 ## Project types
 
 Each project type (web site, angular module, etc.) has its own individual workflow implementation. Follow the links to learn about them:
 
 * [Angular (ngx) module project](https://github.com/garlictech/workflows/tree/master/angular2-module)
+* [Angular (ngx) site/webapp project](https://github.com/garlictech/workflows/tree/master/angular2-webapp)
 
+## Travis CI/CD
+
+For CI/CD, we use Travis. You can find enevrything in the `.travis.yml` file. Keep that file as clean as possible, and use hook scripts instead, implementing a lifecycle functionality. All the hooks are in the `hooks/travis` folder.
 
 *BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
 

@@ -4,7 +4,6 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const dts = require('dts-bundle');
 
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
