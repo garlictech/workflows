@@ -1,26 +1,30 @@
-# Angular 2 development
-
-The main concepts are the same than that of the Angular 1 based development, implemented in the `webpack` container.
+# Angular >2 (ngx) development
 
 _tl;dr_
 
 ```
+# Build and develop the angular module library
+npm run ngx:build:dev
 npm run setup
-yarn
-npm run build:docker
-npm run unittest
-npm run build:prod
+npm install
+npm run ngx:start
+npm run ngx:unittest
+npm run ngx:build:prod
 
-npm start
-npm run start:docker
+# Build and develop the backend
+npm run backend:build
+npm run backend:start
+npm run backend:unittest
+npm run backend:prod
+
+# Commit changes
 git add .
 npm run commit
 ```
 
 ## General concepts
 
-* The project is based on the [Angular Webpack Starter](https://github.com/AngularClass/angular2-webpack-starter) project, learn about the used tehchnology/dependencies there. The generated starting code implements a TODO list app that you have to turn into the real application/module.
-* The code has some really good code samples, and it has 100% test coverage - we should keep this ratio.
+Somehow, we want to implement the "Module as Service" concept :): an angular module may bring some backend functions implemented in a "serverless" environment (AWS lambdas, etc.)
 
 ## Organizing the project, files
 
