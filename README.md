@@ -12,8 +12,11 @@ This repo implements the Garlic Tech development infrastructure. The infrastruct
 Before able to use the workflows, you have to 
 
 * install docker
-* DOCKER_USER env. variable must contain the user name of the private docker registry
-* DOCKER_PASSWORD env. variable must contain the password for the private docker registry
+
+If you use a private docker registry (in case of developing a dockerized server or using them):
+
+* `DOCKER_USER` env. variable must contain the user name of the private docker registry
+* `DOCKER_PASSWORD` env. variable must contain the password for the private docker registry
 
 ## General concerns
 
@@ -41,7 +44,11 @@ Well, this has some minor inconveniences, compered to the "undockerized" develop
 * Rebuild the development container (`npm run build`, `npm run build:dev`, depending on the nature of the project)
 * Restart the watchers/dev containers in order to use your changes.
 
+## Project types
 
+Each project type (web site, angular module, etc.) has its own individual workflow implementation. Follow the links to learn about them:
+
+* [Angular (ngx) module project](https://github.com/garlictech/workflows/tree/master/angular2-module)
 
 
 *BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
