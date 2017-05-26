@@ -14,6 +14,7 @@ RUN cd $(npm root -g)/npm && \
   npm install --silent fs-extra && \
   sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js && \
   npm install --silent -g npm && \
-  rm -rf /tmp/*
+  rm -rf /tmp/* && \
+  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc
 
 ADD . /app
