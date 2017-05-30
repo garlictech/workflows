@@ -4,6 +4,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
@@ -55,6 +56,8 @@ module.exports = function(env) {
       umdNamedDefine: true,
       sourceMapFilename: '[name].bundle.map'
     },
+
+    externals: [nodeExternals()],
 
     module: {
       rules: [{
