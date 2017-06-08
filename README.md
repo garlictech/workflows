@@ -56,10 +56,66 @@ Each project type (web site, angular module, etc.) has its own individual workfl
 
 * [Angular (ngx) module project](https://github.com/garlictech/workflows/tree/master/angular2-module)
 * [Angular (ngx) site/webapp project](https://github.com/garlictech/workflows/tree/master/angular2-webapp)
+* [Backend library project](https://github.com/garlictech/workflows/tree/master/workflows-library)
+
+## Project organization
+
+* Add the unit tests under a `test` subfolder in a module/component folder. This is just a recommendation, the system will find the test files wherever you place them.
+* Name them like `foo.spec.ts`. The `spec.ts` part is the Jasmine standard, and it is important. Karma will execute spec files only.
+
+#### Coverage report
+
+At the end of each test run, you will receive a test coverage report. Mind, that we should keep it at 100%, later, we will force build failure in CI if the coverage is less, than 100!
+
+You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after the very first test run.
+
+## The `docker` folder
+
+The folder contains some scripts and Docker compose files: they compose the Docker based development infrastructure. You can finetune them. The most important file is the `docker-compose.dependencies.yml` file: add all the external docker services that you need during the development, etc.
 
 ## Travis CI/CD
 
 For CI/CD, we use Travis. You can find enevrything in the `.travis.yml` file. Keep that file as clean as possible, and use hook scripts instead, implementing a lifecycle functionality. All the hooks are in the `hooks/travis` folder.
+
+## Common npm commands
+
+See the rest of the scripts at the individual project descriptions.
+
+### `npm run clean`
+
+Clean the dist folder and the build artifacts.
+
+### `npm run lint`
+
+Execute the linter.
+
+### `npm run commit`
+
+Commit the git changes. It will use commitizen, to create proper commit comments. You should not use `git commit` directly!
+
+### `npm run npm`
+
+Basically, for internal usage: executes npm commands inside the development container.
+
+### `npm run travis`
+
+Used by Travis CI only.
+
+### `npm run release`
+
+Releses the project: tags the sources in Github, creates CHANGELOG, and publishes the project to the npm repository. Actually, you should not use it directly: Travis should release a project exclusively.
+
+
+## Debugging
+
+### Debugging the container
+
+Log in to the container and see its actual content:
+
+```npm run bash```
+
+The command opens a bash session where you can directly change the development container. Mind, that those changes are not persistent, you loose them when you exit.
+
 
 *BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
 

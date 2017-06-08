@@ -1,11 +1,12 @@
 FROM garlictech2/workflows-base
 MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
-COPY deps.json package.shared.json /app/
+COPY *.json /app/
 
-RUN scripts/merge-packages.sh && \
-    npm install && \
-    npm cache clean
+RUN npm install --unsafe-perm=true -g gulp && \
+  scripts/install_dependencies && \
+  npm cache clean --force
 
 COPY . /app
-RUN rm deps.json package.shared.json
+
+RUN rm -f package.shared.json package.workflow.json

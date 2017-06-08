@@ -1,15 +1,16 @@
 FROM garlictech2/workflows-base
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-RUN npm install -g bower
+COPY package*.json /app/
 
-COPY deps.json package.shared.json /app/
-
-RUN scripts/merge-packages.sh && \
-  npm install && \
-  rm deps.json package.shared.json
+RUN scripts/install_dependencies && \
+  scripts/update-jsons.coffee && \
+  npm cache clean --force && \
+  rm -rf /tmp/*
 
 COPY . /app
+
+RUN rm -f package.shared.json package.workflow.json
 
 EXPOSE 8081 9876
 CMD ["npm", "start"]

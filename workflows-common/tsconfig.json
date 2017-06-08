@@ -2,10 +2,29 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "project/dist"
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strictNullChecks": false,
+    "lib": [
+      "es6"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "jasmine",
+      "node",
+      "source-map"
+    ]
   },
-  "include": [
-    "project/**/*.ts"
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

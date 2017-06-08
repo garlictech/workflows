@@ -1,19 +1,48 @@
 #! /usr/bin/env node
-const fs = require('fs-extra');
-const _ = require('lodash');
-const execute = require('child_process').execSync;
 
-const localPjson = fs.readJsonSync('package.json');
-const remotePjson = fs.readJsonSync(process.argv[2]);
-var newDeps = {};
-_.assign(newDeps, remotePjson.dependencies, remotePjson.devDependencies, remotePjson.optionalDependencies, remotePjson.peerDependencies);
+const fs = require('fs-extra')
+const _ = require('lodash')
+const execute = require('child_process').execSync
+const merge = require('merge')
 
+var newDeps = {}
 
-if (_.keys(newDeps).length !== 0) {
-  _.assign(localPjson.dependencies, remotePjson.dependencies);
-  _.assign(localPjson.devDependencies, remotePjson.devDependencies);
-  _.assign(localPjson.optionalDependencies, remotePjson.optionalDependencies);
-  _.assign(localPjson.peerDependencies, remotePjson.peerDependencies);
-  fs.outputJsonSync('package.json', localPjson);
-  execute("npm install --color true", { stdio: [0, 1, 2] });
+_.forEach(['package.workflow.json', 'package.shared.json', 'package.project.json'], filename => {
+  let remotePjson = {}
+  try {
+    remotePjson = fs.readJsonSync(filename);
+  } catch (err) {}
+  _.assign(newDeps, remotePjson.dependencies, remotePjson.devDependencies, remotePjson.optionalDependencies, remotePjson.peerDependencies);
+})
+
+var keys = _.keys(newDeps)
+
+if (keys.length !== 0) {
+  packages = keys.reduce((current, next) => current + ` ${next}@${newDeps[next]}`, "")
+  execute(`npm install --color true ${packages}`, { stdio: [0, 1, 2] });
 }
+
+try {
+  let workflow = fs.readJsonSync("package.workflow.json")
+  let pjson = fs.readJsonSync("package.json")
+  pjson.scripts = merge.recursive(pjson.scripts, workflow.scripts || {})
+  fs.writeJsonSync("package.json", pjson, { spaces: 2 })
+} catch (err) {}
+
+try {
+  let internalShared = fs.readJsonSync("_package.shared.json")
+  let externalShared = fs.readJsonSync("package.shared.json")
+  let mergedShared = merge.recursive(internalShared, externalShared)
+  fs.writeJsonSync("_package.shared.json", mergedShared, { spaces: 2 })
+} catch (err) {}
+
+try {
+  let projectPjson = fs.readJsonSync("package.project.json");
+  let internalShared = fs.readJsonSync("_package.shared.json");
+
+  ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies'].forEach(field => {
+    projectPjson[field] = merge.recursive(projectPjson[field], internalShared[field])
+  });
+
+  fs.writeJsonSync("package.project.json", projectPjson, { spaces: 2 })
+} catch (err) {}
