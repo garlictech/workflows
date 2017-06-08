@@ -1,11 +1,11 @@
 FROM garlictech2/server-common
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
-ADD deps.json /app/
+COPY *.json /app/
 
-RUN scripts/merge-packages.sh && \
-    npm install && \
-    npm cache clean
+RUN scripts/install_dependencies && \
+  npm cache clean --force
 
 COPY . /app
-RUN rm deps.json package.shared.json
+
+RUN rm -f package.shared.json package.workflow.json
