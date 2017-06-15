@@ -1,16 +1,14 @@
 {
-  "devDependencies": {
-    "mocha": "^3.2.0",
-    "gulp-env": "^0.4.0",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-spawn-mocha": "^3.1.0",
-    "gulp-util": "^3.0.8",
-    "gutil": "^1.6.4",
-    "nsp": "^2.6.2",
-    "debug": "^2.6.0",
-    "app-module-path": "^2.2.0",
-    "chai": "^3.5.0",
-    "eslint": "^3.13.0",
-    "yargs": "^6.6.0"
-  }
+    "devDependencies": {
+        "gulp-env": "^0.4.0",
+        "gulp-nodemon": "^2.2.1",
+        "gulp-util": "^3.0.8",
+        "gutil": "^1.6.4",
+        "nsp": "^2.6.2",
+        "debug": "^2.6.0",
+        "app-module-path": "^2.2.0",
+        "chai": "^3.5.0",
+        "eslint": "^3.13.0",
+        "yargs": "^6.6.0"
+    }
 }

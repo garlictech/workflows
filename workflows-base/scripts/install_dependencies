@@ -19,7 +19,7 @@ var keys = _.keys(newDeps)
 
 if (keys.length !== 0) {
   packages = keys.reduce((current, next) => current + ` ${next}@${newDeps[next]}`, "")
-  execute(`npm install --color true ${packages}`, { stdio: [0, 1, 2] });
+  execute(`npm install --save --color true ${packages}`, { stdio: [0, 1, 2] });
 }
 
 try {
@@ -63,7 +63,7 @@ try {
 
   if (keys.length !== 0) {
     packages = keys.reduce((current, next) => current + ` ${next}@${remainedPackages[next]}`, "")
-    execute(`npm install --color true ${packages}`, { stdio: [0, 1, 2] });
+    execute(`npm install --save --color true ${packages}`, { stdio: [0, 1, 2] });
   }
 } catch (err) {}
 

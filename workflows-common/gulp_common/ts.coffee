@@ -12,6 +12,10 @@ module.exports = (gulp, c) ->
     "module": "commonjs"
     "declaration": true
     "lib": ["es6"]
+    "exclude": [
+      "node_modules",
+      "dist",
+    ]
   , p.typescript.reporter.longReporter()
 
   return ->
