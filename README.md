@@ -93,6 +93,13 @@ Execute the linter.
 
 Commit the git changes. It will use commitizen, to create proper commit comments. You should not use `git commit` directly!
 
+The command requires that `user.name` and `user.email` be configured, othwerwise it will complain about the missing `GH_USER` or `GH_EMAIL` environmant variables. Do it like
+
+```
+git config --global user.name "myname"
+git config --global user.email "email@example.com"
+```
+
 ### `npm run npm`
 
 Basically, for internal usage: executes npm commands inside the development container.
