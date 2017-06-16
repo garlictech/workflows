@@ -2,7 +2,7 @@ gulp = require 'gulp'
 
 config =
   root: "/app/project"
-  src: "src"
+  src: ["src", "subrepos"]
   dist: "/app/dist"
   cssBundleName: 'style'
 

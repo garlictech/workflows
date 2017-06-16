@@ -1,16 +1,15 @@
 {
     "compilerOptions": {
         "target": "es5",
+        "declaration": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
-        "noEmit": true,
-        "noEmitHelpers": true,
         "importHelpers": true,
         "strictNullChecks": false,
+        "removeComments": true,
         "lib": [
             "es6"
         ],
@@ -19,12 +18,7 @@
         ],
         "types": [
             "jasmine",
-            "node",
-            "source-map"
+            "node"
         ]
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    }
 }

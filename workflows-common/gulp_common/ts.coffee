@@ -7,15 +7,7 @@ module.exports = (gulp, c) ->
   common.WatchFileTypes.push 'ts'
   files =  common.GetCompilableDistFiles config, "ts"
 
-  tsProject = p.typescript.createProject
-    "target": "es5",
-    "module": "commonjs"
-    "declaration": true
-    "lib": ["es6"]
-    "exclude": [
-      "node_modules",
-      "dist",
-    ]
+  tsProject = p.typescript.createProject "/app/tsconfig.json"
   , p.typescript.reporter.longReporter()
 
   return ->

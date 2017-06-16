@@ -38,6 +38,57 @@ These steps describe the development flow generally. We describe the individual 
 
 Generally, you can develop in Javascript, Coffeescript, Typescript: the build system supports all these files, you can even mix them. At the end, you get a pure javascript production build.
 
+### Sub-repos
+
+Actually, the above development steps are for "deployable" repos: individual websites, servers, etc. When we really want to share code, we extract common code to individual repos. Those repos are normally not "deployable" ones, only the deployable projects use them. Now, developing the shared repos with the above method is really cumbersome: each changes should go through a Travis build and publishing process, it is quite slow.
+
+Now, for the shared code, we utilize the excellent [git subrepo](https://github.com/ingydotnet/git-subrepo) project. Go to the web site and install the tool. So, as for subrepos:
+
+- They have no docker, npm, whatsoever parts. As minimum, only an `index.{ts,js,coffee}` and a package.json file are required.
+- We don't release them to npm, and Travis will not build/release them. They are really some "embeddable" code fragments with some external dependencies. They are build and tested as parts of the hosts projects.
+- As for version management, we rely on simple commits. When you version a "host" project (a project using a subrepo), the individual version will "tag" a particular commit of the subrepo. So, when you clone a tagged host repo, the tagged subrepo commit is fetched, and not the the head.
+- With subrepos, you can use forks and branches as well. So the release management of the subrepos are based on branches and "tagged" commits in the host repo.
+- Don't use private forks in the subrepos, always add the upstream repo, and use branches if needed. If you use private forks for any reasons, it is OK, but merge the changes to the upstream, then update the subrepo in the host.
+
+How to add a subrepo. We do it by an example: add the [authentication-lib](https://github.com/garlictech/authentication-lib) repo as a subrepo. Check the library code: it has no docker and other codes, it has no `projct/src` folder, etc.
+
+```
+git subrepo clone https://github.com/garlictech/authentication-lib.git -b subrepo project/subrepos/\@garlictech/authentication-lib
+```
+
+Tha above command adds the HEAD of the subrepos branch of the auth. lib repo under `project/subrepos` folder. Using the `project/subrepos` folder is mandatory, as the workflows expect this folder structure.
+
+Then, add the following to the `dependencies` section of the `package.json`:
+
+```
+"@garlictech/authentication-lib": "file:./project/subrepos/@garlictech/authentication-lib"
+```
+
+So, you can:
+
+- use `import { whatsoever } from '@garlictech/authentication-lib'`
+- with `npm install`, you can install the subrepo dependencies as well.
+
+The cool thing is that the subrepos are mounted into the development docker containers, so you achieved a kind of (but more effective) `npm link` that works in the container as well.
+
+Now, the dockerized environment requires some extras:
+
+- The Dockerfile of the development container must contain the following fragment:
+
+```
+COPY project/subrepos /app/project/subrepos/
+RUN scripts/install_dependencies
+```
+
+This is because you have to install the subrepo dependencies inside the containers as well, so you need to inject the subrepo `package.json`-s as well. This is the simplest way. When you start the development container with docker-compose, it will override the `/app/project/subrepos/` folder with the mounted external code, so all the host changes in the subrepos will trigger a rebuild (in watch mode).
+
+- So, whenever you change any package.json-s (either in the host project or in the subrepos), you have to issue `npm run build` to reflect the changes in the dev. container.
+- In watch mode, the system will watch changes in the subrepos as well. It includes full unit test re-execution: all the unit tests of the subrepos are executed in this case.
+
+#### Caveats
+
+- With `npm install`, only the `dependencies` are installed. Sometimes the test require additional dependencies that are placed into the `devDependencies` field of the subrepo package.json. It will result test failure. Unfortunately, you have to add manually those dev dependencies to the host project `package.json` as well.
+
 ### Installing npm dependencies
 
 Well, this has some minor inconveniences, compered to the "undockerized" development: whatever dependencies you install, you have to inject them into the development container as well. Follow these steps:
@@ -123,6 +174,11 @@ Log in to the container and see its actual content:
 
 The command opens a bash session where you can directly change the development container. Mind, that those changes are not persistent, you loose them when you exit.
 
+## Deployment
+
+We control the deployment with Travis. So, the deployment instuctions must be implemented in the Travis hooks, in the `hooks/travis` folder. The deployment may be:
+
+- Publish to one or more NPM registries. It is not given that we always publish to npmjs.com, so add the list of registries to the `before_install` script. Example is here.
 
 *BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
 

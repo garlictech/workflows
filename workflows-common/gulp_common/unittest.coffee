@@ -8,7 +8,7 @@ module.exports = (gulp, c) ->
   config = common.GetConfig c
 
   return ->
-    gulp.src ["#{config.buildRoot}/**/test/*.spec.js"]
+    gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
     .pipe p.jasmine
       reporter: new SpecReporter
         spec:
