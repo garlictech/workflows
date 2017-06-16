@@ -1,6 +1,5 @@
 {
     "devDependencies": {
-        "gulp-env": "^0.4.0",
         "gulp-nodemon": "^2.2.1",
         "gulp-util": "^3.0.8",
         "gutil": "^1.6.4",

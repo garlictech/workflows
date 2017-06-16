@@ -28,4 +28,3 @@ module.exports =
 
   GetCompilableDistFiles: (config, fileType) ->
     _.flatten _.map config.srcRoots, (dir) -> ["#{dir}/**/*.#{fileType}"]
-    # _.flatten _.map config.srcRoots, (dir) -> ["#{dir}/**/*.#{fileType}", "!#{dir}/**/test/*"]
