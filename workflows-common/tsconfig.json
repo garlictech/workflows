@@ -10,6 +10,7 @@
         "importHelpers": true,
         "strictNullChecks": false,
         "removeComments": true,
+        "sourceMap": true,
         "lib": [
             "es6"
         ],

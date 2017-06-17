@@ -88,6 +88,7 @@ This is because you have to install the subrepo dependencies inside the containe
 #### Caveats
 
 - With `npm install`, only the `dependencies` are installed. Sometimes the test require additional dependencies that are placed into the `devDependencies` field of the subrepo package.json. It will result test failure. Unfortunately, you have to add manually those dev dependencies to the host project `package.json` as well.
+- As in the Dockerfile we copy the content of the subrepos, if you change the subrepo code, the `npm run build` command will trigger a full npm install, so the Docker cache is invalidated. Anyway, you have to re-build the development container only when either the parent image or any of the package.json-s change, so it is probably something that you can live with.
 
 ### Installing npm dependencies
 

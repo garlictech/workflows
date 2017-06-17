@@ -1,6 +1,7 @@
 common = require './common'
 p = require('gulp-load-plugins')()
 merge = require 'merge2'
+path = require 'path'
 
 module.exports = (gulp, c) ->
   config = common.GetConfig c
@@ -21,6 +22,11 @@ module.exports = (gulp, c) ->
       .pipe(gulp.dest config.buildRoot),
 
       tsResult.js
-      .pipe p.sourcemaps.write('.', {addComment: false})
+      .pipe p.sourcemaps.write
+        # Return relative source map root directories per file.
+        sourceRoot: (file) ->
+          sourceFile = path.join file.cwd, file.sourceMap.file
+          path.relative(path.dirname(sourceFile), file.cwd)
+        addComment: true
       .pipe gulp.dest config.buildRoot
     ]
