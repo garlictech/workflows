@@ -13,13 +13,6 @@
         "sourceMap": true,
         "lib": [
             "es6"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "jasmine",
-            "node"
         ]
     }
 }

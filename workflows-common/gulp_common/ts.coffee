@@ -9,12 +9,11 @@ module.exports = (gulp, c) ->
   files =  common.GetCompilableDistFiles config, "ts"
 
   tsProject = p.typescript.createProject "/app/tsconfig.json"
-  , p.typescript.reporter.longReporter()
 
   return ->
     tsResult = common.GulpSrc gulp, files, 'ts', {base: config.base}
     .pipe p.sourcemaps.init()
-    .pipe(tsProject())
+    .pipe(tsProject(p.typescript.reporter.longReporter()))
     .on 'error', -> common.HandleError()
 
     merge [
