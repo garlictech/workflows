@@ -1,0 +1,1 @@
+require('app-module-path').addPath("/app/dist");
