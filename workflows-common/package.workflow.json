@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "app-module-path": "^2.2.0",
         "babel-core": "^6.14.0",
         "babel-polyfill": "^6.13.0",
         "babel-preset-es2015": "^6.14.0",
