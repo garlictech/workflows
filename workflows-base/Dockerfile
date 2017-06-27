@@ -12,7 +12,6 @@ RUN scripts/install_dependencies && \
   npm cache clean --force && \
   rm -rf scripts
 
-ADD hooks_workflow /app/hooks_workflow
 ADD scripts /app/scripts
 ADD coffeelint.json /app/
 
