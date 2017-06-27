@@ -14,6 +14,6 @@ RUN scripts/install_dependencies && \
 
 ADD scripts /app/scripts
 ADD coffeelint.json /app/
-ADD hooks_workflows /app/hooks_workflows
+ADD hooks_workflow /app/hooks_workflow
 
 RUN rm -f package.shared.json package.workflow.json
