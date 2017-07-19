@@ -1,3 +1,4 @@
+fs = require 'fs'
 common = require './common'
 
 module.exports = (_gulp, config) ->
@@ -32,5 +33,12 @@ module.exports = (_gulp, config) ->
   gulp.task 'default', ->
     gulp.start 'watch'
     gulp.start 'webserver'
+
+  # Configure the hooks
+  if fs.existsSync '/app/hooks/gulp/'
+    console.log "Executing the gulp hooks..."
+    require('/app/hooks/gulp/') gulp, config
+  else
+    console.log "There are no gulp hooks, skipping."
 
   return gulp

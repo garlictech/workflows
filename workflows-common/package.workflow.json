@@ -24,6 +24,7 @@
         "gulp-typescript": "^3.1.4",
         "gulp-using": "^0.1.1",
         "gulp-uglifycss": "1.0.6",
+        "gulp-nodemon": "^2.2.1",
         "gulp-jasmine": "^2.4.2",
         "jasmine-spec-reporter": "^3.2.0",
         "sinon": "^1.17.5",

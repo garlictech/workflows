@@ -7,7 +7,10 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/* && \
   mkdir -p /app/ && \
   rm -rf /tmp/* && \
-  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc
+  cd /tmp && \
+  npm install npm@latest && \
+  rm -rf /usr/local/lib/node_modules && \
+  mv node_modules /usr/local/lib/
 
 WORKDIR /app
 ADD . /app
