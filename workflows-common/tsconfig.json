@@ -12,7 +12,8 @@
         "removeComments": true,
         "sourceMap": true,
         "lib": [
-            "es6"
+            "es6",
+            "dom"
         ]
     }
 }
