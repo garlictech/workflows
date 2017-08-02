@@ -1,15 +1,16 @@
 {
-  "scripts": {
-    "semantic-release": "scripts/semantic-release",
-    "commit": "scripts/commit.sh",
-    "travis": "scripts/travis.sh $@"
-  },
-  "dependencies": {
+    "scripts": {
+        "semantic-release": "scripts/semantic-release",
+        "commit": "scripts/commit.sh",
+        "travis": "scripts/travis.sh $@",
+        "subrepo-push": "git subrepo push --all"
+    },
+    "dependencies": {
 
-  },
-  "devDependencies": {
-    "commitizen": "^2.9.5",
-    "cz-conventional-changelog": "^1.2.0",
-    "semantic-release": "4.3.5"
-  }
+    },
+    "devDependencies": {
+        "commitizen": "^2.9.5",
+        "cz-conventional-changelog": "^1.2.0",
+        "semantic-release": "4.3.5"
+    }
 }

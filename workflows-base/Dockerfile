@@ -3,7 +3,9 @@ MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
 COPY *.json /app/
 
-RUN npm install --unsafe-perm=true -g coffee coffee-script firebase-tools && \
+RUN git clone https://github.com/ingydotnet/git-subrepo /app/git-subrepo && \
+  echo 'source /app/git-subrepo/.rc' >> ~/.bashrc && \
+  npm install --unsafe-perm=true -g coffee coffee-script firebase-tools && \
   npm install && \
   mkdir scripts
 
