@@ -9,7 +9,7 @@ module.exports = (gulp, c) ->
 
   return ->
     p.env.set NODE_ENV: "test"
-    gulp.src ["/app/test/system/index.js", "#{config.buildRoot}/**/*.spec.js"]
+    gulp.src ["/app/test/system/index.js", "#{config.buildRoot}/test/system/**/*.spec.js"]
     .pipe p.jasmine
       reporter: new SpecReporter
         spec:
