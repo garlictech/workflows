@@ -28,13 +28,13 @@ module.exports = (_gulp, config) ->
   
   gulp.task 'build', ['compile']
   
-  gulp.task 'webserver', require('./webserver')(gulp, config)
+  gulp.task 'server', require('./server')(gulp, config)
 
   gulp.task 'debug', require('./debug')(gulp, config)
   
   gulp.task 'default', ->
     gulp.start 'watch'
-    gulp.start 'webserver'
+    gulp.start 'server'
 
   # Configure the hooks
   if fs.existsSync '/app/hooks/gulp/'
