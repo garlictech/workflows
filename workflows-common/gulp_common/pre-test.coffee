@@ -6,5 +6,6 @@ module.exports = (gulp, c) ->
 
   return ->
     gulp.src _.flatten _.map c.buildRoots, (s) -> ["#{s}/**/*.js", "!#{s}/**/*.spec.js"]
+    .pipe p.plumber()
     .pipe p.istanbul()
     .pipe p.istanbul.hookRequire()
