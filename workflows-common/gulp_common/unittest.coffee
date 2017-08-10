@@ -15,3 +15,6 @@ module.exports = (gulp, c) ->
           displayPending: true
           displayStacktrace: true
       includeStackTrace: true
+    .pipe p.istanbul.writeReports()
+    .pipe p.istanbul.enforceThresholds { thresholds: { global: 90 } }
+    
