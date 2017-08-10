@@ -12,9 +12,12 @@ module.exports = (gulp, c) ->
 
   return ->
     tsResult = common.GulpSrc gulp, files, 'ts', {base: config.base}
+    .pipe p.plumber
+      handleError: (err) ->
+        console.log "ERROR: ", err
+        this.emit 'end'
     .pipe p.sourcemaps.init()
     .pipe(tsProject(p.typescript.reporter.longReporter()))
-    .on 'error', -> common.HandleError()
 
     merge [
       tsResult.dts

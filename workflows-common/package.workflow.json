@@ -11,7 +11,6 @@
         "gulp-coffee": "2.x.x",
         "gulp-coffeelint": "0.x.x",
         "gulp-concat": "^2.6.1",
-        "gulp-debounced-watch": "1.x.x",
         "gulp-env": "^0.4.0",
         "gulp-filter": "4.x.x",
         "gulp-help": "1.x.x",
@@ -19,7 +18,6 @@
         "gulp-rename": "^1.2.2",
         "gulp-size": "^2.1.0",
         "gulp-minify": "0.0.14",
-        "gulp-sass": "^3.1.0",
         "gulp-sourcemaps": "^2.4.1",
         "gulp-typescript": "^3.1.4",
         "gulp-using": "^0.1.1",
@@ -28,10 +26,10 @@
         "gulp-istanbul": "^1.1.2",
         "gulp-jasmine": "^2.4.2",
         "jasmine-spec-reporter": "^3.2.0",
-        "sinon": "^1.17.5",
-        "sinon-chai": "^2.8.0",
         "merge2": "^1.0.3",
         "merge-stream": "^1.0.1",
-        "node-yaml": "^3.0.3"
+        "node-yaml": "^3.0.3",
+        "remap-istanbul": "^0.9.5",
+        "gulp-plumber": "^1.1.0"
     }
 }

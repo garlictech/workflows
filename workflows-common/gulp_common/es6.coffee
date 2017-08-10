@@ -9,6 +9,10 @@ module.exports = (gulp, c) ->
 
   return ->
     common.GulpSrc gulp, files, 'es6', {base: config.base}
+    .pipe p.plumber
+      handleError: (err) ->
+        console.log "ERROR: ", err
+        this.emit 'end'
     .pipe p.babel
       "sourceMaps": "both",
       "presets": [
@@ -17,4 +21,3 @@ module.exports = (gulp, c) ->
       "comments": true,
       "compact": false
     .pipe gulp.dest config.buildRoot
-    .on 'error', -> common.HandleError()

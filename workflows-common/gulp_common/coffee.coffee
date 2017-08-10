@@ -9,6 +9,10 @@ module.exports = (gulp, c) ->
 
   return ->
     common.GulpSrc gulp, files, 'coffee', {base: config.base}
+    .pipe p.plumber
+      handleError: (err) ->
+        console.log "ERROR: ", err
+        this.emit 'end'
     .pipe p.sourcemaps.init()
     .pipe p.coffeelint()
     .pipe p.coffeelint.reporter()
@@ -20,4 +24,3 @@ module.exports = (gulp, c) ->
         path.relative(path.dirname(sourceFile), file.cwd)
       addComment: true
     .pipe gulp.dest config.buildRoot
-    .on 'error', -> common.HandleError()

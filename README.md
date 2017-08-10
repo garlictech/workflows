@@ -117,7 +117,10 @@ Each project type (web site, angular module, etc.) has its own individual workfl
 
 #### Coverage report
 
-At the end of each test run, you will receive a test coverage report. Mind, that we should keep it at 100%, later, we will force build failure in CI if the coverage is less, than 100!
+At the end of each test run, you will receive a test coverage report. The tests fail if the coverage is below the threshold. The current values (they may increase in the future versions of the workflows):
+
+* global: 50%: the global coverage of the project must be higher than that
+* component modifier: global - 10%: all the components must be at least this coverage
 
 You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after the very first test run.
 
