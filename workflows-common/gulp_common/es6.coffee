@@ -9,10 +9,6 @@ module.exports = (gulp, c) ->
 
   return ->
     common.GulpSrc gulp, files, 'es6', {base: config.base}
-    .pipe p.plumber
-      handleError: (err) ->
-        console.log "ERROR: ", err
-        this.emit 'end'
     .pipe p.babel
       "sourceMaps": "both",
       "presets": [

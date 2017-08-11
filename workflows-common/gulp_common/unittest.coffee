@@ -2,6 +2,7 @@ common = require './common'
 p = require('gulp-load-plugins')()
 SpecReporter = require('jasmine-spec-reporter').SpecReporter
 remapIstanbul = require 'remap-istanbul/lib/gulpRemapIstanbul'
+gutil = require 'gulp-util'
 
 RemappedReports =
   reports:
@@ -37,23 +38,18 @@ module.exports =
     return ->
       remapCoverageFiles = ->
         gulp.src CoverageSrc
-        .pipe p.plumber
-          handleError: (err) ->
-            console.log "ERROR: ", err
-            this.emit 'end'
         .pipe remapIstanbul RemappedReports
-        .pipe p.istanbul.enforceThresholds Thresholds
-        .on 'error', -> common.HandleError()
   
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
-      .pipe p.plumber
-        handleError: (err) ->
-          console.log "ERROR: ", err
-          this.emit 'end'
+      # .pipe p.plumber
+      #   errorHandler: (err) ->
+      #     gutil.log err.message
+      #     this.emit 'end'
       .pipe p.jasmine JasmineReporter
-      .pipe p.istanbul.writeReports IstanbulReporters
-      .on 'end', remapCoverageFiles
-      .on 'error', -> common.HandleError()
+      # .pipe p.istanbul.writeReports IstanbulReporters
+      # .on 'end', remapCoverageFiles
+      # .on 'end', ->
+      #   this.emit 'jasmineDone'
 
   noWatch: (gulp, c) ->
     config = common.GetConfig c
@@ -62,9 +58,9 @@ module.exports =
       remapCoverageFiles = ->
         gulp.src CoverageSrc
         .pipe remapIstanbul RemappedReports
-        .pipe p.istanbul.enforceThresholds Thresholds
   
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
       .pipe p.jasmine JasmineReporter
       .pipe p.istanbul.writeReports IstanbulReporters
+      .pipe p.istanbul.enforceThresholds Thresholds
       .on 'end', remapCoverageFiles
