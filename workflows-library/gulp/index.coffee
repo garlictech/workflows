@@ -14,11 +14,11 @@ module.exports = (_gulp, config) ->
 
   gulp.task 'watch', ['build'], require('./watch')(gulp, config, fileTypes)
   
-  gulp.task 'pre-test', require('/app/gulp_common/pre-test')(gulp, config)
+  gulp.task 'pre-test', ['build'], require('/app/gulp_common/pre-test')(gulp, config)
 
-  gulp.task 'unittest-watch', ['build', 'pre-test'], require("/app/gulp_common/unittest").withWatch gulp, config
+  gulp.task 'unittest-watch', ['pre-test'], require("/app/gulp_common/unittest").withWatch gulp, config
 
-  gulp.task 'unittest', ['build', 'pre-test'], require("/app/gulp_common/unittest").noWatch(gulp, config)
+  gulp.task 'unittest', ['pre-test'], require("/app/gulp_common/unittest").noWatch(gulp, config)
 
   gulp.task 'systemtest', require("/app/gulp_common/systemtest")(gulp, config)
 

@@ -16,7 +16,7 @@ Thresholds =
   
 CoverageSrc = '/app/reports/coverage/json/coverage.json'
 
-JasmineReporter =
+JasmineReporter = ->
   reporter: new SpecReporter
     spec:
       displayPending: true
@@ -41,15 +41,14 @@ module.exports =
         .pipe remapIstanbul RemappedReports
   
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
-      # .pipe p.plumber
-      #   errorHandler: (err) ->
-      #     gutil.log err.message
-      #     this.emit 'end'
-      .pipe p.jasmine JasmineReporter
-      # .pipe p.istanbul.writeReports IstanbulReporters
-      # .on 'end', remapCoverageFiles
-      # .on 'end', ->
-      #   this.emit 'jasmineDone'
+      .pipe p.plumber
+        errorHandler: (err) ->
+          gutil.log err.message
+          this.emit 'end'
+      .pipe p.jasmine JasmineReporter()
+      .pipe p.istanbul.writeReports IstanbulReporters
+      .on 'end', remapCoverageFiles
+
 
   noWatch: (gulp, c) ->
     config = common.GetConfig c
@@ -60,7 +59,7 @@ module.exports =
         .pipe remapIstanbul RemappedReports
   
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
-      .pipe p.jasmine JasmineReporter
+      .pipe p.jasmine JasmineReporter()
       .pipe p.istanbul.writeReports IstanbulReporters
       .pipe p.istanbul.enforceThresholds Thresholds
       .on 'end', remapCoverageFiles
