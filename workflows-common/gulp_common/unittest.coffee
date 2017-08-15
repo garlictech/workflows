@@ -36,18 +36,12 @@ module.exports =
     config = common.GetConfig c
 
     return ->
-      remapCoverageFiles = ->
-        gulp.src CoverageSrc
-        .pipe remapIstanbul RemappedReports
-  
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
       .pipe p.plumber
         errorHandler: (err) ->
           gutil.log err.message
           this.emit 'end'
       .pipe p.jasmine JasmineReporter()
-      .pipe p.istanbul.writeReports IstanbulReporters
-      .on 'end', remapCoverageFiles
 
 
   noWatch: (gulp, c) ->

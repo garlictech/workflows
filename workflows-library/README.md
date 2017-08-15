@@ -60,14 +60,18 @@ Updates some of your local files to a required content: tslint, tsconfig, packag
 
 ### `npm start`
 
-Start the watchers: on code change, the system will recompile the changed code, and re-executes the unit tests.
+Start the watchers: on code change, the system will recompile the changed code, and re-executes the unit tests. It does NOT create coverage report on purpose.
 
 If you have docekerized dependencies, the command also starts them.
 
 ### `npm run unittest`
 
-Run the unit tests once.
+Run the unit tests once. It creates the coverage report - find it in the `reports/coverage` folder.
 
 ### `npm run stop`
 
 Stop the development site. Ctrl-C does the job, however sometimes the development container does not stop. This command kills the container.
+
+### make commands
+
+Actually, there are more commands in the makefile - the majority of the npm scripts are simple make commands. See the makefile for those exotic features, they might speed up your development.
