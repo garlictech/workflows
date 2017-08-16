@@ -102,20 +102,10 @@ Mind, that when you execute `npm run setup`, the command will update the depende
 
 Only the following keys are merged: `dependencies, peerDependencies, devDependencies`.
 
-## Project types
+## Unit testing, coverage report
 
-Each project type (web site, angular module, etc.) has its own individual workflow implementation. Follow the links to learn about them:
-
-* [Angular (ngx) module project](https://github.com/garlictech/workflows/tree/master/angular2-module)
-* [Angular (ngx) site/webapp project](https://github.com/garlictech/workflows/tree/master/angular2-webapp)
-* [Backend library project](https://github.com/garlictech/workflows/tree/master/workflows-library)
-
-## Project organization
-
-* Add the unit tests under a `test` subfolder in a module/component folder. This is just a recommendation, the system will find the test files wherever you place them.
-* Name them like `foo.spec.ts`. The `spec.ts` part is the Jasmine standard, and it is important. Karma will execute spec files only.
-
-#### Coverage report
+* Add the unit tests under a `test` subfolder in a module/component folder. This is necessary, the system will find the test files only there. It is also important for coverage report: the report skips all the files in the `test` folders.
+* Name them like `foo.spec.ts`. The `spec.ts` part is the Jasmine standard, and it is important. Karma/glup test runners will execute spec files only.
 
 At the end of each test run, you will receive a test coverage report. The tests fail if the coverage is below the threshold. The current values (they may increase in the future versions of the workflows):
 
@@ -123,6 +113,24 @@ At the end of each test run, you will receive a test coverage report. The tests 
 * component modifier: global - 10%: all the components must be at least this coverage
 
 You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after the very first test run.
+
+*Some tricks*
+
+* If a source file is not required (directly or indirectly) in at least one test file, then the coverage report will not be generated for that file. So create an umbrella test spec file that requires as many files as possible. Certainly, there are files that you should not cover, for example server startup scripts. The [requireDir](https://github.com/aseemk/requireDir) project may be big help at this stage.
+* The compiled files contain sourcemaps. To see the original files in the test failure error stacks, use the [node-source-map-support](https://github.com/evanw/node-source-map-support) package. The best is: add it to the coverage umbrella file.
+* An example umbrella file may be:
+
+```
+// Display the original files in the stack traces
+require('source-map-support').install()
+// The coverage report covers only files that are included by any of the tests.
+// This file tries to import as many files as possible, until at least one test covers them.
+var requireDir = require('require-dir');
+requireDir('../provider-lib/', {recurse: true})
+requireDir('../deepstream-rxjs/', {recurse: true})
+```
+
+
 
 ## The `docker` folder
 
@@ -219,6 +227,14 @@ The Docker image of the service. Basically, it is the repo part of the github sl
 * `SCOPE`
 
 Your organization. The organization part of the github slug.
+
+## Project types
+
+Each project type (web site, angular module, etc.) has its own individual workflow implementation. Follow the links to learn about them:
+
+* [Angular (ngx) module project](https://github.com/garlictech/workflows/tree/master/angular2-module)
+* [Angular (ngx) site/webapp project](https://github.com/garlictech/workflows/tree/master/angular2-webapp)
+* [Backend library project](https://github.com/garlictech/workflows/tree/master/workflows-library)
 
 ## Server side development
 
