@@ -6,6 +6,7 @@ config = _.pick commonConfig, ['GulpSrc', 'HandleError', 'GetCompilableDistFiles
 config.GetConfig = (c) ->
   cfg = commonConfig.GetConfig c
   cfg.systemtestEntry = "/app/test/system/index.js"
+  cfg.serverEntry = c.serverEntry or path.join cfg.buildRoot, 'src', 'index.js'
   cfg.unittestEntry = "/app/test/unit/index.js"
   return cfg
 
