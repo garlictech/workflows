@@ -8,11 +8,6 @@ RemappedReports =
   reports:
     json: '/app/reports/coverage/json/coverage-remapped.json'
     html: '/app/reports/coverage/html'
-
-Thresholds =
-  thresholds:
-    global: 50
-    each: -10
   
 CoverageSrc = '/app/reports/coverage/json/coverage.json'
 
@@ -24,7 +19,7 @@ JasmineReporter = ->
   includeStackTrace: true
 
 IstanbulReporters =
-  reporters: ['json', 'text-summary']
+  reporters: ['json', 'text', 'text-summary']
   reportOpts:
     json:
       dir: '/app/reports/coverage/json'
@@ -55,5 +50,8 @@ module.exports =
       gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
       .pipe p.jasmine JasmineReporter()
       .pipe p.istanbul.writeReports IstanbulReporters
-      .pipe p.istanbul.enforceThresholds Thresholds
+      .pipe p.istanbul.enforceThresholds
+        thresholds:
+          global: 50
+          each: 50
       .on 'end', remapCoverageFiles
