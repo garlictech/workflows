@@ -29,9 +29,11 @@ module.exports =
   # TODO I have tried to implement it using streams, however, I could not manage to to it with a function that returns different versions. That's why the copypaste...
   withWatch: (gulp, c) ->
     config = common.GetConfig c
+    sources = _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
+    sources.unshift("/app/test/unit/index.js")
 
     return ->
-      gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
+      gulp.src sources
       .pipe p.plumber
         errorHandler: (err) ->
           gutil.log err.message
@@ -41,13 +43,15 @@ module.exports =
 
   noWatch: (gulp, c) ->
     config = common.GetConfig c
+    sources = _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
+    sources.unshift("/app/test/unit/index.js")
 
     return ->
       remapCoverageFiles = ->
         gulp.src CoverageSrc
         .pipe remapIstanbul RemappedReports
   
-      gulp.src _.map c.buildRoots, (s) -> "#{s}/**/test/*.spec.js"
+      gulp.src sources
       .pipe p.jasmine JasmineReporter()
       .pipe p.istanbul.writeReports IstanbulReporters
       .pipe p.istanbul.enforceThresholds
