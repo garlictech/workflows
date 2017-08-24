@@ -36,7 +36,7 @@
         "no-conditional-assignment": true,
         "no-consecutive-blank-lines": [true],
         "no-console": [
-            false
+            true
         ],
         "no-construct": false,
         "no-debugger": true,
