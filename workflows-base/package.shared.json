@@ -7,8 +7,8 @@
         "@types/jasmine": "^2.5.43",
         "coffeelint": "1.x.x",
         "jasmine-core": "^2.5.2",
-        "tslint": "^3.15.1",
-        "typescript": "^2.1.6",
-        "@types/node": "^8.0.24",
+        "tslint": "^5.6.0",
+        "typescript": "^2.4.2",
+        "@types/node": "^8.0.24"
     }
 }
