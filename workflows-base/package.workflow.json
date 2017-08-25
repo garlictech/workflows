@@ -3,7 +3,9 @@
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",
         "travis": "scripts/travis.sh $@",
-        "subrepo-push": "git subrepo push --all"
+        "subrepo-push": "git subrepo push --all",
+        "prettier": "scripts/prettier.sh",
+        "lint": "scripts/lint.sh"
     },
     "dependencies": {},
     "devDependencies": {

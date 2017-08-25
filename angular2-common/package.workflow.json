@@ -9,7 +9,6 @@
         "clean:install": "npm set progress=false && npm install",
         "clean": "npm cache clean && clean:dist && npm run rimraf -- node_modules doc reports/coverage compiled dll",
         "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
-        "lint": "tslint --type-check --project .",
         "postinstall": "npm run webdriver:update",
         "postversion": "git push && git push --tags",
         "preclean:install": "npm run clean",

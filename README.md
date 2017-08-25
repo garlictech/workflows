@@ -150,7 +150,11 @@ Clean the dist folder and the build artifacts.
 
 ### `npm run lint`
 
-Execute the linter.
+Execute the linter. Is also fixes some fixable errors in-place (mutates the files).
+
+### `npm run prettier`
+
+Using the [Prettier project](https://github.com/prettier/prettier), it fixes some spacing/comma errors (replaces tabs with 2 spaces, etc.).
 
 ### `npm run commit`
 
