@@ -15,7 +15,7 @@
         "ng2-logger": "^1.0.2",
         "@ngrx/core": "^1.2.0",
         "@ngrx/store": "^2.2.1",
-        "ngrx-store-logger": "^0.2.0",
+        "ngrx-store-logger": "^0.1.7",
         "@ngrx/router-store": "^1.2.5",
         "@ngrx/effects": "^2.0.0"
     },
