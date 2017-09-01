@@ -9,6 +9,7 @@
         "jasmine-core": "^2.5.2",
         "tslint": "^5.6.0",
         "typescript": "^2.4.2",
-        "@types/node": "^8.0.24"
+        "@types/node": "^8.0.24",
+        "require-dir": "^0.3.2"
     }
 }
