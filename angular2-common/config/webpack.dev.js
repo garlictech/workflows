@@ -101,7 +101,7 @@ module.exports = function(options) {
                  */
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader'],
+                    use: ['style-loader', 'css-loader', 'postcss-loader'],
                     include: [helpers.projectRoot('src', 'app', 'styles')]
                 },
 
@@ -111,7 +111,7 @@ module.exports = function(options) {
                  */
                 {
                     test: /\.scss$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    use: ['style-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'],
                     include: [helpers.projectRoot('src', 'app', 'styles')]
                 }
             ]
