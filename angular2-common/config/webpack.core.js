@@ -25,12 +25,18 @@ module.exports = function(options) {
                  */
                 {
                     test: /\.(scss|sass)$/,
-                    use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'],
+                    use: [
+                        'to-string-loader',
+                        'css-loader',
+                        'postcss-loader?sourceMap',
+                        'resolve-url-loader',
+                        'sass-loader?sourceMap'
+                    ],
                     exclude: [helpers.projectRoot('src', 'app', 'styles')]
                 },
                 {
                     test: /\.css$/,
-                    use: ['to-string-loader', 'css-loader', 'postcss-loader'],
+                    use: ['to-string-loader', 'css-loader', 'postcss-loader?sourceMap'],
                     exclude: [helpers.projectRoot('src', 'app', 'styles')]
                 }
             ]
