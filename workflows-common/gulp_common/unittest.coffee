@@ -56,6 +56,6 @@ module.exports =
       .pipe p.istanbul.writeReports IstanbulReporters
       .pipe p.istanbul.enforceThresholds
         thresholds:
-          global: 50
-          each: 50
+          global: 70
+          each: 70
       .on 'end', remapCoverageFiles

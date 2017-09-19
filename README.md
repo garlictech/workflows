@@ -109,12 +109,16 @@ Only the following keys are merged: `dependencies, peerDependencies, devDependen
 
 At the end of each test run, you will receive a test coverage report. The tests fail if the coverage is below the threshold. The current values (they may increase in the future versions of the workflows):
 
-* global: 50%: the global coverage of the project must be higher than that
+* global: 70%: the global coverage of the project must be higher than that
 * component modifier: global - 10%: all the components must be at least this coverage
 
 You can access the coverage report in your project folder, under `reports/coverage` (open it in a browser). The system will create this folder after the very first test run.
 
-*Some tricks*
+### Unit test hooks
+
+You can execute a hook file before starting the tests, if you want to define globals, etc. The hook file must be in `docker/unittest/index.js`. The system will simply `require` this file before requiring any of the spec files.
+
+### Some tricks
 
 * If a source file is not required (directly or indirectly) in at least one test file, then the coverage report will not be generated for that file. So create an umbrella test spec file that requires as many files as possible. Certainly, there are files that you should not cover, for example server startup scripts. The [requireDir](https://github.com/aseemk/requireDir) project may be big help at this stage.
 * The compiled files contain sourcemaps. To see the original files in the test failure error stacks, use the [node-source-map-support](https://github.com/evanw/node-source-map-support) package. The best is: add it to the coverage umbrella file.
@@ -130,7 +134,14 @@ requireDir('../provider-lib/', {recurse: true})
 requireDir('../deepstream-rxjs/', {recurse: true})
 ```
 
+## System tests
 
+* Add your system tests under `test/system` folder. All the tests should go here.
+* Jasmine will pull in all the files following the `*.spec.{js,ts,coffee} pattern.
+
+### System test hooks
+
+Sumilarly to the unit tests, you can execute a hook file before starting the tests if you want to define globals, etc. The hook file must be in `docker/systemtest/index.js`. The system  simply `require`-s this file before requiring any of the spec files.
 
 ## The `docker` folder
 
@@ -178,7 +189,6 @@ Used by Travis CI only.
 ### `npm run release`
 
 Releses the project: tags the sources in Github, creates CHANGELOG, and publishes the project to the npm repository. Actually, you should not use it directly: Travis should release a project exclusively.
-
 
 ## Debugging
 
@@ -291,19 +301,6 @@ not publish a new release, so the changes will not be integrated automatically i
 * [commtizen](https://github.com/commitizen/cz-cli)
 * [semantic release](https://github.com/semantic-release/semantic-release)
 
-## How to write tests
-
-### Unit tests
-
-* Add the unit tests next to the component to be tested. For example, tests for `server/stuff` should go to `server/stuff/test/stuff-unit-test.js.
-Add as many fixtures, support files, `*-unit-test.js` files as you wish to such a folder.
-* `js` and `coffee` files are supported for the moment.
-* in `test/unit/index.js`, pull in global constructs that should be available for all the tests. But do not add tests here. 
-
-### System tests
-
-* Add your system tests under `test/system` folder. All the tests should go here.
-* Mocha will pull in index.js and all the files following the `-system-test.{js,coffee} pattern.
 
 ### Smoke tests
 
