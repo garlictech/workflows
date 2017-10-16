@@ -48,22 +48,20 @@ try {
 } catch (err) {}
 
 
-try {
-  let internalPjson = fs.readJsonSync("_package.shared.json");
-  let internalDeps = {}
-  _.assign(internalDeps, internalPjson.dependencies, internalPjson.devDependencies, internalPjson.optionalDependencies, internalPjson.peerDependencies)
+let internalPjson = fs.readJsonSync("_package.shared.json");
+let internalDeps = {}
+_.assign(internalDeps, internalPjson.dependencies, internalPjson.devDependencies, internalPjson.optionalDependencies, internalPjson.peerDependencies)
 
-  let projectPjson = fs.readJsonSync('package.project.json');
-  let projectDeps = {}
-  _.assign(projectDeps, projectPjson.dependencies, projectPjson.devDependencies, projectPjson.optionalDependencies, projectPjson.peerDependencies)
+let projectPjson = fs.readJsonSync('package.project.json');
+let projectDeps = {}
+_.assign(projectDeps, projectPjson.dependencies, projectPjson.devDependencies, projectPjson.optionalDependencies, projectPjson.peerDependencies)
 
-  let remainedPackages = _.omit(projectDeps, _.keys(internalDeps))
+let remainedPackages = _.omit(projectDeps, _.keys(internalDeps))
 
-  let keys = _.keys(remainedPackages)
+keys = _.keys(remainedPackages)
 
-  if (keys.length !== 0) {
-    packages = keys.reduce((current, next) => current + ` ${next}@${remainedPackages[next]}`, "")
-    execute(`npm install --save --color true ${packages}`, { stdio: [0, 1, 2] });
-  }
-} catch (err) {}
+if (keys.length !== 0) {
+  packages = keys.reduce((current, next) => current + ` ${next}@${remainedPackages[next]}`, "")
+  execute(`npm install --save --color true ${packages}`, { stdio: [0, 1, 2] });
+}
 
