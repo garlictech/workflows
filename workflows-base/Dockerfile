@@ -13,7 +13,7 @@ RUN git clone https://github.com/ingydotnet/git-subrepo /app/git-subrepo && \
   tar -xf git-lfs-linux-amd64-2.3.2.tar.gz && \
   cd git-lfs-2.3.2 && \
   ./install.sh && \
-  rm git-lfs-linux-amd64-2.3.2.tar.gz
+  rm ../git-lfs-linux-amd64-2.3.2.tar.gz
 
 ADD scripts/install_dependencies /app/scripts/
 RUN scripts/install_dependencies && \
