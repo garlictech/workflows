@@ -19,7 +19,6 @@
         "start": "npm run start:dev",
         "test": "npm run lint && npm run unittest",
         "unittest": "karma start",
-        "typedoc": "typedoc",
         "travis": "scripts/travis.sh $@",
         "version": "npm run build",
         "watch:dev:hmr": "npm run watch:dev -- --hot",
@@ -128,7 +127,6 @@
 
         "rimraf": "^2.5.4",
         "ts-node": "^3.3.0",
-        "typedoc": "^0.8.0",
         "webpack-node-externals": "^1.6.0"
     }
 }

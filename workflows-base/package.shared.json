@@ -8,7 +8,7 @@
         "coffeelint": "1.x.x",
         "jasmine-core": "^2.5.2",
         "tslint": "^5.6.0",
-        "typescript": "^2.4.2",
+        "typescript": "^2.6.1",
         "@types/node": "8.0.26",
         "require-dir": "^0.3.2"
     }

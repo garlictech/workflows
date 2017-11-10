@@ -5,12 +5,13 @@
         "travis": "scripts/travis.sh $@",
         "subrepo-push": "git subrepo push --all",
         "prettier": "scripts/prettier.sh",
-        "lint": "scripts/lint.sh"
+        "lint": "scripts/lint.sh",
+        "typedoc": "typedoc /app/project/src"
     },
-    "dependencies": {},
-    "devDependencies": {
+    "dependencies": {
         "commitizen": "^2.9.5",
         "cz-conventional-changelog": "^2.0.0",
-        "semantic-release": "4.3.5"
-    }
+        "typedoc": "^0.9.0"
+    },
+    "devDependencies": {}
 }
