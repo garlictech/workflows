@@ -24,9 +24,9 @@ npm run commit
 
 Use this workflow when you develop any backend code, or code that you want to share with frontend projects. The workflow provides compilations, some watchers, unit test execution environment, etc. All the development stuff run in docker containers.
 
-We support coffeescript, javascript (ES6), typescript. Internally, we have configured Typescript and babel transcribers, Jasmine unit testing environment, etc.
+We support coffeescript, javascript (ES6), typescript. Internally, we have configured Typescript transcriber, Jasmine unit testing environment, etc.
 
-So, you don't have to add gulp, babel, whatsoever to your `package.json`, only the packages that the project really uses.
+So, you don't have to add gulp,  whatsoever to your `package.json`, only the packages that the project really uses.
 
 The workflow actually extends the [basic workflow concepts](https://github.com/garlictech/workflows/blob/master/README.md) - so you should also read it before proceeding.
 

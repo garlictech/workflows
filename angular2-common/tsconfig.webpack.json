@@ -11,9 +11,9 @@
         "noEmit": true,
         "noEmitHelpers": true,
         "importHelpers": true,
-        "strictNullChecks": false,
-        "lib": ["es2015", "dom"],
-        "outDir": "dist/lib",
+        "strictNullChecks": true,
+        "lib": ["es6", "dom"],
+        "outDir": "dist",
         "typeRoots": ["node_modules/@types"],
         "types": ["node"]
     },

@@ -8,19 +8,11 @@
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "importHelpers": true,
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         "removeComments": true,
         "sourceMap": true,
-        "lib": [
-            "es6",
-            "dom"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "node",
-            "jasmine"
-        ]
+        "lib": ["es6", "dom"],
+        "typeRoots": ["node_modules/@types"],
+        "types": ["node", "jasmine"]
     }
 }

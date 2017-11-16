@@ -10,7 +10,7 @@
         "noEmit": true,
         "noEmitHelpers": true,
         "importHelpers": true,
-        "strictNullChecks": false,
+        "strictNullChecks": true,
         "lib": ["dom", "es6"],
         "typeRoots": ["node_modules/@types"],
         "types": ["jasmine", "node", "source-map", "uglify-js", "webpack"]
