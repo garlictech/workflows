@@ -6,7 +6,7 @@
         "subrepo-push": "git subrepo push --all",
         "prettier": "scripts/prettier.sh",
         "lint": "scripts/lint.sh",
-        "typedoc": "typedoc -json typedoc.json"
+        "typedoc": "typedoc /app/project/src --out /app/doc"
     },
     "dependencies": {
         "commitizen": "^2.9.5",
