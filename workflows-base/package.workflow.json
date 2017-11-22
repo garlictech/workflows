@@ -11,7 +11,8 @@
     "dependencies": {
         "commitizen": "^2.9.5",
         "cz-conventional-changelog": "^2.0.0",
-        "typedoc": "^0.9.0"
+        "typedoc": "^0.9.0",
+        "semantic-release": "4.3.5"
     },
     "devDependencies": {}
 }
