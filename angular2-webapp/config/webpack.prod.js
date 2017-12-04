@@ -93,8 +93,7 @@ module.exports = function(env) {
                         dead_code: true,
                         evaluate: true,
                         if_return: true,
-                        join_vars: true,
-                        s
+                        join_vars: true
                     }
                 }),
                 new NormalModuleReplacementPlugin(/angular2-hmr/, helpers.root('config/empty.js')),

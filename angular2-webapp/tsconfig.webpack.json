@@ -12,7 +12,7 @@
         "noEmitHelpers": true,
         "importHelpers": true,
         "strictNullChecks": true,
-        "lib": ["es2015", "dom"],
+        "lib": ["es6", "dom"],
         "outDir": "dist/lib",
         "typeRoots": ["node_modules/@types"],
         "types": ["hammerjs", "node"]
@@ -27,8 +27,5 @@
         "skipMetadataEmit": true
     },
     "compileOnSave": false,
-    "buildOnSave": false,
-    "atom": {
-        "rewriteTsconfig": false
-    }
+    "buildOnSave": false
 }

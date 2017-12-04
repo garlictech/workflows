@@ -71,7 +71,8 @@ module.exports = function(options) {
                             loader: 'angular2-template-loader'
                         }
                     ],
-                    exclude: [/\.(spec|e2e)\.ts$/]
+                    exclude: [/\/test\/$/]
+                        // exclude: [/\.(spec|e2e)\.ts$/]
                 },
                 {
                     test: /\.json$/,
@@ -146,28 +147,6 @@ module.exports = function(options) {
                     }
                 }
             })
-
-            // // Fix Angular 2
-            // new NormalModuleReplacementPlugin(
-            //     /facade(\\|\/)async/,
-            //     helpers.root('node_modules/@angular/core/src/facade/async.js')
-            // ),
-            // new NormalModuleReplacementPlugin(
-            //     /facade(\\|\/)collection/,
-            //     helpers.root('node_modules/@angular/core/src/facade/collection.js')
-            // ),
-            // new NormalModuleReplacementPlugin(
-            //     /facade(\\|\/)errors/,
-            //     helpers.root('node_modules/@angular/core/src/facade/errors.js')
-            // ),
-            // new NormalModuleReplacementPlugin(
-            //     /facade(\\|\/)lang/,
-            //     helpers.root('node_modules/@angular/core/src/facade/lang.js')
-            // ),
-            // new NormalModuleReplacementPlugin(
-            //     /facade(\\|\/)math/,
-            //     helpers.root('node_modules/@angular/core/src/facade/math.js')
-            // ),
         ],
         /*
          * Include polyfills or mocks for various node stuff
