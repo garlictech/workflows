@@ -130,11 +130,6 @@ module.exports = function(env) {
                             customAttrAssign: [/\)?\]?=/]
                         }
                     }
-                }),
-                new ngcWebpack.NgcWebpackPlugin({
-                    AOT,
-                    tsConfigPath: helpers.root('tsconfig.webpack.json'),
-                    resourceOverride: helpers.root('config/resource-override.js')
                 })
             ].concat(AOT ? [new PurifyPlugin()] : [])
         }
