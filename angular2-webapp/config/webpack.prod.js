@@ -8,6 +8,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 /**
  * Webpack Plugins
  */
+const webpack = require('webpack');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
@@ -63,6 +64,12 @@ module.exports = function(env) {
                 ]
             },
             plugins: [
+                new webpack.ContextReplacementPlugin(
+                    // The (\\|\/) piece accounts for path separators in *nix and Windows
+                    /angular(\\|\/)core(\\|\/)@angular/,
+                    helpers.root('./src'), // location of your src
+                    {} // a map of your routes
+                ),
                 new OptimizeJsPlugin({
                     sourceMap: false
                 }),
@@ -76,42 +83,26 @@ module.exports = function(env) {
                         HMR: METADATA.HMR
                     }
                 }),
-                new UglifyJsPlugin({
-                    beautify: false,
-                    comments: false,
-                    mangle: {
-                        keep_fnames: true,
-                        screw_i8: true
-                    },
-                    compress: {
-                        screw_ie8: true,
-                        warnings: false,
-                        conditionals: true,
-                        unused: true,
-                        comparisons: true,
-                        sequences: true,
-                        dead_code: true,
-                        evaluate: true,
-                        if_return: true,
-                        join_vars: true
-                    }
-                }),
-                new NormalModuleReplacementPlugin(/angular2-hmr/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(
-                    /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
-                    helpers.root('config/empty.js')
-                ),
-                new NormalModuleReplacementPlugin(/@angular(\\|\/)upgrade/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/@angular(\\|\/)compiler/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/@angular(\\|\/)platform-browser-dynamic/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/dom(\\|\/)debug(\\|\/)ng_probe/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/dom(\\|\/)debug(\\|\/)by/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/src(\\|\/)debug(\\|\/)debug_node/, helpers.root('config/empty.js')),
-                new NormalModuleReplacementPlugin(/src(\\|\/)debug(\\|\/)debug_renderer/, helpers.root('config/empty.js')),
-                new CompressionPlugin({
-                    regExp: /\.css$|\.html$|\.js$|\.map$/,
-                    threshold: 2 * 1024
-                }),
+                // new webpack.optimize.UglifyJsPlugin({
+                //     beautify: false,
+                //     comments: false,
+                //     mangle: {
+                //         keep_fnames: true,
+                //         screw_i8: true
+                //     },
+                //     compress: {
+                //         screw_ie8: true,
+                //         warnings: false,
+                //         conditionals: true,
+                //         unused: true,
+                //         comparisons: true,
+                //         sequences: true,
+                //         dead_code: true,
+                //         evaluate: true,
+                //         if_return: true,
+                //         join_vars: true
+                //     }
+                // }),
                 new LoaderOptionsPlugin({
                     // minimize: true,
                     minimize: false,
@@ -130,8 +121,9 @@ module.exports = function(env) {
                             customAttrAssign: [/\)?\]?=/]
                         }
                     }
-                })
-            ].concat(AOT ? [new PurifyPlugin()] : [])
+                }),
+                new PurifyPlugin()
+            ]
         }
     );
 

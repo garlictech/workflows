@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "declaration": false,
-        "target": "es5",
+        "target": "es2015",
         "module": "commonjs",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
@@ -14,9 +14,13 @@
         "strictNullChecks": true,
         "lib": ["es6", "dom"],
         "typeRoots": ["node_modules/@types"],
-        "types": ["node", "jasmine"]
+        "types": ["node", "jasmine"],
+        "baseUrl": "./src",
+        "paths": {
+            "*": ["*"]
+        }
     },
-    "exclude": ["node_modules", "dist", "./**/*spec.ts", "./**/test/spec.ts", "./**/*.e2e.ts", "dev-site"],
+    "exclude": ["node_modules", "dist", "./**/*spec.ts", "./**/test/*", "./**/*.e2e.ts", "dev-site"],
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true,
         "useWebpackText": true

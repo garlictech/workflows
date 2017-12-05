@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "declaration": false,
-        "target": "es5",
+        "target": "es2015",
         "module": "commonjs",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
@@ -14,7 +14,11 @@
         "strictNullChecks": false,
         "lib": ["dom", "es6"],
         "typeRoots": ["node_modules/@types"],
-        "types": ["jasmine", "node", "source-map", "uglify-js", "webpack"]
+        "types": ["jasmine", "node", "source-map", "uglify-js", "webpack"],
+        "baseUrl": "./src",
+        "paths": {
+            "*": ["*"]
+        }
     },
     "exclude": ["node_modules", "dist", "dev-site", "project"],
     "awesomeTypescriptLoaderOptions": {
