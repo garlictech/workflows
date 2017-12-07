@@ -13,6 +13,10 @@
         "sourceMap": true,
         "lib": ["es6", "dom"],
         "typeRoots": ["node_modules/@types"],
-        "types": ["node", "jasmine"]
+        "types": ["node", "jasmine"],
+        "baseUrl": "./project/src",
+        "paths": {
+            "*": ["*"]
+        }
     }
 }
