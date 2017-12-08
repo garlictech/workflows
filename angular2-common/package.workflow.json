@@ -101,7 +101,7 @@
         "font-awesome": "^4.7.0",
         "jquery": "^3.1.1",
 
-        "coffee-script": "^1.0.0",
+        "coffeescript": "^1.0.0",
         "dotenv": "^4.0.0",
         "pug": "^2.0.0-beta6",
         "compression": "^1.6.2",
