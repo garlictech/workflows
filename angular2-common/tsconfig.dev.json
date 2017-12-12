@@ -20,7 +20,7 @@
             "*": ["*"]
         }
     },
-    "exclude": ["node_modules", "dist", "./**/*spec.ts", "./**/test/*", "./**/*.e2e.ts", "dev-site"],
+    "exclude": ["node_modules", "dist", "./**/*spec.ts", "./**/test/*", "./**/*.e2e.ts"],
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true,
         "useWebpackText": true
