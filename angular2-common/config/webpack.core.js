@@ -9,6 +9,7 @@ module.exports = function() {
                     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loader: 'url-loader?limit=5000&name=assets/[name].[hash].[ext]'
                 },
+
                 {
                     test: /\.(scss|sass)$/,
                     use: [
