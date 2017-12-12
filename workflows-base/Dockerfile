@@ -5,7 +5,7 @@ COPY *.json /app/
 
 RUN git clone https://github.com/ingydotnet/git-subrepo /app/git-subrepo && \
   echo 'source /app/git-subrepo/.rc' >> ~/.bashrc && \
-  npm install --unsafe-perm=true -g coffee coffee-script firebase-tools prettier && \
+  npm install --unsafe-perm=true -g coffee coffeescript firebase-tools prettier && \
   npm install && \
   mkdir scripts  && \
   cd $HOME && \
