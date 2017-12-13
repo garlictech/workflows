@@ -9,7 +9,5 @@ else
 
   if [ $? -eq 0 ]; then
     npm publish && semantic-release post
-  else
-    exit 0
   fi
 fi
