@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 . /app/project/.env
 
 S3_BUCKET=${PROJECT_SCOPE}-deployment
