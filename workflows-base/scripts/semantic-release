@@ -2,7 +2,7 @@
 . scripts/common.sh
 
 if [ "$TRAVIS_EVENT_TYPE" == "pull_request" ]; then  
-  echo "Dependent projects are not released in pull request."
+  echo "Project is not released in pull request."
 else
   cd project
   semantic-release pre

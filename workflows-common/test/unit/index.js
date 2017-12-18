@@ -1,5 +1,6 @@
 require('source-map-support').install();
 require('app-module-path').addPath('/app/dist');
+require('app-module-path').addPath('/app/dist/src');
 var fs = require('fs');
 
 if (fs.existsSync('/app/hooks/unittest/')) {
