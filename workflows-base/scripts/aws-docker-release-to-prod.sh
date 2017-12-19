@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 . /app/project/.env
 
+if [ $TRAVIS_BRANCH = "master" ]; then
+  export DOCKER_IMAGE_SCOPE=prod
+fi
+
+echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc
 S3_BUCKET=${PROJECT_SCOPE}-deployment
 RELEASE_FILE=${PROJECT}-${DOCKER_IMAGE_SCOPE}_deploy.json
 RELEASE_FILE_ZIP=${RELEASE_FILE}.zip
