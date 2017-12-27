@@ -5,10 +5,17 @@ module.exports = (_gulp, config) ->
   gulp = require('gulp-help') _gulp
   config = common.GetConfig config
 
-  fileTypes = ['coffee', 'js', 'ts', 'json']
+  fileTypes = ['coffee', 'ts']
 
   for name in fileTypes
     gulp.task name, require("/app/gulp_common/#{name}")(gulp, config)
+
+  staticFileTypes = ['js', 'json', 'tpl']
+
+  for name in staticFileTypes
+    gulp.task name, require("/app/gulp_common/static-files")(gulp, config, name)
+
+  fileTypes = _.union fileTypes, staticFileTypes
 
   gulp.task 'compile', fileTypes
 

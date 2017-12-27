@@ -3,10 +3,15 @@ fs = require 'fs'
 module.exports = (_gulp, config) ->
   gulp = require('gulp-help') _gulp
 
-  fileTypes = ['coffee', 'css', 'html', 'ts', 'js', 'json']
+  fileTypes = ['coffee', 'css', 'ts']
 
   for name in fileTypes
     gulp.task name, require("./#{name}")(gulp, config)
+
+  staticFileTypes = ['html', 'js', 'json', 'tpl']
+
+  for name in staticFileTypes
+    gulp.task name, require("./static-files")(gulp, config, name)
 
   gulp.task 'compile', fileTypes
   
