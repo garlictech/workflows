@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 . /app/project/.env
 
-if [[] $TRAVIS_BRANCH == "master" ]]; then
+if [[ $TRAVIS_BRANCH == "master" ]]; then
   export DOCKER_IMAGE_SCOPE=prod
 fi
 
