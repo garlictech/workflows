@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 . /app/project/.env
 
-if [ $TRAVIS_BRANCH = "master" ]; then
+if [[] $TRAVIS_BRANCH == "master" ]]; then
   export DOCKER_IMAGE_SCOPE=prod
 fi
 
@@ -16,7 +16,7 @@ RELEASE_FILE=$(echo ${RELEASE_FILE_CC} | sed -r 's/(^|-)(\w)/\U\2/g')
 RELEASE_FILE_ZIP=${RELEASE_FILE}.zip
 
 aws configure set default.s3.signature_version s3v4
-echo "{\"name\": \"${PROJECT}-${DOCKER_IMAGE_SCOPE}\"}{\"imageUri\": \"${DOCKER_TAG}\"}" > ${RELEASE_FILE}
+echo "{\"name\": \"${PROJECT}-${DOCKER_IMAGE_SCOPE}\", \"imageUri\": \"${DOCKER_TAG}\"}" > ${RELEASE_FILE}
 zip ${RELEASE_FILE_ZIP} ${RELEASE_FILE}
 aws s3 cp ${RELEASE_FILE_ZIP} s3://${S3_BUCKET}/${PROJECT}/${RELEASE_FILE_ZIP}
 
