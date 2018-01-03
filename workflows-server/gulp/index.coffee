@@ -5,7 +5,7 @@ module.exports = (_gulp, config) ->
   gulp = require('gulp-help') _gulp
   config = common.GetConfig config
 
-  fileTypes = ['coffee', 'css', 'ts']
+  fileTypes = ['coffee', 'ts']
 
   for name in fileTypes
     gulp.task name, require("/app/gulp_common/#{name}")(gulp, config)
