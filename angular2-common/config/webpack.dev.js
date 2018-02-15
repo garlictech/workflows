@@ -9,7 +9,7 @@ const helpers = require('./helpers');
 const webpackMergeDll = webpackMerge.strategy({ plugins: 'replace' });
 const commonConfig = require('./webpack.common.js');
 
-const ENV = (process.env.ENV = process.env.NODE_ENV = 'development');
+const ENV = process.env.NODE_ENV;
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 8081;
 const HMR = helpers.hasProcessFlag('hot');

@@ -23,7 +23,7 @@ const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
 /**
  * Webpack Constants
  */
-const ENV = (process.env.NODE_ENV = process.env.ENV = 'production');
+const ENV = process.env.NODE_ENV;
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const METADATA = webpackMerge(
