@@ -24,7 +24,7 @@ const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
  * Webpack Constants
  */
 const ENV = process.env.NODE_ENV || 'production';
-const BRANCH = process.env.TRAVIS_BRANCH || 'staging';
+const BRANCH = process.env.TRAVIS_BRANCH || process.env.BRANCH || 'staging';
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 8080;
 const HMR = helpers.hasProcessFlag('hot');
