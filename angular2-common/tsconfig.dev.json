@@ -12,9 +12,9 @@
         "noEmitHelpers": true,
         "importHelpers": true,
         "strictNullChecks": true,
-        "lib": ["es6", "dom"],
+        "lib": ["es7", "dom"],
         "typeRoots": ["node_modules/@types"],
-        "types": ["node", "jasmine"],
+        "types": ["node", "jasmine", "jquery"],
         "baseUrl": "./src",
         "paths": {
             "*": ["*"]

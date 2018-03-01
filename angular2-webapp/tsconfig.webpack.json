@@ -12,10 +12,10 @@
         "noEmitHelpers": true,
         "importHelpers": true,
         "strictNullChecks": true,
-        "lib": ["es6", "dom"],
+        "lib": ["es7", "dom"],
         "outDir": "dist/lib",
         "typeRoots": ["node_modules/@types"],
-        "types": ["hammerjs", "node"],
+        "types": ["node", "jquery"],
         "baseUrl": "./src",
         "paths": {
             "*": ["*"]
