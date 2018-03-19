@@ -15,7 +15,9 @@ RUN git clone https://github.com/ingydotnet/git-subrepo /app/git-subrepo && \
   ./install.sh && \
   rm ../git-lfs-linux-amd64-2.3.2.tar.gz && \
   apt-get update && \
-  apt-get install -y --no-install-recommends awscli zip && \
+  apt-get install -y --no-install-recommends zip python-pip python-dev build-essential && \
+  pip install --upgrade awscli==1.14.5 s3cmd==2.0.1 python-magic && \
+  apt-get remove --purge -y python-pip python-dev build-essential && \
   apt-get clean
 
 ADD scripts/install_dependencies /app/scripts/
