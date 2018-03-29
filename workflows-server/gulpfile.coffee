@@ -6,6 +6,5 @@ config =
   dist: "/app/dist"
   cssBundleName: 'style'
 
-try require('./hooks/gulp') config
 require('./gulp')(gulp, config)
 return gulp
