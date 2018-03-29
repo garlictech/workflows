@@ -9,6 +9,9 @@
         "clean:install": "npm set progress=false && npm install",
         "clean": "npm cache clean && clean:dist && npm run rimraf -- node_modules doc reports/coverage compiled dll",
         "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
+        "doc:build": "./node_modules/.bin/compodoc -d ./docs -p tsconfig.dev.json",
+        "doc:serve": "./node_modules/.bin/compodoc -s -r 8092 -d ./docs -p tsconfig.dev.json",
+        "doc:buildandserve": "./node_modules/.bin/compodoc -s -r 8092 -d ./docs -p tsconfig.dev.json",
         "postinstall": "npm run webdriver:update",
         "postversion": "git push && git push --tags",
         "preclean:install": "npm run clean",
@@ -32,13 +35,13 @@
         "webpack": "webpack"
     },
     "dependencies": {
+        "@compodoc/compodoc": "^1.0.9",
         "@angular/compiler-cli": "^5.0.1",
         "@angular/platform-server": "^5.0.1",
         "@angularclass/conventions-loader": "^1.0.2",
         "@angular-devkit/build-optimizer": "0.0.32",
 
         "@types/webfontloader": "^1.6.27",
-        "@types/source-map": "^0.5.0",
         "@types/uglify-js": "^2.0.27",
         "@types/webpack": "^3.0.10",
         "@types/hammerjs": "^2.0.33",

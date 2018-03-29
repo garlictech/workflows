@@ -6,11 +6,7 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/* && \
   mkdir -p /app/ && \
-  rm -rf /tmp/* && \
-  cd /tmp && \
-  npm install npm@latest && \
-  rm -rf /usr/local/lib/node_modules && \
-  mv node_modules /usr/local/lib/
+  rm -rf /tmp/*
 
 WORKDIR /app
 ADD . /app
