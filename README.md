@@ -143,6 +143,43 @@ requireDir('../deepstream-rxjs/', {recurse: true})
 
 Sumilarly to the unit tests, you can execute a hook file before starting the tests if you want to define globals, etc. The hook file must be in `docker/systemtest/index.js`. The system  simply `require`-s this file before requiring any of the spec files.
 
+### Debug execution
+
+The following command starts the system in debug mode: 
+
+```
+make systemtest-run-debug
+```
+
+The execution stops at the beginning, and itt waits for debugger connection. The debugger runs on port 9229, but you can map it to a different port, in the appropriate docker compose file (normally, the one including `systemtest` in its file name).
+
+If you use vscode, use the following config in your `launch.json`:
+
+```
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Launch Program",
+      "protocol": "inspector",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "localRoot": "${workspaceFolder}/dist",
+      "remoteRoot": "/app/dist",
+      "address": "localhost",
+      "port": 9229
+    }
+  ]
+}
+```
+
 ## The `docker` folder
 
 The folder contains some scripts and Docker compose files: they compose the Docker based development infrastructure. You can finetune them. The most important file is the `docker-compose.dependencies.yml` file: add all the external docker services that you need during the development, etc.
