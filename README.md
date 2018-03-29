@@ -24,15 +24,15 @@ If you use a private docker registry (in case of developing a dockerized server 
 
 These steps describe the development flow generally. We describe the individual differences/details in the docs of the specialized workflows. A generally valid summary:
 
-1. Create a private fork of the Github repo you are working on
-2. Clone the repo
-3. Build the development docker containers: these containers execute the development tasks like compilation, testing, etc.
-4. Set up the local development environment: it fetches some files that must be present in the local folder from the latest containers. For instance. the latest tslint file defining the coding styles, etc.
-5. Start a watcher: it may be a development server, a gulp watcher, whatever. Generally, they mount your code into the development container, watch file changes, recompile them, they may execute the unit tests automatically, etc.
-6. Test your code (lint, unit test, system test, prod build) locally
-7. Commit the code using semantic versioning/[semantic release](https://github.com/semantic-release/semantic-release) and [commitizen](https://github.com/commitizen/cz-cli) - fill in the appropriate commit info.
-8. Create a pull request. Travis CI will pick up your PR, builds and tests your changes. Fix any errors it reveals until all the tests pass.
-9. Send a review request, and address to at least one reviewer.
+1.  Create a private fork of the Github repo you are working on
+2.  Clone the repo
+3.  Build the development docker containers: these containers execute the development tasks like compilation, testing, etc.
+4.  Set up the local development environment: it fetches some files that must be present in the local folder from the latest containers. For instance. the latest tslint file defining the coding styles, etc.
+5.  Start a watcher: it may be a development server, a gulp watcher, whatever. Generally, they mount your code into the development container, watch file changes, recompile them, they may execute the unit tests automatically, etc.
+6.  Test your code (lint, unit test, system test, prod build) locally
+7.  Commit the code using semantic versioning/[semantic release](https://github.com/semantic-release/semantic-release) and [commitizen](https://github.com/commitizen/cz-cli) - fill in the appropriate commit info.
+8.  Create a pull request. Travis CI will pick up your PR, builds and tests your changes. Fix any errors it reveals until all the tests pass.
+9.  Send a review request, and address to at least one reviewer.
 10. Implement the change requests (build, test, commit, travis loop happens again)
 11. Somebody approves and merges your PR to the master - Travis CI checks, builds and deploys your code.
 
@@ -44,11 +44,11 @@ Actually, the above development steps are for "deployable" repos: individual web
 
 Now, for the shared code, we utilize the excellent [git subrepo](https://github.com/ingydotnet/git-subrepo) project. Go to the web site and install the tool. So, as for subrepos:
 
-- They have no docker, npm, whatsoever parts. As minimum, only an `index.{ts,js,coffee}` and a package.json file are required.
-- We don't release them to npm, and Travis will not build/release them. They are really some "embeddable" code fragments with some external dependencies. They are build and tested as parts of the hosts projects.
-- As for version management, we rely on simple commits. When you version a "host" project (a project using a subrepo), the individual version will "tag" a particular commit of the subrepo. So, when you clone a tagged host repo, the tagged subrepo commit is fetched, and not the the head.
-- With subrepos, you can use forks and branches as well. So the release management of the subrepos are based on branches and "tagged" commits in the host repo.
-- Don't use private forks in the subrepos, always add the upstream repo, and use branches if needed. If you use private forks for any reasons, it is OK, but merge the changes to the upstream, then update the subrepo in the host.
+* They have no docker, npm, whatsoever parts. As minimum, only an `index.{ts,js,coffee}` and a package.json file are required.
+* We don't release them to npm, and Travis will not build/release them. They are really some "embeddable" code fragments with some external dependencies. They are build and tested as parts of the hosts projects.
+* As for version management, we rely on simple commits. When you version a "host" project (a project using a subrepo), the individual version will "tag" a particular commit of the subrepo. So, when you clone a tagged host repo, the tagged subrepo commit is fetched, and not the the head.
+* With subrepos, you can use forks and branches as well. So the release management of the subrepos are based on branches and "tagged" commits in the host repo.
+* Don't use private forks in the subrepos, always add the upstream repo, and use branches if needed. If you use private forks for any reasons, it is OK, but merge the changes to the upstream, then update the subrepo in the host.
 
 How to add a subrepo. We do it by an example: add the [authentication-lib](https://github.com/garlictech/authentication-lib) repo as a subrepo. Check the library code: it has no docker and other codes, it has no `projct/src` folder, etc.
 
@@ -66,14 +66,14 @@ Then, add the following to the `dependencies` section of the `package.json`:
 
 So, you can:
 
-- use `import { whatsoever } from '@garlictech/authentication-lib'`
-- with `npm install`, you can install the subrepo dependencies as well.
+* use `import { whatsoever } from '@garlictech/authentication-lib'`
+* with `npm install`, you can install the subrepo dependencies as well.
 
 The cool thing is that the subrepos are mounted into the development docker containers, so you achieved a kind of (but more effective) `npm link` that works in the container as well.
 
 Now, the dockerized environment requires some extras:
 
-- The Dockerfile of the development container must contain the following fragment:
+* The Dockerfile of the development container must contain the following fragment:
 
 ```
 COPY project/subrepos /app/project/subrepos/
@@ -82,13 +82,13 @@ RUN scripts/install_dependencies
 
 This is because you have to install the subrepo dependencies inside the containers as well, so you need to inject the subrepo `package.json`-s as well. This is the simplest way. When you start the development container with docker-compose, it will override the `/app/project/subrepos/` folder with the mounted external code, so all the host changes in the subrepos will trigger a rebuild (in watch mode).
 
-- So, whenever you change any package.json-s (either in the host project or in the subrepos), you have to issue `npm run build` to reflect the changes in the dev. container.
-- In watch mode, the system will watch changes in the subrepos as well. It includes full unit test re-execution: all the unit tests of the subrepos are executed in this case.
+* So, whenever you change any package.json-s (either in the host project or in the subrepos), you have to issue `npm run build` to reflect the changes in the dev. container.
+* In watch mode, the system will watch changes in the subrepos as well. It includes full unit test re-execution: all the unit tests of the subrepos are executed in this case.
 
 #### Caveats
 
-- With `npm install`, only the `dependencies` are installed. Sometimes the test require additional dependencies that are placed into the `devDependencies` field of the subrepo package.json. It will result test failure. Unfortunately, you have to add manually those dev dependencies to the host project `package.json` as well.
-- As in the Dockerfile we copy the content of the subrepos, if you change the subrepo code, the `npm run build` command will trigger a full npm install, so the Docker cache is invalidated. Anyway, you have to re-build the development container only when either the parent image or any of the package.json-s change, so it is probably something that you can live with.
+* With `npm install`, only the `dependencies` are installed. Sometimes the test require additional dependencies that are placed into the `devDependencies` field of the subrepo package.json. It will result test failure. Unfortunately, you have to add manually those dev dependencies to the host project `package.json` as well.
+* As in the Dockerfile we copy the content of the subrepos, if you change the subrepo code, the `npm run build` command will trigger a full npm install, so the Docker cache is invalidated. Anyway, you have to re-build the development container only when either the parent image or any of the package.json-s change, so it is probably something that you can live with.
 
 ### Installing npm dependencies
 
@@ -137,15 +137,42 @@ requireDir('../deepstream-rxjs/', {recurse: true})
 ## System tests
 
 * Add your system tests under `test/system` folder. All the tests should go here.
-* Jasmine will pull in all the files following the `*.spec.{js,ts,coffee} pattern.
+* Jasmine will pull in all the files following the `\*.spec.{js,ts,coffee} pattern.
 
 ### System test hooks
 
-Sumilarly to the unit tests, you can execute a hook file before starting the tests if you want to define globals, etc. The hook file must be in `docker/systemtest/index.js`. The system  simply `require`-s this file before requiring any of the spec files.
+Similarly to the unit tests, you can execute a hook file before starting the tests if you want to define globals, etc. The hook file must be in `docker/systemtest/index.js`. The system simply `require`-s this file before requiring any of the spec files.
+
+### Documentation
+
+Depending on the workflow, we support typedoc and/or, in case of angular projects, [compodoc](https://compodoc.github.io). To access compodoc features, your project `package.json` should contain the following snipet in the `scripts`section:
+
+```
+"doc:build": "docker/npm.sh doc:build",
+"doc:serve": "docker/npm.sh doc:serve",
+"doc:buildandserve": "docker/npm.sh doc:buildandserve"
+```
+
+The meaning and functionality are from the [compodoc tutorial](https://compodoc.github.io/website/guides/tutorial.html).
+
+Your `docker/npm.sh` script should look like this:
+
+```
+#!/usr/bin/env bash
+DOCKER_COMPOSE="docker-compose -f docker/docker-compose.webpack.yml"
+
+if [[ $DEBUG ]]; then
+  DOCKER_COMPOSE="${DOCKER_COMPOSE} -f docker/docker-compose.debug.yml"
+fi
+
+${DOCKER_COMPOSE} run -p 8092:8092 gtrack-admin-site.webpack-server npm run $@
+```
+
+The main point is the port mapping here: the built-in compodoc server runs at port 8092, map it as you wish.
 
 ### Debug execution
 
-The following command starts the system in debug mode: 
+The following command starts the system in debug mode:
 
 ```
 make systemtest-run-debug
@@ -233,7 +260,7 @@ Releses the project: tags the sources in Github, creates CHANGELOG, and publishe
 
 Log in to the container and see its actual content:
 
-```npm run bash```
+`npm run bash`
 
 The command opens a bash session where you can directly change the development container. Mind, that those changes are not persistent, you loose them when you exit.
 
@@ -241,11 +268,11 @@ The command opens a bash session where you can directly change the development c
 
 We control the deployment with Travis. So, the deployment instuctions must be implemented in the Travis hooks, in the `hooks/travis` folder. The deployment may be:
 
-- Publish to one or more NPM registries. It is not given that we always publish to npmjs.com, so add the list of registries to the `before_install` script. Example is here.
+* Publish to one or more NPM registries. It is not given that we always publish to npmjs.com, so add the list of registries to the `before_install` script. Example is here.
 
-*BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!*
+_BELOW THIS IS THE OLD DOCMENTATION, BEING REWRITTEN!_
 
-1. The first step is always clone your repo :) Then, build the development Docker image. The development Docker image is actually one of the workflow-... images configured for the particular project/repo.
+1.  The first step is always clone your repo :) Then, build the development Docker image. The development Docker image is actually one of the workflow-... images configured for the particular project/repo.
 
 So, build the image
 
@@ -308,9 +335,9 @@ As you can see, in server side, we use Make, because it provides extreme flexibi
 
 * Creates the .env file with defaults. This file is ignored from github. Contains some specific environment variables.
 * Creates an empty tokens.env. If your service needs security tokens, add them here. This file is also ignored in github. Do not check it in, keep is safe!
-If your tests need tokens, [encrypt the file with travis](https://docs.travis-ci.com/user/encrypting-files/), check in to github the encrypted file, add its decryption instructions to the `before_script` section in `.travis.yml`.
-Mind, that tests using tokens are not available in PR-s during travis builds, for security reasons. Also mind, that this file is required anyway, even if it is empty. So, your travis build should 
-create an empty one in `before_script`.
+  If your tests need tokens, [encrypt the file with travis](https://docs.travis-ci.com/user/encrypting-files/), check in to github the encrypted file, add its decryption instructions to the `before_script` section in `.travis.yml`.
+  Mind, that tests using tokens are not available in PR-s during travis builds, for security reasons. Also mind, that this file is required anyway, even if it is empty. So, your travis build should
+  create an empty one in `before_script`.
 
 ### build
 
@@ -338,7 +365,6 @@ not publish a new release, so the changes will not be integrated automatically i
 * [commtizen](https://github.com/commitizen/cz-cli)
 * [semantic release](https://github.com/semantic-release/semantic-release)
 
-
 ### Smoke tests
 
 TBD
@@ -347,7 +373,6 @@ TBD
 
 TBD
 
-
 ### Debugging the server
 
 When you set the `DEBUG` environment variable to true, then all the processes (server, test, etc.) will stop at the beginning of the execution,
@@ -355,12 +380,10 @@ and will wait for a debugger. Attach the debugger and continue.
 
 A good debugger is built in the free [Visual Studio Code](https://code.visualstudio.com/?utm_expid=101350005-28.R1T8FshdTBWEfZjY0s7XKQ.0&utm_referrer=https%3A%2F%2Fwww.google.hu%2F) tool.
 
-
 ### Things to consider during development
 
 * There are some pre-installed npm packages in the server-common image. You do not have to add them to package.json, they are available readily. Actually, they are installed by installing the
-[garlictech-common-server](https://github.com/garlictech/garlictech-common-server) package. See the actual list of preinstalled packages [here](https://github.com/garlictech/garlictech-common-server/blob/master/package.json).
-
+  [garlictech-common-server](https://github.com/garlictech/garlictech-common-server) package. See the actual list of preinstalled packages [here](https://github.com/garlictech/garlictech-common-server/blob/master/package.json).
 
 ## Client side development process
 
@@ -382,18 +405,18 @@ The process assumes that you either:
 
 The main and generic development procedures are implemented in npm scripts. You can get a list of them by running
 
-```npm run```
+`npm run`
 
 Call a script like this:
 
-```npm run <script name> -- [OPTIONS]```
+`npm run <script name> -- [OPTIONS]`
 
 Some of the scripts can accept optional parameters, add then after the double hyphens.
 
 The scripts start the appropriate docker containers implementing the required operation and containing the required, pre-installed, configured software required by the operation.
 This approach is much superior to the local installation approach: you do not have to install all the development packages for each components.
 
-In the ```docker```folder, you can find the basic, generated docker files and scripts. In most cases, they should be enough, but you can freely modify them, to implement some more complicated scenarios.
+In the `docker`folder, you can find the basic, generated docker files and scripts. In most cases, they should be enough, but you can freely modify them, to implement some more complicated scenarios.
 
 ### build
 
@@ -401,21 +424,21 @@ Builds the application-specific development Docker image. You have to build it w
 
 * you clone the github repo
 * the workflow image changes and you want to integrate the changes
-* the ```package.json``` file changes
+* the `package.json` file changes
 
 The build combines some `docker_compose` files in the docker folder of the project (they are also generated).
 
 You can pass docker_compose build parameters to the process like:
 
-```npm run build -- --no-cache```
+`npm run build -- --no-cache`
 
-### Start 
+### Start
 
 This script can be invoked without 'run':
 
-```npm start```
+`npm start`
 
-It launches the webpack development server and stars watching files. You can access your site in http://localhost:8081. If you change something in ```src```, then it reloads the files in the browser. 
+It launches the webpack development server and stars watching files. You can access your site in http://localhost:8081. If you change something in `src`, then it reloads the files in the browser.
 
 ### unittest
 
@@ -441,27 +464,27 @@ Use bash inside the app container. It is good to inspect what is going on intern
 
 ### e2etest
 
-Executes the protractor bases e2e tests. It uses a different container, based on ```garlictech-protractor```. What it does:
+Executes the protractor bases e2e tests. It uses a different container, based on `garlictech-protractor`. What it does:
 
-* Builds a container implementing your tests. It uses ```e2e/Dockerfile``` to build the test container. Installs the special dependencies in ```e2e/package.json```.
-* Mounts ```e2e/src``` folder and launches the container.
+* Builds a container implementing your tests. It uses `e2e/Dockerfile` to build the test container. Installs the special dependencies in `e2e/package.json`.
+* Mounts `e2e/src` folder and launches the container.
 * Inside the container, it starts a headless Chrome based Selenium server, then start the protractor that executes the tests.
-* You can add some test-specific dependencies to the local ```package.json``` file, they are installed before running the tests.
+* You can add some test-specific dependencies to the local `package.json` file, they are installed before running the tests.
 * The protactor image pre-installs some test packages. Check them in the [Dockerfile of protractor](https://github.com/garlictech/docker-images/blob/master/protractor/Dockerfile]).
 
 The protractor is pre-configured inside the container.
 
 The tests start an individual webpack-dev-server with the project to be tested, and they start the required dependencies. You can use the following options as well:
 
-```npm run e2etest stop```
+`npm run e2etest stop`
 
-The above command equals to ```docker_compose <all service files> down```, and stops all services required by the e2e test.
+The above command equals to `docker_compose <all service files> down`, and stops all services required by the e2e test.
 
-```npm run e2etest bash```
+`npm run e2etest bash`
 
 Starts an e2e test container with a bash session.
 
-```npm run e2etest -- <parameters>```
+`npm run e2etest -- <parameters>`
 
 Pass the parameters to the e2e test service.
 
@@ -470,14 +493,13 @@ Pass the parameters to the e2e test service.
 It is quite difficult to figure out why your tests failed without seeing them in the browser. So, the protractor workflow image provides you a VNC session with a running Chrome browser, attached to the test.
 Start the test like this:
 
-```npm run e2etest -- --elementExplorer```
+`npm run e2etest -- --elementExplorer`
 
 The test starts, and stops immediately, waiting for a vnc session. Download a VNC client, start it, and attach
 
-
 ### commit
 
-```npm run commit```
+`npm run commit`
 
 We use [semantic release](https://github.com/semantic-release/semantic-release) and [commitizen](https://github.com/commitizen/cz-cli) to commit our code to the repos. Travis then determines the version numbering and publishes a new version to npm.
 
@@ -487,7 +509,7 @@ Actually, we follow the open source sw development guidelines, adapted to privat
 
 ### dev-site
 
-You have to modify this folder only if your project is a module (in ```package.json```: garlic.type property is "module"). Otherwise, simply delete this folder. Actually, this is a full web site to visualize and test your component.=
+You have to modify this folder only if your project is a module (in `package.json`: garlic.type property is "module"). Otherwise, simply delete this folder. Actually, this is a full web site to visualize and test your component.=
 
 ## Angular 2 development
 
