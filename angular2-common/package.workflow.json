@@ -42,7 +42,6 @@
         "@angular-devkit/build-optimizer": "0.0.32",
 
         "@types/webfontloader": "^1.6.27",
-        "@types/uglify-js": "^2.0.27",
         "@types/webpack": "^3.0.10",
         "@types/hammerjs": "^2.0.33",
 
