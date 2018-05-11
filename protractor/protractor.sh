@@ -7,4 +7,6 @@ if [[ $DEBUG ]]; then
   x11vnc -nopw -display :0 -forever &
 fi
 
+gulp build
 protractor $@
+# gulp e2e-report

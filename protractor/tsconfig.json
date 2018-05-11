@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "lib": ["es6", "dom"],
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"],
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

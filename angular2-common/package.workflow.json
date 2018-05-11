@@ -23,6 +23,7 @@
         "test": "npm run lint && npm run unittest",
         "unittest": "karma start",
         "travis": "scripts/travis.sh $@",
+        "ng": "ng $@",
         "version": "npm run build",
         "watch:dev:hmr": "npm run watch:dev -- --hot",
         "watch:prod": "npm run build:prod -- --watch",
@@ -37,6 +38,7 @@
     "dependencies": {
         "@compodoc/compodoc": "^1.0.9",
         "@angular/compiler-cli": "^5.0.1",
+        "@angular/cli": "^6.0.0",
         "@angular/platform-server": "^5.0.1",
         "@angularclass/conventions-loader": "^1.0.2",
         "@angular-devkit/build-optimizer": "0.0.32",
