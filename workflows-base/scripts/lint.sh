@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-tslint --project --config tslint.json --fix -e "dist/**" | sed "s/\/app\///"
+tslint --config tslint.json --project . --fix -e "dist/**" | sed "s/\/app\///"
