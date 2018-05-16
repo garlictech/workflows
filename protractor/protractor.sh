@@ -9,4 +9,4 @@ fi
 
 gulp build
 protractor $@
-# gulp e2e-report
+
