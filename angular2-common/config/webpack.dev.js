@@ -66,7 +66,19 @@ module.exports = function() {
                 options: {}
             }),
             new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
+            new DefinePlugin({
+                ENV: JSON.stringify(METADATA.ENV),
+                NODE_ENV: JSON.stringify(METADATA.ENV),
+                HMR: JSON.stringify(METADATA.HMR),
+                BRANCH: JSON.stringify(METADATA.BRANCH),
+                'process.env': {
+                    ENV: JSON.stringify(METADATA.ENV),
+                    NODE_ENV: JSON.stringify(METADATA.ENV),
+                    HMR: JSON.stringify(METADATA.HMR),
+                    BRANCH: JSON.stringify(METADATA.BRANCH)
+                }
+            }),
         ],
         devServer: {
             port: METADATA.port,

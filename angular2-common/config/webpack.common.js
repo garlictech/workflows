@@ -156,19 +156,7 @@ module.exports = function(options) {
                         ]
                     }
                 }
-            }),
-            new DefinePlugin({
-                ENV: JSON.stringify(METADATA.ENV),
-                NODE_ENV: JSON.stringify(METADATA.ENV),
-                HMR: JSON.stringify(METADATA.HMR),
-                BRANCH: JSON.stringify(METADATA.BRANCH),
-                'process.env': {
-                    ENV: JSON.stringify(METADATA.ENV),
-                    NODE_ENV: JSON.stringify(METADATA.ENV),
-                    HMR: JSON.stringify(METADATA.HMR),
-                    BRANCH: JSON.stringify(METADATA.BRANCH)
-                }
-            }),
+            })
         ],
         /*
          * Include polyfills or mocks for various node stuff

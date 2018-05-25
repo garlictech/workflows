@@ -126,6 +126,18 @@ module.exports = function(env) {
                 cache: helpers.root('webpack-cache/uglify-cache'),
                 uglifyOptions: getUglifyOptions(true, true)
             }),
+            new DefinePlugin({
+                ENV: JSON.stringify(METADATA.ENV),
+                NODE_ENV: JSON.stringify(METADATA.ENV),
+                HMR: JSON.stringify(METADATA.HMR),
+                BRANCH: JSON.stringify(METADATA.BRANCH),
+                'process.env': {
+                    ENV: JSON.stringify(METADATA.ENV),
+                    NODE_ENV: JSON.stringify(METADATA.ENV),
+                    HMR: JSON.stringify(METADATA.HMR),
+                    BRANCH: JSON.stringify(METADATA.BRANCH)
+                }
+            }),
         ]
     });
 
