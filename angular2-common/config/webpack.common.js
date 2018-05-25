@@ -3,18 +3,18 @@ const webpackMerge = require('webpack-merge');
 const AssetsPlugin = require('assets-webpack-plugin');
 // const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
-const HtmlElementsPlugin = require('./html-elements-plugin');
+// const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
+const webpack = require('webpack');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 const helpers = require('./helpers');
 const coreConfig = require('./webpack.core.js');
-const AOT = helpers.hasNpmFlag('aot');
 
 const METADATA = {
     title: 'Angular2 Webpack Starter GarlicTech',
@@ -28,14 +28,14 @@ module.exports = function(options) {
     var _config = webpackMerge(coreConfig(options), {
         entry: {
             polyfills: helpers.siteRoot('polyfills.browser.ts'),
-            main: AOT ? helpers.siteRoot('main.browser.aot.ts') : helpers.siteRoot('main.browser.ts')
+            main: helpers.siteRoot('main.browser.ts')
         },
 
         output: {
             path: helpers.projectRoot('dist'),
-            filename: '[name].[chunkhash].bundle.js',
-            sourceMapFilename: '[name].[chunkhash].bundle.map',
-            chunkFilename: '[id].[chunkhash].chunk.js'
+            filename: '[name].[hash].bundle.js',
+            sourceMapFilename: '[name].[hash].bundle.map',
+            chunkFilename: '[id].[hash].chunk.js'
         },
 
         resolve: {
@@ -58,7 +58,7 @@ module.exports = function(options) {
                             options: {
                                 loader: 'async-import',
                                 genDir: 'compiled',
-                                aot: AOT
+                                aot: helpers.isAot()
                             }
                         },
                         {
@@ -90,40 +90,50 @@ module.exports = function(options) {
             ]
         },
 
+        optimization: {
+            splitChunks: {
+                chunks: "all"
+            }
+        },
+
         plugins: [
             new AssetsPlugin({
                 path: helpers.projectRoot('dist'),
                 filename: 'webpack-assets.json',
                 prettyPrint: true
             }),
-            new CheckerPlugin(),
-            new CommonsChunkPlugin({
-                name: 'polyfills',
-                chunks: ['polyfills']
-            }),
-            // This enables tree shaking of the vendor modules
-            new CommonsChunkPlugin({
-                name: 'vendor',
-                chunks: ['main'],
-                minChunks: module => /node_modules/.test(module.resource)
-            }),
-            // Specify the correct order the scripts will be injected in
-            new CommonsChunkPlugin({
-                name: ['polyfills', 'vendor'].reverse()
-            }),
-            new CommonsChunkPlugin({
-                name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
-                minChunks: Infinity
-            }),
-            new ContextReplacementPlugin(
-                // The (\\|\/) piece accounts for path separators in *nix and Windows
-                /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-                helpers.root('src'), // location of your src
-                {
-                    // your Angular Async Route paths relative to this root directory
-                }
-            ),
-            new CopyWebpackPlugin([{ from: helpers.siteRoot('assets'), to: 'assets' }, { from: helpers.siteRoot('meta') }]),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: 'polyfills',
+            //     chunks: ['polyfills']
+            // }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: 'vendor',
+            //     chunks: ['main'],
+            //     minChunks: module => /node_modules/.test(module.resource)
+            // }),
+            // // Specify the correct order the scripts will be injected in
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: ['polyfills', 'vendor'].reverse()
+            // }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: 'manifest', //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+            //     minChunks: Infinity
+            // }),
+            // new CheckerPlugin(),
+            // new ContextReplacementPlugin(
+            //     // The (\\|\/) piece accounts for path separators in *nix and Windows
+            //     /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+            //     helpers.root('src'), // location of your src
+            //     {
+            //         // your Angular Async Route paths relative to this root directory
+            //     }
+            // ),
+            new CopyWebpackPlugin([{
+                from: helpers.siteRoot('assets'),
+                to: 'assets'
+            }, {
+                from: helpers.siteRoot('meta')
+            }]),
             new HtmlWebpackPlugin({
                 template: helpers.siteRoot('index.html'),
                 title: METADATA.title,
@@ -134,9 +144,9 @@ module.exports = function(options) {
             new ScriptExtHtmlWebpackPlugin({
                 defaultAttribute: 'defer'
             }),
-            new HtmlElementsPlugin({
-                headTags: require('./head-config.common')
-            }),
+            // new HtmlElementsPlugin({
+            //     headTags: require('./head-config.common')
+            // }),
             new LoaderOptionsPlugin({
                 options: {
                     sassLoader: {
@@ -146,7 +156,19 @@ module.exports = function(options) {
                         ]
                     }
                 }
-            })
+            }),
+            new DefinePlugin({
+                ENV: JSON.stringify(METADATA.ENV),
+                NODE_ENV: JSON.stringify(METADATA.ENV),
+                HMR: JSON.stringify(METADATA.HMR),
+                BRANCH: JSON.stringify(METADATA.BRANCH),
+                'process.env': {
+                    ENV: JSON.stringify(METADATA.ENV),
+                    NODE_ENV: JSON.stringify(METADATA.ENV),
+                    HMR: JSON.stringify(METADATA.HMR),
+                    BRANCH: JSON.stringify(METADATA.BRANCH)
+                }
+            }),
         ],
         /*
          * Include polyfills or mocks for various node stuff

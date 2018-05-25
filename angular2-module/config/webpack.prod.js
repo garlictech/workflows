@@ -20,7 +20,6 @@ const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -83,7 +82,7 @@ module.exports = function(env) {
             },
 
             plugins: [
-                new ExtractTextPlugin('[name].[contenthash].css'),
+                new ExtractTextPlugin('[name].[hash].css'),
 
                 new NormalModuleReplacementPlugin(/angular2-hmr/, helpers.root('config/empty.js')),
 
@@ -110,11 +109,6 @@ module.exports = function(env) {
                             customAttrAssign: [/\)?\]?=/]
                         }
                     }
-                }),
-                new UglifyJsPlugin({
-                    minimize: true,
-                    sourceMap: true,
-                    include: /\.min.bundle\.js$/
                 })
             ],
 

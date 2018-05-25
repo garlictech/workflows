@@ -9,16 +9,18 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
  * Webpack Plugins
  */
 const webpack = require('webpack');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const HashedModuleIdsPlugin = require('webpack/lib/HashedModuleIdsPlugin');
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -27,7 +29,7 @@ const ENV = process.env.NODE_ENV || 'production';
 const BRANCH = process.env.TRAVIS_BRANCH || process.env.BRANCH || 'staging';
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 8080;
-const HMR = helpers.hasProcessFlag('hot');
+const HMR = false;
 
 const ENVDATA = {
     host: HOST,
@@ -39,9 +41,32 @@ const ENVDATA = {
 
 const METADATA = webpackMerge(commonConfig(ENVDATA).metadata, ENVDATA);
 
+function getUglifyOptions(supportES2015, enableCompress) {
+    const uglifyCompressOptions = {
+        pure_getters: true,
+        /* buildOptimizer */
+        // PURE comments work best with 3 passes.
+        // See https://github.com/webpack/webpack/issues/2899#issuecomment-317425926.
+        passes: 2 /* buildOptimizer */
+    };
+
+    return {
+        ecma: supportES2015 ? 6 : 5,
+        warnings: false, // TODO verbose based on option?
+        ie8: false,
+        mangle: true,
+        compress: enableCompress ? uglifyCompressOptions : false,
+        output: {
+            ascii_only: true,
+            comments: false
+        }
+    };
+}
+
 module.exports = function(env) {
     var _config = webpackMerge(commonConfig(ENVDATA), {
         devtool: 'source-map',
+        mode: "production",
         module: {
             rules: [{
                     test: /\.css$/,
@@ -62,41 +87,17 @@ module.exports = function(env) {
             ]
         },
         plugins: [
-            new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, helpers.root('./src'), {}), // The (\\|\/) piece accounts for path separators in *nix and Windows
             new OptimizeJsPlugin({
                 // location of your src // a map of your routes
-                sourceMap: false
+                sourceMap: true
             }),
-            new ExtractTextPlugin('[name].[contenthash].css'),
-            new DefinePlugin({
-                ENV: JSON.stringify(METADATA.ENV),
-                NODE_ENV: JSON.stringify(METADATA.ENV),
-                BRANCH: JSON.stringify(METADATA.BRANCH),
-                'process.env': {
-                    ENV: JSON.stringify(METADATA.ENV),
-                    NODE_ENV: JSON.stringify(METADATA.ENV),
-                    BRANCH: JSON.stringify(METADATA.BRANCH)
-                }
-            }), // new webpack.optimize.UglifyJsPlugin({
-            //     beautify: false,
-            //     comments: false,
-            //     mangle: {
-            //         keep_fnames: true,
-            //         screw_i8: true
-            //     },
-            //     compress: {
-            //         screw_ie8: true,
-            //         warnings: false,
-            //         conditionals: true,
-            //         unused: true,
-            //         comparisons: true,
-            //         sequences: true,
-            //         dead_code: true,
-            //         evaluate: true,
-            //         if_return: true,
-            //         join_vars: true
-            //     }
-            // }),
+            new SourceMapDevToolPlugin({
+                filename: '[file].map[query]',
+                moduleFilenameTemplate: '[resource-path]',
+                fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
+                sourceRoot: 'webpack:///'
+            }),
+            new ExtractTextPlugin('[name].[md5:contenthash:hex:20].css'),
             new LoaderOptionsPlugin({
                 // minimize: true,
                 minimize: false,
@@ -116,7 +117,15 @@ module.exports = function(env) {
                     }
                 }
             }),
-            new PurifyPlugin()
+            new PurifyPlugin(),
+            new HashedModuleIdsPlugin(),
+            new ModuleConcatenationPlugin(),
+            new UglifyJsPlugin({
+                sourceMap: true,
+                parallel: true,
+                cache: helpers.root('webpack-cache/uglify-cache'),
+                uglifyOptions: getUglifyOptions(true, true)
+            }),
         ]
     });
 

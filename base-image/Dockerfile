@@ -10,3 +10,5 @@ RUN apt-get update && \
 
 WORKDIR /app
 ADD . /app
+
+ENV NO_UPDATE_NOTIFIER 1
