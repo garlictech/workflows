@@ -10,6 +10,10 @@ module.exports = {
         }),
         require('postcss-responsive-type')({
             sourceMap: true
-        })
+        }),
+        require('cssnano')({
+            preset: 'default',
+        }),
+        require('autoprefixer')
     ]
 };

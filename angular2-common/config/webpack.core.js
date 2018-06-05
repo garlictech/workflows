@@ -27,15 +27,6 @@ module.exports = function() {
                     exclude: [helpers.projectRoot('src', 'app', 'styles')]
                 }
             ]
-        },
-        node: {
-            global: true,
-            crypto: 'empty',
-            process: true,
-            module: false,
-            clearImmediate: false,
-            setImmediate: false,
-            fs: 'empty'
         }
     };
 };

@@ -1,0 +1,6 @@
+{
+    "watch": [
+        "artifacts/dist/server"
+    ],
+    "ext": "js ts json html"
+}

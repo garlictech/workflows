@@ -11,4 +11,3 @@ COPY . /app
 RUN rm -f package.shared.json package.workflow.json
 
 CMD ["node", "/app/server/server.js"]
-ENV NODE_ENV production

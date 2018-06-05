@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": ["dom", "es6", "es2015", "es2016", "es2017"],
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "skipDefaultLibCheck": true,
+        "pretty": true,
+        "sourceMap": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "baseUrl": "./src",
+        "paths": {
+            "*": ["*", "../node_modules/*"]
+        }
+
+    },
+    "exclude": [
+        "node_modules",
+        "compiled",
+        "artifacts",
+        "e2e/**/*.ts",
+        "src/server.ts",
+        "src/server.aot.ts",
+        "src/main.browser.aot.ts"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useWebpackText": true,
+        "forkChecker": true,
+        "useCache": true,
+        "cacheDirectory": "/app/artifacts/.awcache"
+    },
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "atom": {
+        "rewriteTsconfig": false
+    }
+}

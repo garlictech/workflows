@@ -10,7 +10,9 @@ const coreConfig = require('./webpack.core.js');
 const ENV = (process.env.ENV = process.env.NODE_ENV = 'test');
 
 module.exports = function() {
-    var _config = webpackMerge(coreConfig({ env: ENV }), {
+    var _config = webpackMerge(coreConfig({
+        env: ENV
+    }), {
         resolve: {
             extensions: ['.ts', '.js'],
             modules: [helpers.projectRoot('src'), 'node_modules']
@@ -45,7 +47,7 @@ module.exports = function() {
                     use: [{
                             loader: 'awesome-typescript-loader',
                             options: {
-                                configFileName: 'tsconfig.test.json'
+                                configFileName: 'src/tsconfig.test.json'
                             }
                         },
                         'angular2-template-loader'

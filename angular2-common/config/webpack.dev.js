@@ -35,12 +35,37 @@ module.exports = function() {
             rules: [{
                     test: /\.ts$/,
                     use: [{
-                        loader: 'tslint-loader',
-                        options: {
-                            configFile: 'tslint.json'
+                            loader: '@angularclass/hmr-loader',
+                            options: {
+                                pretty: true,
+                                prod: false
+                            }
+                        },
+                        {
+                            loader: 'awesome-typescript-loader',
+                            options: {
+                                configFileName: 'tsconfig.webpack.json'
+                            }
+                        },
+                        {
+                            loader: 'ng-router-loader',
+                            options: {
+                                loader: 'async-import',
+                                genDir: 'compiled',
+                                aot: false
+                            }
+                        },
+                        {
+                            loader: 'angular2-template-loader'
+                        },
+                        {
+                            loader: 'tslint-loader',
+                            options: {
+                                configFile: 'tslint.json'
+                            }
                         }
-                    }],
-                    exclude: [/\.(spec|e2e)\.ts$/, helpers.root('node_modules')]
+                    ],
+                    exclude: [/\/test\/$/, /\.(spec|e2e)\.ts$/, helpers.root('node_modules')]
                 },
                 {
                     test: /\.css$/,
@@ -90,6 +115,15 @@ module.exports = function() {
             },
             contentBase: '/app/project/src',
             hot: true
+        },
+        node: {
+            global: true,
+            crypto: 'empty',
+            process: true,
+            module: false,
+            clearImmediate: false,
+            setImmediate: false,
+            fs: 'empty'
         }
     });
 
