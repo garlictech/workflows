@@ -31,7 +31,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const nodeExternals = require('webpack-node-externals');
 const ScriptExtPlugin = require('script-ext-html-webpack-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpackMerge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -189,20 +188,11 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=5000&name=assets/[name].[md5:contenthash:hex:20].[ext]'
+        loader: 'url-loader?limit=5000&name=assets/[name].[hash].[ext]'
       },
       ...myConstants.MY_CLIENT_RULES
     ]
   };
-
-  // if (!UNIVERSAL && !SERVER) {
-  //   config.optimization = {
-  //     splitChunks: {
-  //       chunks: 'all'
-  //     },
-  //     runtimeChunk: true
-  //   };
-  // }
 
   config.plugins = [
     new CheckerPlugin(),
@@ -291,8 +281,7 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
     config.plugins.push(
       new NoEmitOnErrorsPlugin(),
       new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-        chunkFilename: '[name]-[id].[hash].css'
+        filename: '[name].[chunk].css'
       }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
@@ -329,12 +318,6 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
   PROD ? (config.devtool = PROD_SOURCE_MAPS) : (config.devtool = DEV_SOURCE_MAPS);
   config.plugins = [getAotPlugin('client', AOT)];
 
-  // if (PROD) {
-  //   config.plugins.push(
-  //     new UglifyJsPlugin({ extractComments: true })
-  //   );
-  // }
-
   if (UNIVERSAL || SERVER) {
     config.plugins.push(
       new ScriptExtPlugin({
@@ -342,6 +325,12 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
       })
     );
   }
+
+  config.optimization = {
+    splitChunks: {
+      chunks: 'all'
+    }
+  };
 
   if (DLL) {
     config.entry = {
@@ -388,8 +377,8 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
   } else {
     config.output = {
       path: root('artifacts/dist'),
-      sourceMapFilename: '[name].[hash].map',
-      filename: '[name].[hash].js'
+      sourceMapFilename: '[name].[chunk].map',
+      filename: '[name].[chunk].js'
     };
   }
 
