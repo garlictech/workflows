@@ -17,5 +17,5 @@
       "*": ["*", "../node_modules/*"]
     }
   },
-  "exclude": ["node_modules", "artifacts", "e2e", "src/server.ts", "src/server.aot.ts", "src/main.browser.aot.ts"]
+  "exclude": ["node_modules", "artifacts", "e2e", "src/server.ts", "src/server.aot.ts"]
 }

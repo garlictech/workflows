@@ -27,8 +27,7 @@
     "dist",
     "e2e/**/*.ts",
     "src/server.ts",
-    "src/server.aot.ts",
-    "src/main.browser.aot.ts"
+    "src/server.aot.ts"
 ],
 "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

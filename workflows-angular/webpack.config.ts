@@ -156,7 +156,6 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
               ],
         exclude: [/\.(spec|e2e|d)\.ts$/]
       },
-      { test: /\.json$/, loader: 'json-loader' },
       {
         test: /\.(jade|pug)$/,
         loaders: [
@@ -281,7 +280,7 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
     config.plugins.push(
       new NoEmitOnErrorsPlugin(),
       new MiniCssExtractPlugin({
-        filename: '[name].[chunk].css'
+        filename: '[name].[hash].css'
       }),
       new CompressionPlugin({
         asset: '[path].gz[query]',
@@ -377,8 +376,8 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
   } else {
     config.output = {
       path: root('artifacts/dist'),
-      sourceMapFilename: '[name].[chunk].map',
-      filename: '[name].[chunk].js'
+      sourceMapFilename: '[name].[hash].map',
+      filename: '[name].[hash].js'
     };
   }
 

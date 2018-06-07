@@ -1,10 +1,10 @@
 // 'use strict';
-
 module.exports = {
     plugins: [
-        require('postcss-preset-env')({
-            sourceMap: true
-        }),
+        // require('postcss-import'),
+        // require('postcss-preset-env')({
+        //     browsers: 'last 2 versions'
+        // }),
         require('postcss-apply')({
             sourceMap: true
         }),
@@ -16,4 +16,4 @@ module.exports = {
         }),
         require('autoprefixer')
     ]
-};
+}
