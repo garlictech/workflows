@@ -154,6 +154,11 @@
         "postcss-loader": "^2.0.6",
 
         "uglifyjs-webpack-plugin": "^1.2.0",
-        "imagemin-webpack-plugin": "^2.0.0"
+        "imagemin-webpack-plugin": "^2.0.0",
+        "imagemin-gifsicle": "^5.2.0",
+        "imagemin-jpegtran": "^5.0.2",
+        "imagemin-optipng": "^5.2.1",
+        "imagemin-pngquant": "^5.1.0",
+        "imagemin-svgo": "^6.0.0"
     }
 }

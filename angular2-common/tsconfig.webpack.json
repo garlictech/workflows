@@ -1,4 +1,0 @@
-{
-    "extends": "/app/src/tsconfig.json",
-    "module": "es2015"
-}

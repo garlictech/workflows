@@ -291,13 +291,18 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
       }),
       ...myConstants.MY_CLIENT_PRODUCTION_PLUGINS,
       new ImageminPlugin({
-        disable: process.env.NODE_ENV !== 'production',
+        disable: !PROD,
         test: /\.(jpe?g|png|gif|svg)$/i,
         cacheFolder: '/app/artifacts/cache',
         minFileSize: 10000, // Only apply this one to files over 10kb
-        jpegtran: { progressive: true }
+        jpegtran: { progressive: true },
+        optipng: {},
+        gifsicle: {},
+        svgo: {},
+        pngquant: {}
       })
     );
+
     if (!WATCH && !UNIVERSAL && SHOW_WEBPACK_BUNDLE_ANALYZER) {
       config.plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 5000 }));
     }
