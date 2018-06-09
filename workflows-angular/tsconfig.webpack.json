@@ -25,6 +25,8 @@
         "compiled",
         "artifacts",
         "e2e/**/*.ts",
+        "src/**/test/*",
+        "src/**/*.spec.ts",
         "src/server.ts",
         "src/server.aot.ts"
     ],
