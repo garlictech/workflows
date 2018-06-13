@@ -13,5 +13,17 @@
     "buildOnSave": false,
     "atom": {
         "rewriteTsconfig": false
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "compiled",
+        "artifacts",
+        "e2e/**/*.ts",
+        "test-config/**/*.ts",
+        "src/**/test/*",
+        "src/**/*.spec.ts",
+        "src/server.ts",
+        "src/server.aot.ts"
+    ]
+
 }

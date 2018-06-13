@@ -5,6 +5,7 @@ module.exports = {
         // require('postcss-preset-env')({
         //     browsers: 'last 2 versions'
         // }),
+        require('postcss-normalize'),
         require('postcss-apply')({
             sourceMap: true
         }),

@@ -1,4 +1,7 @@
 {
-  "devDependencies": {},
-  "dependencies": {}
+    "devDependencies": {},
+    "dependencies": {
+        "require-dir": "^0.3.2",
+        "source-map": "^0.7.2"
+    }
 }

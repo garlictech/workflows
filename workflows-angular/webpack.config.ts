@@ -410,7 +410,7 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
   config.node = {
     global: true,
     process: true,
-    Buffer: false,
+    Buffer: true,
     crypto: true,
     module: false,
     clearImmediate: false,

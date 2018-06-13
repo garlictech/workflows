@@ -39,6 +39,7 @@ interface WebpackConfig {
     clearTimeout?: boolean;
     fs?: string;
     setTimeout?: boolean;
+    net?: string;
     __dirname?: boolean;
     __filename?: boolean;
   };

@@ -21,4 +21,3 @@ RUN rm -f package.shared.json package.workflow.json
 
 EXPOSE 9876 8088 8000 5000 8092
 
-CMD ["npm", "start"]
