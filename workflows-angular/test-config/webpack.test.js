@@ -119,7 +119,7 @@ var testConfig = {
                 loaders: [{
                     loader: 'awesome-typescript-loader',
                     options: {
-                        configFileName: 'tsconfig.test.json',
+                        configFileName: 'src/tsconfig.test.json',
                         sourceMap: false,
                         inlineSourceMap: true
                     }
