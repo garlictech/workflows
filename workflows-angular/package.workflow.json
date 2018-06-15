@@ -35,6 +35,7 @@
         "build:aot": "npm run build:aot:prod",
         "build:aot:prod": "npm run clean:dist && webpack",
         "build:aot:dev": "npm run clean:dist && webpack",
+        "build:aot:prod:debug": "npm run clean:dist && webpack",
         "build:dev": "npm run clean:dist && webpack",
         "build:dll": "npm run clean:dll && webpack",
         "build:prod": "npm run clean:dist && webpack",

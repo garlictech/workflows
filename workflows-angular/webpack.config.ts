@@ -46,6 +46,7 @@ const DEV_SERVER = EVENT.includes('webdev');
 const DLL = EVENT.includes('dll');
 const HMR = hasProcessFlag('hot');
 const PROD = EVENT.includes('prod');
+const DEBUG = EVENT.includes('debug');
 const SERVER = EVENT.includes('server');
 const WATCH = hasProcessFlag('watch');
 const UNIVERSAL = EVENT.includes('universal');
@@ -145,7 +146,7 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
 
   config.module = {
     rules: [
-      { test: /\.js$/, loader: 'source-map-loader', exclude: [EXCLUDE_SOURCE_MAPS] },
+      { test: /\.js$/, loader: 'source-map-loader', exclude: [FULL_EXCLUDE_SOURCE_MAPS] },
       {
         test: /\.ts$/,
         loaders:
@@ -261,7 +262,9 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
   }
 
   if (PROD) {
-    config.mode = 'production';
+    if (!DEBUG) {
+      config.mode = 'production';
+    }
     config.module.rules.push({
       test: /\.scss$/,
       use: [
