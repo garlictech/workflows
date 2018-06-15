@@ -79,7 +79,10 @@ const CONSTANTS = {
   HOST: JSON.stringify(HOST),
   PORT: PORT,
   STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
-  UNIVERSAL: UNIVERSAL || SERVER
+  UNIVERSAL: UNIVERSAL || SERVER,
+  // This is for debug package, otherwise it crashes in browser.
+  // TODO: add configurable process.env variables
+  DEBUG_COLORS: false
 };
 
 let myConstants = MY_CONSTANTS;
@@ -417,7 +420,8 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
     setImmediate: false,
     clearTimeout: true,
     setTimeout: true,
-    fs: 'empty'
+    fs: 'empty',
+    child_process: 'empty'
   };
 
   return config;

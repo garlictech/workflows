@@ -42,5 +42,6 @@ interface WebpackConfig {
     net?: string;
     __dirname?: boolean;
     __filename?: boolean;
+    child_process: string;
   };
 }
