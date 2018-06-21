@@ -178,7 +178,6 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
         loaders: [
           'to-string-loader',
           'css-loader',
-          'postcss-loader?sourceMap',
           'resolve-url-loader',
           'sass-loader?sourceMap'
         ],
@@ -186,7 +185,7 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
       },
       {
         test: /\.css$/,
-        loaders: ['to-string-loader', 'css-loader', 'postcss-loader?sourceMap'],
+        loaders: ['to-string-loader', 'css-loader'],
         exclude: [root('src/app/styles')]
       },
       {

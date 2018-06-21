@@ -14,6 +14,10 @@ module.exports = {
         }),
         require('cssnano')({
             preset: 'default',
+            sourceMap: true,
+            minimize: process.env.NODE_ENV === 'production' ? {
+                zindex: false
+            } : false
         }),
         require('autoprefixer')
     ]
