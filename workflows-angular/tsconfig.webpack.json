@@ -1,29 +1,9 @@
 {
     "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "module": "es2015"
-    },
     "awesomeTypescriptLoaderOptions": {
         "useWebpackText": true,
         "forkChecker": true,
         "useCache": true,
         "cacheDirectory": "/app/artifacts/.awcache"
-    },
-    "compileOnSave": false,
-    "buildOnSave": false,
-    "atom": {
-        "rewriteTsconfig": false
-    },
-    "exclude": [
-        "node_modules",
-        "compiled",
-        "artifacts",
-        "e2e/**/*.ts",
-        "test-config/**/*.ts",
-        "src/**/test/*",
-        "src/**/*.spec.ts",
-        "src/server.ts",
-        "src/server.aot.ts"
-    ]
-
+    }
 }

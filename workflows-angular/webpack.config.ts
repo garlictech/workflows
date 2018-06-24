@@ -160,34 +160,14 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
               ],
         exclude: [/\.(spec|e2e|d)\.ts$/]
       },
-      {
-        test: /\.(jade|pug)$/,
-        loaders: [
-          'html-loader',
-          {
-            loader: 'pug-html-loader',
-            options: {
-              doctype: 'html'
-            }
-          }
-        ]
-      },
+      { test: /\.(jade|pug)$/, loaders: ['html-loader', { loader: 'pug-html-loader', options: { doctype: 'html' } }] },
       { test: /\.html/, loader: 'html-loader', exclude: [root('src/index.html')] },
       {
         test: /\.scss$/,
-        loaders: [
-          'to-string-loader',
-          'css-loader',
-          'resolve-url-loader',
-          'sass-loader?sourceMap'
-        ],
+        loaders: ['to-string-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
         exclude: [root('src/app/styles')]
       },
-      {
-        test: /\.css$/,
-        loaders: ['to-string-loader', 'css-loader'],
-        exclude: [root('src/app/styles')]
-      },
+      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'], exclude: [root('src/app/styles')] },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader?limit=5000&name=assets/[name].[hash].[ext]'
