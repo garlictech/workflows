@@ -55,7 +55,6 @@
     },
     "dependencies": {
         "@angular/cdk": "^5.2.0",
-        "@angular/platform-server": "^5.2.0",
         "@angular/tsc-wrapped": "4.2.0-beta.0",
         "@angularclass/hmr-loader": "^3.0.0",
         "@nguniversal/express-engine": "^5.0.0-beta.5",

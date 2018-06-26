@@ -110,19 +110,18 @@ const DLL_VENDORS = [
   '@angular/platform-server',
   '@angular/router',
   '@angular/animations',
-  '@ngx-translate/core',
-  '@ngx-translate/http-loader',
+  'rxjs',
+  'zone.js',
   'ng2-logger',
   '@ngrx/effects',
   '@ngrx/entity',
   '@ngrx/router-store',
   '@ngrx/store',
-  '@ngrx/store-devtools',
   'ngrx-store-freeze',
   'ngrx-store-logger',
-  'web-animations-js',
+  '@ngx-translate/core',
+  '@ngx-translate/http-loader',
   'lodash',
-  'rxjs',
   ...myConstants.MY_VENDOR_DLLS
 ];
 
@@ -337,7 +336,6 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
         'url',
         'punycode',
         'events',
-        'web-animations-js/web-animations.min.js',
         'webpack-dev-server/client/socket.js',
         'webpack/hot/emitter.js',
         'zone.js/dist/long-stack-trace-zone.js',
@@ -403,7 +401,10 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
     clearTimeout: true,
     setTimeout: true,
     fs: 'empty',
-    child_process: 'empty'
+    child_process: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty'
   };
 
   return config;

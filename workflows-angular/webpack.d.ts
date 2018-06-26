@@ -40,6 +40,8 @@ interface WebpackConfig {
     fs?: string;
     setTimeout?: boolean;
     net?: string;
+    tls?: string;
+    dns?: string;
     __dirname?: boolean;
     __filename?: boolean;
     child_process: string;
