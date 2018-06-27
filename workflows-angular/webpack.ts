@@ -1,4 +1,4 @@
-interface WebpackConfig {
+export interface WebpackConfig {
   cache?: boolean;
   mode?: string;
   target?: string;
