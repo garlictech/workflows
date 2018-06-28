@@ -1,6 +1,9 @@
 {
     "preset": "jest-preset-angular",
     "setupTestFrameworkScriptFile": "./src/jest.ts",
+    "browser": true,
+    "cacheDirectory": "./artifacts/cache",
+    "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
         "subrepos/(.*)": "<rootDir>/src/subrepos/$1",
         "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|pug)$": "<rootDir>/src/test/jest/mocks/fileMock.js",

@@ -21,7 +21,8 @@ import {
   myConstants as MY_CONSTANTS
 } from './constants';
 
-const { DefinePlugin, DllPlugin, DllReferencePlugin, ProgressPlugin, NoEmitOnErrorsPlugin } = require('webpack');
+const { DefinePlugin, DllPlugin, DllReferencePlugin, NoEmitOnErrorsPlugin } = require('webpack');
+const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 
 import { WebpackConfig } from './webpack';
 
@@ -124,6 +125,7 @@ const DLL_VENDORS = [
   '@ngx-translate/core',
   '@ngx-translate/http-loader',
   'lodash',
+  'primeng/primeng',
   ...myConstants.MY_VENDOR_DLLS
 ];
 
@@ -191,8 +193,10 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
     ...myConstants.MY_CLIENT_PLUGINS
   ];
 
-  if (!process.env.CI) {
-    config.plugins.push(new ProgressPlugin());
+  if (process.env.CI) {
+    config.plugins.push(new SimpleProgressWebpackPlugin({ format: 'expanded' }));
+  } else {
+    config.plugins.push(new SimpleProgressWebpackPlugin({ format: 'compact' }));
   }
 
   if (DEV_SERVER) {
@@ -341,6 +345,7 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
         'webpack-dev-server/client/socket.js',
         'webpack/hot/emitter.js',
         'zone.js/dist/long-stack-trace-zone.js',
+        'rxjs-compat',
         ...myConstants.MY_POLYFILL_DLLS
       ],
       vendor: [...DLL_VENDORS]
