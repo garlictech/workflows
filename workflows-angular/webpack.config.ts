@@ -39,6 +39,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const { getAotPlugin } = require('./webpack.aot');
+const SentryPlugin = require('@sentry/webpack-plugin');
 
 const { hasProcessFlag, includeClientPackages, root, testDll, webpackHook } = require('./helpers.js');
 
@@ -290,6 +291,10 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
         gifsicle: {},
         svgo: {},
         pngquant: {}
+      }),
+      new SentryPlugin({
+        include: './artifacts/dist',
+        ignore: ['node_modules', 'webpack.config.js']
       })
     );
 

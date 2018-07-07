@@ -120,6 +120,7 @@
         "apply-loader": "^2.0.0",
         "url-loader": "^1.0.1",
         "simple-progress-webpack-plugin": "^1.1.2",
+        "@sentry/webpack-plugin": "^1.5.2",
 
         "breakpoint-sass": "^2.7.0",
         "compass-mixins": "^0.12",
