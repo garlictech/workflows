@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-pip install --user awscli
-export PATH=$PATH:$HOME/.local/bin
-echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc
-cp hooks/travis/dummy_tokens.env ${TRAVIS_BUILD_DIR}/tokens.env
-npm run travis before_install

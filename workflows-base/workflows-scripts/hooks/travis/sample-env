@@ -1,4 +1,0 @@
-export NODE_ENV=production
-export DOCKER_REGISTRY=docker.camnjoy.com
-export PROJECT=deepstream-camnjoy
-export SCOPE=pioneer-wst

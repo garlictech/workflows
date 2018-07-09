@@ -3,7 +3,6 @@
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",
         "travis": "scripts/travis.sh $@",
-        "subrepo-push": "git subrepo push --all",
         "prettier": "scripts/prettier.sh",
         "lint": "scripts/lint.sh",
         "typedoc": "typedoc /app/project/src --out /app/doc"

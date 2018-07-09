@@ -194,10 +194,8 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
     ...myConstants.MY_CLIENT_PLUGINS
   ];
 
-  if (process.env.CI) {
-    config.plugins.push(new SimpleProgressWebpackPlugin({ format: 'expanded' }));
-  } else {
-    config.plugins.push(new SimpleProgressWebpackPlugin({ format: 'compact' }));
+  if (!process.env.CI) {
+    config.plugins.push(new SimpleProgressWebpackPlugin({ format: 'minimal' }));
   }
 
   if (DEV_SERVER) {
