@@ -127,6 +127,11 @@ const DLL_VENDORS = [
   '@ngx-translate/http-loader',
   'lodash',
   'primeng/primeng',
+  'primeicons',
+  '@fortawesome/free-solid-svg-icons',
+  '@fortawesome/fontawesome-svg-core',
+  '@fortawesome/fontawesome-free',
+  '@fortawesome/angular-fontawesome',
   ...myConstants.MY_VENDOR_DLLS
 ];
 
@@ -289,7 +294,7 @@ const commonConfig = (function webpackConfig(): WebpackConfig {
         gifsicle: {},
         svgo: {},
         pngquant: {}
-      }),
+      })
       // new SentryPlugin({
       //   include: './artifacts/dist',
       //   ignore: ['node_modules', 'webpack.config.js']
