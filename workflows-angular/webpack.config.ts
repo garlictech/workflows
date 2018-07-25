@@ -127,11 +127,12 @@ const DLL_VENDORS = [
   '@ngx-translate/http-loader',
   'lodash',
   'primeng/primeng',
-  'primeicons',
   '@fortawesome/free-solid-svg-icons',
+  '@fortawesome/free-regular-svg-icons',
   '@fortawesome/fontawesome-svg-core',
   '@fortawesome/fontawesome-free',
   '@fortawesome/angular-fontawesome',
+  '@fortawesome/free-brands-svg-icons',
   ...myConstants.MY_VENDOR_DLLS
 ];
 
