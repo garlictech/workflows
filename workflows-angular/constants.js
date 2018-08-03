@@ -37,7 +37,13 @@ exports.PROD_SOURCE_MAPS = 'source-map';
 exports.DEV_SERVER_WATCH_OPTIONS = {
     poll: undefined,
     aggregateTimeout: 300,
-    ignored: /node_modules/
+    ignored: /node_modules|artifacts/
+}
+
+exports.DEV_SERVER_WATCH_OPTIONS_WINDOWS = {
+    poll: Number(process.env.WEBPACK_POLL_INTERVAL || '1000'),
+    aggregateTimeout: 300,
+    ignored: /node_modules|artifacts/
 }
 
 /**

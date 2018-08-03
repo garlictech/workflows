@@ -14,6 +14,7 @@ import {
   USE_DEV_SERVER_PROXY,
   DEV_SERVER_PROXY_CONFIG,
   DEV_SERVER_WATCH_OPTIONS,
+  DEV_SERVER_WATCH_OPTIONS_WINDOWS,
   DEV_SOURCE_MAPS,
   PROD_SOURCE_MAPS,
   STORE_DEV_TOOLS,
@@ -388,13 +389,13 @@ const clientConfig = (function webpackConfig(): WebpackConfig {
   config.devServer = {
     contentBase: AOT ? './artifacts/compiled' : './src',
     port: CONSTANTS.PORT,
-    historyApiFallback: {
-      disableDotRule: true
-    },
+    historyApiFallback: { disableDotRule: true },
     stats: 'minimal',
     host: '0.0.0.0',
-    watchOptions: DEV_SERVER_WATCH_OPTIONS
+    watchOptions: process.env.HOST_PLATFORM === 'win' ? DEV_SERVER_WATCH_OPTIONS_WINDOWS : DEV_SERVER_WATCH_OPTIONS
   };
+
+  console.log('DEV SERVER options:', config.devServer);
 
   if (USE_DEV_SERVER_PROXY) {
     Object.assign(config.devServer, {
