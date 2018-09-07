@@ -4,15 +4,15 @@ MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 # For jest watch... a workaround.
 RUN git init
 
-COPY package*.json /app/
+COPY package*.json angular.json /app/
 
 RUN scripts/install_dependencies && \
-  npm cache clean --force && \
-  rm -rf /tmp/*
+  npm install -g @angular/cli && \
+  ng add ng-cli-pug-loader && \
+  npm cache clean --force
 
 COPY . /app
 
-RUN rm -f package.shared.json package.workflow.json
+RUN rm -f package.shared.json package.workflow.json angular.json ng-add-pug-loader.js
 
-EXPOSE 8088 8000 5000 8092
-
+CMD ["npm", "start"]

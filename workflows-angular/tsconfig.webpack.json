@@ -1,9 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "awesomeTypescriptLoaderOptions": {
-        "useWebpackText": true,
-        "forkChecker": true,
-        "useCache": true,
-        "cacheDirectory": "/app/artifacts/.awcache"
-    }
-}

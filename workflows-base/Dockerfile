@@ -15,4 +15,5 @@ ADD scripts /app/scripts
 ADD coffeelint.json /app/
 ADD hooks_workflow /app/hooks_workflow
 
-RUN rm -f package.shared.json package.workflow.json
+RUN rm -f package.shared.json package.workflow.json && \
+  echo "export PATH=/app/node_modules/.bin/:$PATH" >> $HOME/.bashrc

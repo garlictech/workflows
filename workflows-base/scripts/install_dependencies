@@ -65,5 +65,5 @@ try {
 
 if (keys.length !== 0) {
   packages = keys.reduce((current, next) => `${current} ${next}@${remainedPackages[next]}`, "")
-  execute(`npm install --save --color true ${packages}`, { stdio: [0, 1, 2] });
+  execute(`npm install --unsafe-perm --save --color true ${packages}`, { stdio: [0, 1, 2] });
 }
