@@ -2,6 +2,8 @@
     "devDependencies": {},
     "dependencies": {
         "require-dir": "^0.3.2",
-        "source-map": "^0.7.2"
+        "source-map": "^0.7.2",
+        "jasmine-core": "^2.99.1",
+        "@types/jasmine": "^2.8.6"
     }
 }
