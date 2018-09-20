@@ -7,17 +7,21 @@
         "unittest": "jest -c jest-config.json --coverage $@ --forceExit --detectOpenHandles",
         "unittest:watch": "jest -c jest-config.json --watch",
         "lint": "ng lint $@ | sed 's/\\/app/\\./g'",
+        "lint:fix": "ng lint --fix $@ | sed 's/\\/app/\\./g'",
         "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "start": "ng serve --hmr --host 0.0.0.0 --port 8081 $@",
+        "start:poll": "npm start --poll $@",
         "start:aot": "npm start --aot $@",
         "start:prod": "npm run start:aot --prod",
         "start:universal:debug": "node artifacts/dist/server.js",
-        "build:prod": "npm run build:prod:debug --prod",
+        "build:prod": "npm run build:prod:debug --prod $@",
         "build:prod:debug": "ng build --configuration=$PROJECT_CONFIG $@",
         "build:universal": "ng run website:server && webpack --config webpack.server.config.js --colors",
-        "doc:build": "compodoc src -d ./artifacts/docs -p tsconfig.json",
-        "doc:serve": "compodoc src -s -r 8092 -d ./artifacts/docs -p tsconfig.json",
-        "doc:buildandserve": "compodoc src -s -r 8092 -d ./artifacts/docs -p tsconfig.json"
+        "build:prod:stat": "ng build --configuration=$PROJECT_CONFIG --prod --stats-json",
+        "bundle-report": "webpack-bundle-analyzer -h 0.0.0.0 artifacts/dist/browser/stats.json",
+        "doc:build": "compodoc src -d ./artifacts/docs -p src/tsconfig.app.json",
+        "doc:serve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json",
+        "doc:buildandserve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json"
     },
     "dependencies": {
         "@angular/platform-server": "^6.0.0",
@@ -27,7 +31,8 @@
         "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
         "ts-loader": "^5.0.0",
         "webpack-cli": "^3.1.0",
-        "url-loader": "^1.0.1"
+        "url-loader": "^1.0.1",
+        "webpack-bundle-analyzer": "^3.0.2"
     },
     "devDependencies": {}
 }

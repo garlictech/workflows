@@ -27,8 +27,7 @@
         "ngrx-store-freeze": "^0.2.0",
         "primeng": "^6.0.0",
         "primeicons": "^1.0.0-beta.10",
-        "rxjs": "^6.2.1",
-        "rxjs-compat": "^6.2.1"
+        "rxjs": "^6.0.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.7.0",
