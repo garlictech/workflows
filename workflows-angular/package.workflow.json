@@ -10,7 +10,7 @@
         "lint:fix": "ng lint --fix $@ | sed 's/ \\/app/ \\./g'",
         "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "start": "ng serve --hmr --host 0.0.0.0 --port 8081 $@",
-        "start:poll": "npm start --poll $@",
+        "start:poll": "ng serve --hmr --host 0.0.0.0 --port 8081 --poll",
         "start:aot": "npm start --aot $@",
         "start:prod": "npm run start:aot --prod",
         "start:universal:debug": "node artifacts/dist/server.js",
