@@ -2,6 +2,20 @@
     "preset": "jest-preset-angular",
     "setupTestFrameworkScriptFile": "./src/jest.ts",
     "browser": true,
+    "globals": {
+        "ts-jest": {
+            "tsConfigFile": "src/tsconfig.spec.json"
+        },
+        "__TRANSFORM_HTML__": true
+    },
+    "transform": {
+        "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
+    },
+    "moduleFileExtensions": [
+        "ts",
+        "js",
+        "html"
+    ],
     "cacheDirectory": "./artifacts/cache",
     "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
@@ -18,15 +32,10 @@
             "statements": 0
         }
     },
-    "coverageReporters": [
-        "json",
-        "lcov",
-        "text",
-        "html"
-    ],
-    "coveragePathIgnorePatterns": [
-        "/node_modules/",
-        "/\\.(e2e|spec)\\.ts$/",
-        "/test/"
+    "coverageReporters": ["json", "lcov", "text", "html"],
+    "coveragePathIgnorePatterns": ["/node_modules/", "/\\.(e2e|spec)\\.ts$/", "/test/"],
+    "transformIgnorePatterns": [
+        "node_modules/(?!@ngrx)",
+        "node_modules/(?!lodash-es/.*)"
     ]
 }
