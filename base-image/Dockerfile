@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10
 MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 RUN apt-get update && \
