@@ -35,8 +35,6 @@
   "exclude": [
     "artifacts",
     "e2e/**/*.ts",
-    "src/**/test/**/*",
-    "src/**/*.spec.ts",
     "universal"
   ]
 }
