@@ -19,9 +19,9 @@
         "build:universal": "ng run website:server && webpack --config webpack.server.config.js --colors",
         "build:prod:stat": "ng build --configuration=$PROJECT_CONFIG --prod --stats-json",
         "bundle-report": "webpack-bundle-analyzer -h 0.0.0.0 artifacts/dist/browser/stats.json",
-        "doc:build": "compodoc src -d ./artifacts/docs -p src/tsconfig.app.json",
-        "doc:serve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json",
-        "doc:buildandserve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json"
+        "doc:build": "compodoc src -d ./artifacts/docs -p src/tsconfig.app.json --includes src/docs",
+        "doc:serve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json --includes src/docs",
+        "doc:buildandserve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.app.json --includes src/docs"
     },
     "dependencies": {
         "@angular/platform-server": "^6.0.0",
