@@ -4,7 +4,8 @@
     "browser": true,
     "globals": {
         "ts-jest": {
-            "tsConfigFile": "src/tsconfig.spec.json"
+            "tsConfigFile": "src/tsconfig.spec.json",
+            "ignoreCoverageForDecorators": true
         },
         "__TRANSFORM_HTML__": true
     },
@@ -26,14 +27,21 @@
     "coverageDirectory": "<rootDir>/artifacts/reports/coverage",
     "coverageThreshold": {
         "global": {
-            "branches": 20,
-            "functions": 20,
-            "lines": 20,
-            "statements": 20
+            "statements": 73.74,
+            "branches": 58.39,
+            "functions": 33.89,
+            "lines": 71.14
         }
     },
     "coverageReporters": ["json", "lcov", "text", "html"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "/\\.(e2e|spec)\\.ts$/", "/test/"],
+    "coveragePathIgnorePatterns": [
+        "/node_modules/",
+        "/\\.(e2e|spec)\\.ts$/",
+        "/test/",
+        "src/jest-global-mocks.ts",
+        "src/jest.ts",
+        "log.ts"
+    ],
     "transformIgnorePatterns": [
         "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es)"
     ]
