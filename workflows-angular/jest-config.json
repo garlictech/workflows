@@ -1,5 +1,7 @@
 {
     "preset": "jest-preset-angular",
+    "verbose": true,
+    "bail": true,
     "setupTestFrameworkScriptFile": "./src/jest.ts",
     "browser": true,
     "globals": {

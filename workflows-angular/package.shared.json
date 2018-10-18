@@ -22,7 +22,7 @@
         "@ngrx/store": "^6.0.1",
         "@ngx-translate/core": "^10.0.2",
         "@ngx-translate/http-loader": "^3.0.1",
-        "zone.js": "~0.8.26",
+        "zone.js": "git+https://github.com/angular/zone.js.git",
         "ng2-logger": "^2.0.0",
         "ngrx-store-logger": "^0.2.0",
         "ngrx-store-freeze": "^0.2.0",
@@ -55,6 +55,7 @@
         "jest": "^23.6.0",
         "jest-marbles": "^2.0.0",
         "jest-preset-angular": "^6.0.1",
-        "ts-jest": "^23.10.0"
+        "ts-jest": "^23.10.0",
+        "weak": "^1.0.1"
     }
 }
