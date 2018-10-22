@@ -1,4 +1,10 @@
-{
+// Don't use this file as jest config, use the app-level config file in src. That file must import this one and re-export
+// it with or without modifications.
+// That file contains the workflow level global settigns, so if you overwrite this one, the workflow test runs may
+// return different result.
+
+module.exports = {
+    "rootDir": "../",
     "preset": "jest-preset-angular",
     "verbose": true,
     "bail": true,
@@ -46,5 +52,6 @@
     ],
     "transformIgnorePatterns": [
         "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es)"
-    ]
+    ],
+    testPathIgnorePatterns: ["/node_modules/", "/dist/", ".git"]
 }

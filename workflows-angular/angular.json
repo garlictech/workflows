@@ -13,11 +13,11 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "artifacts/dist",
+                        "outputPath": "artifacts/dist/browser",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
-                        "tsConfig": "src/tsconfig.app.json",
+                        "tsConfig": "src/tsconfig.json",
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
@@ -33,8 +33,10 @@
                         "scripts": []
                     },
                     "configurations": {
-                        "default": {},
-                        "production": {
+                        "default": {
+                            "optimization": false
+                        },
+                        "master": {
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
@@ -46,7 +48,7 @@
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": false,
+                            "vendorChunk": true,
                             "buildOptimizer": true
                         },
                         "staging": {
@@ -87,7 +89,7 @@
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
                         "tsConfig": [
-                            "src/tsconfig.app.json",
+                            "src/tsconfig.json",
                             "src/tsconfig.spec.json"
                         ],
                         "exclude": [
@@ -99,8 +101,8 @@
                 "server": {
                     "builder": "@angular-devkit/build-angular:server",
                     "options": {
-                        "outputPath": "artifacts/universal",
-                        "main": "main.server.ts",
+                        "outputPath": "artifacts/dist/server",
+                        "main": "universal/main.server.ts",
                         "tsConfig": "tsconfig.server.json"
                     }
                 }

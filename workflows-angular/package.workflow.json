@@ -4,8 +4,8 @@
     "description": "Angular and Webpack 2 Starter",
     "scripts": {
         "rimraf": "rimraf",
-        "unittest": "jest -c jest-config.json --coverage $@ --forceExit --detectOpenHandles -w 4",
-        "unittest:watch": "jest -c jest-config.json --watch",
+        "unittest": "jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles -w 4",
+        "unittest:watch": "jest -c src/jest-config.js --watch",
         "lint": "ng lint $@ | sed 's/ \\/app\\// /g'",
         "lint:fix": "ng lint --fix $@ | sed 's/ \\/app\\// /g'",
         "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
