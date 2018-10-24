@@ -21,7 +21,10 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.ts$/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
+                options: {
+                    configFile: 'src/tsconfig.json'
+                }
             },
             {
                 // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
