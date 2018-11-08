@@ -24,14 +24,16 @@
         "@ngrx/entity": "^6.0.1",
         "@ngrx/router-store": "^6.0.1",
         "@ngrx/store": "^6.0.1",
-        "zone.js": "git+https://github.com/angular/zone.js.git",
+        "zone.js": "^0.8.26",
         "ng2-logger": "^2.0.0",
         "ngrx-store-logger": "^0.2.0",
         "ngrx-store-freeze": "^0.2.0",
         "rxjs": "^6.3.2",
-        "rxjs-compat": "^6.2.1"
+        "rxjs-compat": "^6.2.1",
+        "lodash-es": "^4.17.11"
     },
     "devDependencies": {
+        "@types/lodash-es": "^4.17.1",
         "@angular-devkit/build-angular": "~0.10.3",
         "@angular-devkit/core": "^7.0.3",
         "@angular-devkit/schematics": "^7.0.3",
