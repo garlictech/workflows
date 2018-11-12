@@ -10,7 +10,6 @@
         "@angular/platform-browser-dynamic": "^7.0.3",
         "@angular/platform-server": "^7.0.3",
         "@angular/router": "^7.0.3",
-
         "@fortawesome/angular-fontawesome": "^0.3.0",
         "@fortawesome/fontawesome-free": "^5.4.2",
         "@fortawesome/fontawesome-svg-core": "^1.2.7",
