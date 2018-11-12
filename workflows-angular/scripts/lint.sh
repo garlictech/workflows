@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
+set -e
+set -o pipefail
 
-tslint --project tslint.json -e "dist/**" -e "/app/*.ts"
+ng lint $@ | sed 's= /app/= =g'
