@@ -51,7 +51,7 @@
         "codelyzer": "~4.5.0",
         "cucumber": "^5.0.2",
         "@ngrx/schematics": "^6.0.1",
-        "@ngrx/store-devtools": "^6.0.1",
+        "@ngrx/store-devtools": "^7.0.0-beta.0",
         "@types/socket.io-client": "^1.4.32",
         "apply-loader": "^2.0.0",
         "chai": "^4.1.2",
