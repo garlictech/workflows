@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -e
-
-npm install --unsafe-perm=true -g coffee coffeescript firebase-tools prettier
-npm install
-mkdir scripts 
+npm install --unsafe-perm=true -g coffee coffeescript firebase-tools prettier yarn
+yarn install
+mkdir scripts
 cd $HOME
 wget https://github.com/git-lfs/git-lfs/releases/download/v2.3.2/git-lfs-linux-amd64-2.3.2.tar.gz
 tar -xf git-lfs-linux-amd64-2.3.2.tar.gz

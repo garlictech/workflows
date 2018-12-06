@@ -7,8 +7,8 @@ COPY setup.sh /
 RUN /setup.sh && rm /setup.sh
 
 ADD scripts/install_dependencies /app/scripts/
+
 RUN scripts/install_dependencies && \
-  npm cache clean --force && \
   rm -rf scripts
 
 ADD scripts /app/scripts
