@@ -12,6 +12,6 @@ RUN scripts/install_dependencies && \
 
 COPY . /app
 
-RUN rm -f package.shared.json package.workflow.json angular.json ng-add-pug-loader.js
+RUN rm -f package.shared.json package.workflow.json
 
 CMD ["npm", "start"]
