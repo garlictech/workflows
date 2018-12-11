@@ -10,6 +10,7 @@ module.exports = {
     "bail": true,
     "setupTestFrameworkScriptFile": "./src/jest.ts",
     "browser": true,
+    "clearMocks": true,
     "globals": {
         "ts-jest": {
             "tsConfigFile": "src/tsconfig.spec.json",
