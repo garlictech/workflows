@@ -7,5 +7,10 @@
   "angularCompilerOptions": {
     "entryModule": "./universal/app.server.module#AppServerModule"
   },
-  "exclude": ["artifacts", "e2e/**/*.ts", "src/**/test/**/*", "src/**/*.spec.ts"]
+  "exclude": ["artifacts", "e2e/**/*.ts", "src/**/test/**/*", "src/**/*.spec.ts"],
+  "include": [
+    "node_modules/@bit",
+    "src",
+    "universal"
+  ]
 }

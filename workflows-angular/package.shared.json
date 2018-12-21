@@ -64,6 +64,8 @@
         "weak": "^1.0.1",
         "prettier": "^1.15.2",
         "babel-core": "^6.0.0",
-        "babel-jest": "^23.0.0"
+        "babel-jest": "^23.0.0",
+        "@nguniversal/express-engine": "~7.0.0",
+        "@nguniversal/module-map-ngfactory-loader": "~7.0.0"
     }
 }
