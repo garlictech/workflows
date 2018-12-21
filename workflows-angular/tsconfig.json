@@ -36,5 +36,9 @@
     "artifacts",
     "e2e/**/*.ts",
     "universal"
+  ],
+  "include": [
+    "node_modules/@bit",
+    "src"
   ]
 }
