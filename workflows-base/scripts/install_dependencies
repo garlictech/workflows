@@ -19,13 +19,22 @@ var keys = _.keys(newDeps)
 
 if (keys.length !== 0) {
   packages = keys.reduce((current, next) => current + ` ${next}@${newDeps[next]}`, "")
-  execute(`yarn add --network-timeout 1000000 -W ${packages}`, { stdio: [0, 1, 2] });
+  execute(`yarn add --network-timeout 1000000 -w ${packages}`, { stdio: [0, 1, 2] });
 }
 
 try {
   let workflow = fs.readJsonSync("package.workflow.json")
   let pjson = fs.readJsonSync("package.json")
   pjson.scripts = merge.recursive(pjson.scripts, workflow.scripts || {})
+  pjson.workspaces = [...(pjson.workspaces || []), ...(workflow.workspaces || [])]
+  fs.writeJsonSync("package.json", pjson, { spaces: 2 })
+} catch (err) {}
+
+try {
+  let projectPjson = fs.readJsonSync("package.project.json")
+  let pjson = fs.readJsonSync("package.json")
+  pjson.workspaces = projectPjson.workspaces || pjson.workspaces || []
+  pjson.private = projectPjson.private || true
   fs.writeJsonSync("package.json", pjson, { spaces: 2 })
 } catch (err) {}
 
@@ -47,8 +56,7 @@ try {
   fs.writeJsonSync("package.project.json", projectPjson, { spaces: 2 })
 } catch (err) {}
 
-keys = []
-let remainedPackages
+let remainedPackages = {}
 
 try {
   let internalPjson = fs.readJsonSync("_package.shared.json");
@@ -60,10 +68,12 @@ try {
   _.assign(projectDeps, projectPjson.dependencies, projectPjson.devDependencies, projectPjson.optionalDependencies, projectPjson.peerDependencies)
 
   remainedPackages = _.omit(projectDeps, _.keys(internalDeps))
-  keys = _.keys(remainedPackages)
+  let pjson = fs.readJsonSync("package.json")
 } catch (err) {}
 
-if (keys.length !== 0) {
-  packages = keys.reduce((current, next) => `${current} ${next}@${remainedPackages[next]}`, "")
-  execute(`yarn add --network-timeout 1000000 -W ${packages}`, { stdio: [0, 1, 2] });
+if (Object.keys(remainedPackages).length !== 0) {
+  let pjson = fs.readJsonSync("package.json")
+  _.assign(pjson.dependencies, remainedPackages);
+  fs.writeJsonSync("package.json", pjson, { spaces: 2 })
+  execute(`yarn --network-timeout 1000000`, { stdio: [0, 1, 2] });
 }

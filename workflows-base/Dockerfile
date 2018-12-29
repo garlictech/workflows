@@ -3,6 +3,7 @@ MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
 COPY *.json /app/
 COPY setup.sh /
+COPY .yarnrc /root
 
 RUN /setup.sh && rm /setup.sh
 

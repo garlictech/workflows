@@ -9,5 +9,9 @@
         "lodash": "^4.17.4",
         "merge": "^1.2.0"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "src/features/common/*"
+    ]
 }

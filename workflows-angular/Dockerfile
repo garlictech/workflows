@@ -8,6 +8,7 @@ COPY package*.json angular.json /app/
 
 RUN scripts/install_dependencies && \
   npm install -g @angular/cli && \
+  ng config -g cli.packageManager yarn && \
   ng add ng-cli-pug-loader
 
 COPY . /app
