@@ -10,7 +10,8 @@ RUN /setup.sh && rm /setup.sh
 ADD scripts/install_dependencies /app/scripts/
 
 RUN scripts/install_dependencies && \
-  rm -rf scripts
+  rm -rf scripts && \
+  yarn add commitizen
 
 ADD scripts /app/scripts
 ADD coffeelint.json tslint.json .editorconfig .prettierrc /app/
