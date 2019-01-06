@@ -3,8 +3,11 @@
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",
         "travis": "scripts/travis.sh $@",
-        "prettier": "scripts/prettier.sh",
-        "lint": "scripts/lint.sh",
+        "prettier": "prettier --config ./.prettierrc --write \"src/**/*{.ts,.js,.json,.css,.scss}\"",
+        "prettier:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts,.js,.json,.css,.scss}\"",
+        "lint": "npm run prettier:check && scripts/lint.sh",
+        "lint:fix": "npm run prettier && scripts/lint.sh --fix",
+        "format:fix": "cd /app/project && pretty-quick --staged",
         "typedoc": "typedoc /app/project/src --out /app/doc"
     },
     "dependencies": {

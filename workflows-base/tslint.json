@@ -1,6 +1,5 @@
 {
   "rulesDirectory": [
-    "codelyzer",
     "tslint-eslint-rules",
     "tslint-plugin-prettier",
     "tslint-misc-rules",
@@ -11,7 +10,6 @@
     "tslint:recommended",
     "tslint-sonarts",
     "tslint-consistent-codestyle",
-    "angular-tslint-rules",
     "tslint-config-prettier"
   ],
   "rules": {
@@ -29,15 +27,12 @@
     "no-unused-variable": true
   },
   "linterOptions": {
-    "files": ["src/**/*.ts"],
     "exclude": [
       "artifacts",
       "node_modules",
-      "cypress",
       "docker",
       "src/**/test/**/*.*",
       "src/**/*.spec.ts",
-      "e2e",
       "src/**/jest*"
     ]
   }

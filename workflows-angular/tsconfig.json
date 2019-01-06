@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
     "outDir": "./dist/out-tsc",
     "target": "es5",
     "module": "es2015",

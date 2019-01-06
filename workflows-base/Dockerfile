@@ -13,7 +13,7 @@ RUN scripts/install_dependencies && \
   rm -rf scripts
 
 ADD scripts /app/scripts
-ADD coffeelint.json /app/
+ADD coffeelint.json tslint.json .editorconfig .prettierrc /app/
 ADD hooks_workflow /app/hooks_workflow
 
 RUN rm -f package.shared.json package.workflow.json && \

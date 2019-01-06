@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-tslint --project tslint.json --fix -e "dist/**" -e *.ts
+tslint --project tslint.json -e "dist/**" -e $@ *.ts

@@ -5,7 +5,8 @@ COPY *.json /app/
 
 RUN npm install --unsafe-perm=true -g gulp && \
   scripts/install_dependencies && \
-  npm cache clean --force
+  npm cache clean --force && \
+  yarn cache clean
 
 COPY . /app
 

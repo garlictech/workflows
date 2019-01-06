@@ -7,8 +7,6 @@
         "unittest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles",
         "unittest:watch": "jest -c src/jest-config.js --watch",
         "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles --ci --runInBand",
-        "lint": "scripts/lint.sh",
-        "lint:fix": "scripts/lint.sh --fix",
         "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "start": "ng serve --hmr --host 0.0.0.0 --port 8081 $@",
         "start:poll": "ng serve --hmr --host 0.0.0.0 --port 8081 --poll",
@@ -25,6 +23,7 @@
         "doc:buildandserve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.json --includes src/docs"
     },
     "dependencies": {
+        "@angular/platform-server": "~7.1.0",
         "@compodoc/compodoc": "^1.0.0",
         "express": "^4.16.3",
         "ts-loader": "^5.0.0",
@@ -33,5 +32,8 @@
         "webpack-bundle-analyzer": "^3.0.2",
         "webpack": "~4.27.0"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@nguniversal/express-engine": "~7.0.0",
+        "@nguniversal/module-map-ngfactory-loader": "~7.0.0"
+    }
 }
