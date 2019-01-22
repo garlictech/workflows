@@ -14,7 +14,7 @@ module.exports = {
     "globals": {
         "ts-jest": {
             "tsConfigFile": "src/tsconfig.spec.json",
-            "ignoreCoverageForDecorators": true
+            "ignoreCoverageForAllDecorators": true
         },
         "__TRANSFORM_HTML__": true
     },
@@ -45,14 +45,16 @@ module.exports = {
     "coverageReporters": ["json", "lcov", "text", "html"],
     "coveragePathIgnorePatterns": [
         "/node_modules/",
-        "/\\.(e2e|spec)\\.ts$/",
+        "/\\.(e2e|spec|d)\\.ts$/",
         "/test/",
         "src/jest-global-mocks.ts",
         "src/jest.ts",
-        "log.ts"
+        "log.ts",
+        "assets"
     ],
+    "collectCoverageFrom": ["src/*/**/*.ts"],
     "transformIgnorePatterns": [
-        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es|@bit)"
+        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es)"
     ],
     testPathIgnorePatterns: ["/node_modules/", "/dist/", ".git"]
 }

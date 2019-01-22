@@ -38,6 +38,7 @@
       "src/**/test/**/*.*",
       "src/**/*.spec.ts",
       "e2e",
+      "src/assets",
       "src/**/jest*"
     ]
   }
