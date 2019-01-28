@@ -45,7 +45,7 @@ module.exports = {
     "coverageReporters": ["json", "lcov", "text", "html"],
     "coveragePathIgnorePatterns": [
         "/node_modules/",
-        "/\\.(e2e|spec|d)\\.ts$/",
+        "\\.(e2e|spec|d)\\.ts$",
         "/test/",
         "src/jest-global-mocks.ts",
         "src/jest.ts",
@@ -54,7 +54,7 @@ module.exports = {
     ],
     "collectCoverageFrom": ["src/*/**/*.ts"],
     "transformIgnorePatterns": [
-        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es)"
+        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es|@bit)"
     ],
     testPathIgnorePatterns: ["/node_modules/", "/dist/", ".git"]
 }
