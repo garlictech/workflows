@@ -54,7 +54,7 @@ module.exports = {
     ],
     "collectCoverageFrom": ["src/*/**/*.ts"],
     "transformIgnorePatterns": [
-        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es)"
+        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es!@bit)"
     ],
     testPathIgnorePatterns: ["/node_modules/", "/dist/", ".git"]
 }
