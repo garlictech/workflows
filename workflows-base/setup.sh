@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 npm install --unsafe-perm=true -g coffee coffeescript firebase-tools prettier yarn bit-bin
+yes | bit init
 yarn install
 mkdir scripts
 cd $HOME
@@ -21,4 +22,3 @@ apt-get remove --purge -y python-pip python-dev build-essential python-setuptool
 apt-get autoremove -y
 apt-get clean
 mkdir -p $HOME/.kube
-yes | bit init
