@@ -8,7 +8,7 @@ module.exports = {
     "preset": "jest-preset-angular",
     "verbose": true,
     "bail": true,
-    "setupTestFrameworkScriptFile": "./src/jest.ts",
+    "setupFilesAfterEnv": ["./src/jest.ts"],
     "browser": true,
     "clearMocks": true,
     "globals": {
@@ -54,7 +54,7 @@ module.exports = {
     ],
     "collectCoverageFrom": ["src/*/**/*.ts"],
     "transformIgnorePatterns": [
-        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es!@bit)"
+        "node_modules/(?!@ngrx|@ionic-native|@ionic|lodash-es|@bit)"
     ],
-    testPathIgnorePatterns: ["/node_modules/", "/dist/", ".git"]
+    testPathIgnorePatterns: ["/node_modules/", "/artifacts/", "<rootDir>.git"]
 }
