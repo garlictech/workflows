@@ -19,7 +19,8 @@ module.exports = {
         "__TRANSFORM_HTML__": true
     },
     "transform": {
-        "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js"
+        "^.+\\.(ts|js|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js",
+        "\\.(pug)$": "<rootDir>/node_modules/pug-jest"
     },
     "moduleFileExtensions": [
         "ts",
@@ -30,7 +31,7 @@ module.exports = {
     "moduleDirectories": ["node_modules", "src"],
     "moduleNameMapper": {
         "subrepos/(.*)": "<rootDir>/src/subrepos/$1",
-        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|pug)$": "<rootDir>/src/test/jest/mocks/fileMock.js",
+        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/test/jest/mocks/fileMock.js",
         "\\.(css|less)$": "<rootDir>/src/test/jest/mocks/styleMock.js"
     },
     "coverageDirectory": "<rootDir>/artifacts/reports/coverage",
