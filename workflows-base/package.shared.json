@@ -2,8 +2,8 @@
     "dependencies": {
         "lodash": "^4.17.4",
         "debug": "^4.1.0",
-        "rxjs": "^6.3.2",
-        "rxjs-compat": "^6.2.1",
+        "rxjs": "~6.3.2",
+        "rxjs-compat": "~6.3.2",
         "lodash-es": "^4.17.11"
     },
     "devDependencies": {
