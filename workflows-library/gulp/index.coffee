@@ -21,8 +21,6 @@ module.exports = (_gulp, config) ->
 
   gulp.task 'watch', ['build'], require('/app/gulp_common/watch')(gulp, config, fileTypes)
 
-  gulp.task 'pre-test', ['build'], require('/app/gulp_common/pre-test')(gulp, config)
-
   gulp.task 'systemtest', require("/app/gulp_common/systemtest")(gulp, config)
 
   gulp.task 'build', ['compile']
