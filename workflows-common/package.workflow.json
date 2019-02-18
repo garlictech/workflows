@@ -20,14 +20,10 @@
         "gulp-using": "^0.1.1",
         "gulp-uglifycss": "^1.0.6",
         "gulp-nodemon": "^2.2.1",
-        "gulp-istanbul": "^1.1.2",
-        "gulp-jasmine": "^2.4.2",
         "jasmine-spec-reporter": "^4.2.1",
         "merge2": "^1.0.3",
         "merge-stream": "^1.0.1",
         "node-yaml": "^3.0.3",
-        "remap-istanbul": "^0.9.5",
-        "gulp-plumber": "^1.1.0",
-        "require-dir": "^0.3.2"
+        "gulp-plumber": "^1.1.0"
     }
 }

@@ -3,7 +3,7 @@ gulp = require 'gulp'
 config =
   root: "/app/project"
   src: ["server", "subrepos"]
-  dist: "/app/dist"
+  dist: "/app/artifacts/dist"
   cssBundleName: 'style'
 
 require('./gulp')(gulp, config)

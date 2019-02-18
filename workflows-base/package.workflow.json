@@ -1,5 +1,10 @@
 {
     "scripts": {
+        "rimraf": "rimraf",
+        "unittest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles",
+        "unittest:watch": "jest -c src/jest-config.js --watch",
+        "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles --ci --runInBand",
+        "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",
         "travis": "scripts/travis.sh $@",
@@ -7,8 +12,7 @@
         "prettier:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts,.js,.json,.css,.scss}\"",
         "lint": "npm run prettier:check && scripts/lint.sh",
         "lint:fix": "npm run prettier && scripts/lint.sh --fix",
-        "format:fix": "cd /app/project && pretty-quick --staged",
-        "typedoc": "typedoc /app/project/src --out /app/doc"
+        "format:fix": "cd /app/project && pretty-quick --staged"
     },
     "dependencies": {
         "commitizen": "~3.0.5",

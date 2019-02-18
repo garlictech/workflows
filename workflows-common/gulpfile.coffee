@@ -2,8 +2,8 @@ gulp = require 'gulp'
 
 config =
   root: "/app/project"
-  src: ["src", "subrepos"]
-  dist: "/app/dist"
+  src: ["src"]
+  dist: "/app/artifacts/dist"
   cssBundleName: 'style'
 
 try require('./hooks/gulp') config

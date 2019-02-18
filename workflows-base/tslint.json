@@ -28,12 +28,7 @@
   },
   "linterOptions": {
     "exclude": [
-      "artifacts",
-      "node_modules",
-      "docker",
-      "src/**/test/**/*.*",
-      "src/**/*.spec.ts",
-      "src/**/jest*"
+      "node_modules/**/*"
     ]
   }
 }

@@ -1,5 +1,4 @@
 FROM garlictech2/base-image
-MAINTAINER Garlic Tech Ltd. <contact@garlictech.com>
 
 COPY *.json /app/
 COPY setup.sh /

@@ -3,11 +3,6 @@
     "version": "1.0.0",
     "description": "Angular and Webpack 2 Starter",
     "scripts": {
-        "rimraf": "rimraf",
-        "unittest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles",
-        "unittest:watch": "jest -c src/jest-config.js --watch",
-        "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest-config.js --coverage $@ --forceExit --detectOpenHandles --ci --runInBand",
-        "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "start": "ng serve --hmr --host 0.0.0.0 --port 8081 $@",
         "start:poll": "ng serve --hmr --host 0.0.0.0 --port 8081 --poll",
         "start:aot": "npm start --aot $@",
