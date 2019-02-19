@@ -1,4 +1,6 @@
 {
-    "devDependencies": {},
+    "devDependencies": {
+        "jest-preset-typescript": "^1.2.0"
+    },
     "dependencies": {}
 }
