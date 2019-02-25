@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+if [ "$TRAVIS_EVENT_TYPE" == "pull_request" ]; then  
+  echo "Not released in pull request."
+else
+  npm run semantic-release
+fi

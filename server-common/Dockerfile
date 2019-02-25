@@ -3,7 +3,7 @@ MAINTAINER Zsolt MOLNAR <zsolt@zsoltmolnar.hu>
 
 COPY *.json /app/
 
-RUN scripts/install_dependencies && \
+RUN scripts/install_dependencies.js && \
   npm cache clean --force
 
 COPY . /app

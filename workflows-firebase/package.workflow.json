@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+
+    },
+    "devDependencies": {},
+    "scripts": {
+        "deploy-firebase": "scripts/firebase-deploy $@"
+    }
+}

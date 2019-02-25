@@ -1,9 +1,0 @@
-{
-    "dependencies": {
-        "source-map-support": "^0.5.0",
-        "winston": "^2.3.1"
-    },
-    "devDependencies": {
-        "@types/winston": "^2.3.5"
-    }
-}

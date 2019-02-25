@@ -3,12 +3,10 @@
         "server": "scripts/start-server.sh"
     },
     "dependencies": {
-        "aws-sdk": "^2.40.0",
         "aws-serverless-express": "^3.0.1",
-        "claudia": "^5.4.0",
         "claudia-api-builder": "^4.1.2"
     },
     "devDependencies": {
-
+        "claudia": "^5.4.0"
     }
 }

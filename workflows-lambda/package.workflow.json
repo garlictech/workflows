@@ -1,6 +1,8 @@
 {
     "scripts": {
-        "server": "scripts/start-server.sh"
+        "create-bucket": "make create-bucket",
+        "print-environment": "make print-environment",
+        "deploy-lambda-stack": "make deploy-lambda-stack"
     },
     "dependencies": {
         "commitizen": "~3.0.5",
