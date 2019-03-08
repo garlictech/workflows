@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -e
+mkdir -p artifacts
+
 # Jest watch workaround
 git init
 npm install --unsafe-perm=true -g yarn

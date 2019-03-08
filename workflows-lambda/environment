@@ -1,2 +1,1 @@
-export LAMBDA_DEPLOY_S3_BUCKET=garlictech-lambda-deployment
 export AWS_REGION=us-east-1
