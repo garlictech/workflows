@@ -19,26 +19,6 @@ module.exports = {
     },
     cacheDirectory: './artifacts/cache',
     moduleDirectories: ['node_modules', 'project/src'],
-    coverageDirectory: '<rootDir>/artifacts/reports/coverage',
-    coverageThreshold: {
-        global: {
-            statements: 100,
-            branches: 100,
-            functions: 100,
-            lines: 100
-        }
-    },
-    coverageReporters: ['json', 'lcov', 'text', 'html'],
-    coveragePathIgnorePatterns: [
-        '/node_modules/',
-        '\\.(spec|d)\\.ts$',
-        '/test/',
-        'src/jest-global-mocks.ts',
-        'src/jest.ts',
-        'log.ts',
-        'assets'
-    ],
-    collectCoverageFrom: ['project/src/*/**/*.ts'],
     transformIgnorePatterns: ['node_modules/(?!@bit)'],
     testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git', '<rootDir>/project/test']
 };
