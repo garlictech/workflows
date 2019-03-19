@@ -26,5 +26,5 @@ module.exports = {
         'log.ts',
         'assets'
     ],
-    collectCoverageFrom: ['src/*/**/*.ts'],
+    collectCoverageFrom: ['src/*/**/*.ts']
 };

@@ -17,7 +17,7 @@
         "@fortawesome/free-regular-svg-icons": "^5.5.0",
         "@fortawesome/free-solid-svg-icons": "^5.5.0",
         "@ngx-translate/core": "^11.0.1",
-        "primeng": "~7.0.0",
+        "primeng": "~7.1.0",
         "core-js": "^2.6.1",
         "@fortawesome/angular-fontawesome": "^0.3.0",
         "@ngx-translate/http-loader": "^4.0.0",
