@@ -35,6 +35,27 @@ try {
 } catch (err) {}
 
 try {
+    let internalShared = fs.readJsonSync("_package.shared.json")
+    let externalShared = fs.readJsonSync("package.shared.json")
+    let mergedShared = merge.recursive(internalShared, externalShared)
+    fs.writeJsonSync("_package.shared.json", mergedShared, {
+        spaces: 2
+    })
+} catch (err) {}
+
+try {
+    let sharedPjson = fs.readJsonSync("_package.shared.json")
+    let pjson = fs.readJsonSync("package.json")
+    pjson.resolutions = {
+        ...pjson.resolutions,
+        ...sharedPjson.resolutions
+    }
+    fs.writeJsonSync("package.json", pjson, {
+        spaces: 2
+    })
+} catch (err) {}
+
+try {
     let projectPjson = fs.readJsonSync("package.project.json")
     let pjson = fs.readJsonSync("package.json")
     pjson.workspaces = projectPjson.workspaces || pjson.workspaces || []
@@ -45,19 +66,10 @@ try {
 } catch (err) {}
 
 try {
-    let internalShared = fs.readJsonSync("_package.shared.json")
-    let externalShared = fs.readJsonSync("package.shared.json")
-    let mergedShared = merge.recursive(internalShared, externalShared)
-    fs.writeJsonSync("_package.shared.json", mergedShared, {
-        spaces: 2
-    })
-} catch (err) {}
-
-try {
     let projectPjson = fs.readJsonSync("package.project.json");
     let internalShared = fs.readJsonSync("_package.shared.json");
 
-    ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies'].forEach(field => {
+    ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies', 'resolutions'].forEach(field => {
         projectPjson[field] = merge.recursive(projectPjson[field], internalShared[field])
     });
 
@@ -71,11 +83,11 @@ let remainedPackages = {}
 try {
     let internalPjson = fs.readJsonSync("_package.shared.json");
     let internalDeps = {}
-    _.assign(internalDeps, internalPjson.dependencies, internalPjson.devDependencies, internalPjson.optionalDependencies, internalPjson.peerDependencies)
+    _.assign(internalDeps, internalPjson.dependencies, internalPjson.devDependencies, internalPjson.optionalDependencies, internalPjson.resolutions)
 
     let projectPjson = fs.readJsonSync('package.project.json');
     let projectDeps = {}
-    _.assign(projectDeps, projectPjson.dependencies, projectPjson.devDependencies, projectPjson.optionalDependencies, projectPjson.peerDependencies)
+    _.assign(projectDeps, projectPjson.dependencies, projectPjson.devDependencies, projectPjson.optionalDependencies, projectPjson.resolutions)
 
     remainedPackages = _.omit(projectDeps, _.keys(internalDeps))
 } catch (err) {}

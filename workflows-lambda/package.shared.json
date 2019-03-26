@@ -5,6 +5,12 @@
         "@nestjs/core": "^5.7.3",
         "express": "^4.16.4"
     },
+    "resolutions": {
+        "aws-serverless-express": "^3.0.1",
+        "@nestjs/common": "^5.7.3",
+        "@nestjs/core": "^5.7.3",
+        "express": "^4.16.4"
+    },
     "devDependencies": {
         "serverless": "^1.38.0",
         "serverless-offline": "^4.8.1",
