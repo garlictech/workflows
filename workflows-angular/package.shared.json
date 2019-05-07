@@ -1,7 +1,8 @@
 {
     "dependencies": {
+
         "@angular/animations": "~7.2.1",
-        "@angular/cdk": "~7.2.1",
+        "@angular/cdk": "~7.3.7",
         "@angular/common": "~7.2.1",
         "@angular/compiler": "~7.2.1",
         "@angular/core": "~7.2.1",
@@ -22,30 +23,31 @@
         "@fortawesome/angular-fontawesome": "^0.3.0",
         "@ngx-translate/http-loader": "^4.0.0",
         "primeicons": "^1.0.0",
-        "@ngrx/effects": "~7.1.0",
-        "@ngrx/entity": "~7.1.0",
-        "@ngrx/router-store": "~7.1.0",
-        "@ngrx/store": "~7.1.0",
-        "zone.js": "~0.8.28",
+        "@ngrx/effects": "~7.4.0",
+        "@ngrx/entity": "~7.4.0",
+        "@ngrx/router-store": "~7.4.0",
+        "@ngrx/store": "~7.4.0",
+        "zone.js": "~0.8.26",
         "ng2-logger": "^2.0.0",
         "randomcolor": "^0.5.3",
         "ngrx-store-logger": "^0.2.0",
         "ngrx-store-freeze": "^0.2.0"
     },
     "resolutions": {
-        "primeng": "7.1.0"
+        "primeng": "7.1.2"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~0.12.2",
-        "@angular-devkit/core": "~7.2.2",
-        "@angular-devkit/schematics": "~7.2.2",
-        "@angular-devkit/schematics-cli": "^0.12.2",
-        "@angular/cli": "~7.2.2",
+        "@angular-devkit/build-angular": "~0.13.8",
+        "@angular-devkit/core": "~7.3.8",
+        "@angular-devkit/schematics": "~7.3.8",
+        "@angular-devkit/schematics-cli": "^0.13.8",
+        "@angular/cli": "~7.3.8",
         "@angular/compiler-cli": "~7.2.1",
         "@angular/language-service": "~7.2.1",
-        "@schematics/schematics": "^0.12.2",
-        "codelyzer": "~4.5.0",
-        "angular-tslint-rules": "^1.12.1",
+        "@schematics/schematics": "^0.13.8",
+        "jest-environment-jsdom-thirteen": "^1.0.1",
+        "codelyzer": "~5.0.0",
+        "tslint-angular": "^2.0.2",
         "@ngrx/schematics": "^7.1.0",
         "@ngrx/store-devtools": "^7.1.0",
         "@types/socket.io-client": "^1.4.32",
@@ -53,7 +55,8 @@
         "chai": "^4.1.2",
         "chai-as-promised": "^7.1.1",
         "protractor": "^5.3.1",
-        "jest-preset-angular": "^6.0.1",
+        "jest-preset-angular": "^7.1.0",
+        "ts-jest": "^24.0.0",
         "pug-jest": "^1.0.1"
     }
 }

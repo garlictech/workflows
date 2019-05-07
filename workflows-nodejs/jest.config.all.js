@@ -20,11 +20,7 @@ module.exports = {
     coveragePathIgnorePatterns: [
         '/node_modules/',
         '\\.(e2e|spec|d)\\.ts$',
-        '/test/',
-        'src/jest-global-mocks.ts',
-        'src/jest.ts',
-        'log.ts',
-        'assets'
+        '/test/'
     ],
-    collectCoverageFrom: ['src/*/**/*.ts'],
+    collectCoverageFrom: ['project/src/*/**/*.ts']
 };

@@ -1,17 +1,5 @@
 {
     "dependencies": {
-        "app-module-path": "^2.2.0",
-        "chai": "^4.1.2",
-        "gulp": "^4.0.0",
-        "gulp-cached": "^1.1.1",
-        "gulp-load-plugins": "^1.4.0",
-        "gulp-size": "^3.0.0",
-        "gulp-sourcemaps": "^2.4.1",
-        "gulp-typescript": "^5.0.0",
-        "gulp-using": "^0.1.1",
-        "gulp-nodemon": "^2.2.1",
-        "merge2": "^1.0.3",
-        "node-yaml": "^3.0.3",
         "typedoc": "^0.14.0"
     },
     "scripts": {
@@ -21,9 +9,11 @@
         "start": "gulp",
         "prettier": "prettier --config ./.prettierrc --write \"project/src/**/*{.ts,.js,.json}\"",
         "prettier:check": "prettier --config ./.prettierrc --list-different \"project/src/**/*{.ts,.js,.json}\"",
-        "unittest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c project/jest.config.js --coverage $@ --forceExit --detectOpenHandles",
-        "unittest:watch": "jest -c project/jest.config.js --watch",
-        "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c project/jest.config.js --coverage $@ --forceExit --detectOpenHandles --ci --runInBand",
+        "unittest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c project/jest.config.unittest.js--forceExit --detectOpenHandles",
+        "unittest:watch": "jest -c project/jest.config.unittest.js --watch",
+        "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c project/jest.config.unittest.js--forceExit --detectOpenHandles --ci --runInBand",
+        "alltest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c project/jest.config.all.js --coverage $@ --forceExit --detectOpenHandles",
+        "alltest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest.config.all.js --coverage $@ --forceExit --detectOpenHandles --ci --runInBand && chmod -R 777 /app/artifacts",
         "format:fix": "cd /app/project && pretty-quick --staged"
     }
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "declaration": true,
+    "target": "es5",
+    "declaration": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -11,26 +11,15 @@
     "strictNullChecks": true,
     "removeComments": true,
     "sourceMap": true,
-    "lib": ["dom", "es6", "es2015", "es2016", "es2017"],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "node",
-      "jest"
-    ],
+    "lib": ["es6", "es2015", "es2016", "es2017"],
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "jest"],
     "baseUrl": "./project/src",
+    "outDir": "artifacts",
     "paths": {
-      "*": [
-        "*"
-      ]
-    },
+      "*": ["*"]
+    }
   },
-  "exclude": [
-    "artifacts"
-  ],
-  "include": [
-    "node_modules/@bit",
-    "project/src"
-  ]
+  "exclude": ["artifacts"],
+  "include": ["node_modules/@bit", "project/src"]
 }

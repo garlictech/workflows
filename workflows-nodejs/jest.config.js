@@ -9,16 +9,12 @@ module.exports = {
     bail: true,
     browser: false,
     clearMocks: true,
-    moduleFileExtensions: ['js', 'ts'],
-    preset: 'jest-preset-typescript',
-    globals: {
-        'ts-jest': {
-            tsConfig: 'project/tsconfig.json',
-            ignoreCoverageForAllDecorators: true
-        }
+    moduleFileExtensions: ['ts', 'js'],
+    transform: {
+        '\\.(ts|tsx)$': 'ts-jest'
     },
     cacheDirectory: './artifacts/cache',
     moduleDirectories: ['node_modules', 'project/src'],
     transformIgnorePatterns: ['node_modules/(?!@bit)'],
-    testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git', '<rootDir>/project/test']
+    testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git']
 };

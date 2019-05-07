@@ -11,33 +11,19 @@
     "tslint:recommended",
     "tslint-sonarts",
     "tslint-consistent-codestyle",
-    "angular-tslint-rules",
+    "tslint-angular",
     "tslint-config-prettier"
   ],
   "rules": {
     "prettier": [true, ".prettierrc"],
-    "prefer-or-operator-over-ternary": true,
-    "no-property-initializers": true,
-    "no-braces-for-single-line-arrow-functions": true,
-    "no-unnecessary-parens-for-arrow-function-arguments": true,
-    "jsdoc-require": [true],
-    "no-implicit-dependencies": false,
-    "object-literal-sort-keys": false,
-    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
+    "interface-name": false,
+    "jsdoc-require": [false],
+
     "i18n": false,
-    "strict-boolean-expressions": false,
     "no-unused-variable": true
   },
   "linterOptions": {
     "files": ["src/**/*.ts"],
-    "exclude": [
-      "artifacts",
-      "node_modules",
-      "cypress",
-      "docker",
-      "e2e",
-      "src/assets",
-      "src/**/jest*"
-    ]
+    "exclude": ["artifacts", "node_modules", "cypress", "docker", "e2e", "src/assets", "src/**/jest*"]
   }
 }
