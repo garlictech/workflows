@@ -31,7 +31,9 @@
         "jest-create-mock-instance": "^1.1.0",
         "prettier": "^1.16.0",
         "pretty-quick": "^1.10.0",
-        "@babel/core": "^7.2.0",
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "babel-polyfill": "^6.26.0",
         "babel-jest": "^24.0.0",
         "weak": "^1.0.1",
         "npm-install-peers": "^1.2.1"
