@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-tslint --project project/tsconfig.json -c project/tslint.json $@
+tslint --project project/config/tsconfig.json -c project/config/tslint.json $@

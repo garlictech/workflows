@@ -10,8 +10,8 @@
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",
         "travis": "scripts/travis.sh $@",
-        "prettier": "prettier --config ./.prettierrc --write \"src/**/*{.ts,.js,.json,.css,.scss}\"",
-        "prettier:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts,.js,.json,.css,.scss}\"",
+        "prettier": "prettier --config ./.prettierrc --write \"src/**/*{.ts,.json,.css,.scss}\"",
+        "prettier:check": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts,.json,.css,.scss}\"",
         "lint": "npm run prettier:check && scripts/lint.sh",
         "lint:fix": "npm run prettier && scripts/lint.sh --fix",
         "format:fix": "cd src && pretty-quick --staged"

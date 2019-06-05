@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+. .env
+
+if [ -f hooks/travis/deploy_project ]; then
+  hooks/travis/deploy_project
+fi

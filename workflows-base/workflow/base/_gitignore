@@ -1,0 +1,62 @@
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# --------------------
+# Node Files
+# --------------------
+.nodemonignore
+npm-debug.log
+node_modules
+coverage/
+
+# --------------------
+# SASS Files
+# --------------------
+.sass-cache/
+
+# --------------------
+# Bower Files
+# --------------------
+.bower-*/
+bower_components
+
+# --------------------
+# App Files
+# --------------------
+modules/public/
+modules/views/
+/public/build/
+.tmp/
+logs/
+builds/
+project/dist/
+dist/
+bin/
+*.bak
+.npmrc
+tokens.env
+secrets.tgz
+artifacts
+
+# --------------------
+# Text editor files
+# --------------------
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+claudia-configs/prod-env/*.json
+claudia-configs/test-env/*.json
+.setup.sh
+.serverless
+.webpack
+yarn-error.log
+.idea

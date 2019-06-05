@@ -1,0 +1,21 @@
+{
+  "rulesDirectory": ["tslint-eslint-rules", "tslint-plugin-prettier", "tslint-misc-rules", "tslint-jsdoc-rules"],
+  "extends": [
+    "tslint-eslint-rules",
+    "tslint:recommended",
+    "tslint-sonarts",
+    "tslint-consistent-codestyle",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "prettier": [true, ".prettierrc"],
+    "interface-name": false,
+    "jsdoc-require": [false],
+    "no-unused-variable": true,
+    "object-literal-sort-keys": false
+  },
+  "linterOptions": {
+    "files": ["src/**/*.ts"],
+    "exclude": ["artifacts", "node_modules", "docker", "e2e", "src/assets", "src/**/jest*"]
+  }
+}

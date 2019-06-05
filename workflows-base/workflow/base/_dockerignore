@@ -1,0 +1,10 @@
+.git
+.gitignore
+docker-compose.*
+docker
+e2e
+Dockerfile*
+node_modules
+.travis.yml
+npm-debug.log
+artifacts

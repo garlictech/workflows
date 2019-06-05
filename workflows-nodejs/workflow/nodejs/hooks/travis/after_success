@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+. .env
+npm run travis after_success
+
+if [[ "$TRAVIS_EVENT_TYPE" == "pull_request" ]]; then
+  echo "Not pushing to docker in pull request."
+  exit 0
+fi
+
+set -e
+make systemtest-build-prod
+scripts/docker-deploy.sh
+
+if [[ -n $PUSH_TO_AWS ]]; then
+  npm run push-to-aws
+fi

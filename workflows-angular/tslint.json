@@ -18,7 +18,6 @@
     "prettier": [true, ".prettierrc"],
     "interface-name": false,
     "jsdoc-require": [false],
-
     "i18n": false,
     "no-unused-variable": true
   },

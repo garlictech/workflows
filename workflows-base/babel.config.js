@@ -1,10 +1,1 @@
-module.exports = {
-    presets: ['@babel/preset-env'],
-    env: {
-        test: {
-            presets: [
-                ['@babel/preset-env']
-            ]
-        }
-    }
-};
+workflow/base/babel.config.js

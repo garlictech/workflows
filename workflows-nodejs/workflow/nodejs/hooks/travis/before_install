@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+  printf "\nexport DOCKER_IMAGE_SCOPE=prod" >> .env
+fi
+
+. .env
+
+if [[ "$TRAVIS_EVENT_TYPE" != "pull_request" ]]; then
+  if [[ -n $PUSH_TO_AWS ]]; then
+    pip install --user awscli
+  fi
+  
+  make docker-login
+  echo $DEEPSTREAM_LICENSEKEY > docker/secrets/DEEPSTREAM_LICENSEKEY.secret.txt
+fi
+
+export PATH=$PATH:$HOME/.local/bin
+echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc
+npm run travis before_install
+
+if [ -f hooks/travis/before_install_project ]; then
+  hooks/travis/before_install_project
+fi
+
