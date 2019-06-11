@@ -1,8 +1,7 @@
 {
     "scripts": {
         "print-environment": "make print-environment",
-        "deploy": "make deploy",
-        "start": "make start"
+        "deploy": "make deploy"
     },
     "dependencies": {},
     "devDependencies": {}

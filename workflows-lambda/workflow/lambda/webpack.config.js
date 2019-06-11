@@ -7,9 +7,11 @@ module.exports = {
   entry: slsw.lib.entries,
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
-    plugins: [new TsconfigPathsPlugin({
-      configFile: 'tsconfig.json'
-    })]
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: 'tsconfig.json'
+      })
+    ]
   },
   output: {
     libraryTarget: 'commonjs2',
@@ -18,9 +20,7 @@ module.exports = {
   },
   mode: 'development',
   target: 'node',
-  externals: [
-    /aws-sdk/,
-  ],
+  externals: [/aws-sdk/],
   module: {
     rules: [
       {

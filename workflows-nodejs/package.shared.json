@@ -1,7 +1,7 @@
 {
     "dependencies": {
         "source-map-support": "^0.5.0",
-        "winston": "^2.3.1"
+        "winston": "^3.2.1"
     },
     "devDependencies": {
         "jest-haste-map": "^24.3.0",
