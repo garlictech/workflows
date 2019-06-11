@@ -4,14 +4,7 @@
     <list default="true" id="94925056-f8fd-4461-88e0-51281fde6b71" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.bitmap" beforeDir="false" afterPath="$PROJECT_DIR$/.bitmap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-base/package.workflow.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-base/package.workflow.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-base/workflow/base/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-base/workflow/base/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/package.workflow.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/package.workflow.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-nodejs/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-nodejs/package.shared.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workflows-lambda/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/package.shared.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +23,7 @@
             <entry file="file://$PROJECT_DIR$/workflows-lambda/Makefile">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="336">
-                  <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+                  <caret line="16" selection-start-line="16" selection-end-line="16" />
                 </state>
               </provider>
             </entry>
@@ -39,7 +32,7 @@
             <entry file="file://$PROJECT_DIR$/workflows-lambda/package.workflow.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="168">
-                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
                 </state>
               </provider>
             </entry>
@@ -48,7 +41,7 @@
             <entry file="file://$PROJECT_DIR$/workflows-lambda/Dockerfile">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="189">
-                  <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+                  <caret line="9" selection-start-line="9" selection-end-line="9" />
                 </state>
               </provider>
             </entry>
@@ -63,10 +56,19 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/workflows-lambda/package.shared.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="399">
+                  <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/workflows-nodejs/package.workflow.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="399">
-                  <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+                  <caret line="19" selection-start-line="19" selection-end-line="19" />
                 </state>
               </provider>
             </entry>
@@ -79,7 +81,7 @@
             <entry file="file://$PROJECT_DIR$/workflows-nodejs/Makefile">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="315">
-                  <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+                  <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -88,7 +90,7 @@
             <entry file="file://$PROJECT_DIR$/workflows-nodejs/package.workflow.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="399">
-                  <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+                  <caret line="19" selection-start-line="19" selection-end-line="19" />
                 </state>
               </provider>
             </entry>
@@ -104,7 +106,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/workflows-base/scripts/install_dependencies.js" />
-        <option value="$PROJECT_DIR$/workflows-lambda/package.shared.json" />
         <option value="$PROJECT_DIR$/workflows-lambda/webpack.config.js" />
         <option value="$PROJECT_DIR$/workflows-lambda/workflow/webpack.config.js" />
         <option value="$PROJECT_DIR$/workflows-base/babel.config.js" />
@@ -124,6 +125,7 @@
         <option value="$PROJECT_DIR$/workflows-lambda/Makefile" />
         <option value="$PROJECT_DIR$/workflows-lambda/package.workflow.json" />
         <option value="$PROJECT_DIR$/workflows-lambda/Dockerfile" />
+        <option value="$PROJECT_DIR$/workflows-lambda/package.shared.json" />
       </list>
     </option>
   </component>
@@ -225,15 +227,16 @@
       <workItem from="1559731169464" duration="19361000" />
       <workItem from="1559826345116" duration="2279000" />
       <workItem from="1559897561573" duration="5094000" />
-      <workItem from="1560219874399" duration="2026000" />
+      <workItem from="1560219874399" duration="2697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42232000" />
+    <option name="totallyTimeSpent" value="42903000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17032968" />
@@ -402,13 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workflows-lambda/package.shared.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/workflows-aws/package.shared.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -450,28 +446,21 @@
     <entry file="file://$PROJECT_DIR$/workflows-lambda/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/workflows-nodejs/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workflows-lambda/package.workflow.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/workflows-lambda/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -485,7 +474,21 @@
     <entry file="file://$PROJECT_DIR$/workflows-nodejs/package.workflow.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workflows-lambda/package.workflow.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workflows-lambda/package.shared.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
         </state>
       </provider>
     </entry>
