@@ -44,7 +44,7 @@
         "origin": "IMPORTED",
         "originallySharedDir": "workflow/base"
     },
-    "garlictech.infrastructure/workflow/lambda@20.1.1": {
+    "garlictech.infrastructure/workflow/lambda@20.1.2": {
         "files": [
             {
                 "name": "Makefile",
@@ -82,7 +82,7 @@
         "origin": "IMPORTED",
         "originallySharedDir": "workflow/lambda"
     },
-    "garlictech.infrastructure/workflow/nodejs@20.1.1": {
+    "garlictech.infrastructure/workflow/nodejs@20.1.3": {
         "files": [
             {
                 "name": "Makefile",
