@@ -73,6 +73,9 @@ alltest:
 alltest-l:
 	jest -c project/config/jest.config.all.js --coverage
 
+alltest-ci:
+	${DOCKER_RUN_NODEPS} npm run alltest:ci
+
 # Start bash in the development service
 bash:
 	${DOCKER_RUN_NODEPS} /bin/bash
