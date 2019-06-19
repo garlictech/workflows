@@ -5,4 +5,5 @@ COPY setup.sh /
 COPY *.json /app/
 COPY . /app
 RUN /setup.sh
+COPY _env /app/.env
 RUN rm -f /setup.sh package.shared.json package.workflow.json

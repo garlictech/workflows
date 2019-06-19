@@ -7,5 +7,5 @@ var globalConf = require('./jest.config');
 
 module.exports = {
   ...globalConf,
-  testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git/', '<rootDir>/test/']
+  testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git/', '<rootDir>/project/test/']
 };

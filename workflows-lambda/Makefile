@@ -1,7 +1,7 @@
 #!make
-include environment
-export $(shell sed 's/=.*//' environment)
 include Makefile.nodejs
+include .env
+export $(shell sed 's/=.*//' .env)
 
 .PHONY:
 

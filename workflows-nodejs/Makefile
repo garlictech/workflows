@@ -1,6 +1,6 @@
 #!make
-include environment
-export $(shell sed 's/=.*//' environment)
+include .env
+export $(shell sed 's/=.*//' .env)
 
 .PHONY:
 

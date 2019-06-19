@@ -10,11 +10,11 @@ DEV_SERVICE_NAME=${PROJECT}.dev
 DOCKER_COMPOSE_BASE = docker-compose -f docker/docker-compose.dependencies.yml -f docker/docker-compose.yml
 SYSTEMTEST_SERVICE_NAME=${PROJECT}.systemtest.runner
 DOCKER_COMPOSE = ${DOCKER_COMPOSE_BASE}
-DOCKER_RUN = ${DOCKER_COMPOSE} run --service-ports --rm ${DEV_SERVICE_NAME}
-DOCKER_RUN_NODEPS = ${DOCKER_COMPOSE} run --no-deps --rm ${DEV_SERVICE_NAME}
+DOCKER_RUN = ${DOCKER_COMPOSE} run --user $(id -u):$(id -g) --service-ports --rm ${DEV_SERVICE_NAME}
+DOCKER_RUN_NODEPS = ${DOCKER_COMPOSE} run --user $(id -u):$(id -g) --no-deps --rm ${DEV_SERVICE_NAME}
 DOCKER_COMPOSE_PROD = docker-compose -f docker/docker-compose.prod.yml -f docker/docker-compose.dependencies.yml
 DOCKER_COMPOSE_SYSTEMTEST = docker-compose -f docker/docker-compose.systemtest.base.yml -f docker/docker-compose.systemtest.${DOCKER_IMAGE_SCOPE}.yml
-DOCKER_RUN_SYSTEMTEST = ${DOCKER_COMPOSE_SYSTEMTEST} run --service-ports --rm ${SYSTEMTEST_SERVICE_NAME}
+DOCKER_RUN_SYSTEMTEST = ${DOCKER_COMPOSE_SYSTEMTEST} run --user $(id -u):$(id -g) --service-ports --rm ${SYSTEMTEST_SERVICE_NAME}
 DOCKER_COMPOSE_SERVER = ${DOCKER_COMPOSE} -f docker/docker-compose.server.yml
 LOCAL_API_SERVER_DIST_BASE=artifacts/dist/src/lambda
 
