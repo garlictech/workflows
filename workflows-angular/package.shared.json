@@ -57,6 +57,7 @@
         "protractor": "^5.3.1",
         "jest-preset-angular": "^7.1.0",
         "ts-jest": "^24.0.0",
+        "typescript": "~3.2.0",
         "pug-jest": "^1.0.1"
     }
 }

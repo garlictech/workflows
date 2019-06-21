@@ -68,7 +68,7 @@ unittest-l:
 	jest -c project/config/jest.config.unittest.js
 
 alltest:
-	${DOCKER_RUN_NODEPS} npm run test
+	${DOCKER_RUN_NODEPS} npm run alltest
 
 alltest-l:
 	jest -c project/config/jest.config.all.js --coverage
