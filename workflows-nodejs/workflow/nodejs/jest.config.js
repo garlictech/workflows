@@ -16,5 +16,6 @@ module.exports = {
   cacheDirectory: './artifacts/cache',
   moduleDirectories: ['node_modules', 'project/src'],
   transformIgnorePatterns: ['node_modules/(?!@bit)'],
-  testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git']
+  testPathIgnorePatterns: ['/node_modules/', '/artifacts/', '<rootDir>/.git'],
+  testEnvironment: 'node'
 };

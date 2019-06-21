@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="94925056-f8fd-4461-88e0-51281fde6b71" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.bitmap" beforeDir="false" afterPath="$PROJECT_DIR$/.bitmap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-angular/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-angular/package.shared.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-base/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-base/package.shared.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-base/package.workflow.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-base/package.workflow.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/package.shared.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-nodejs/package.shared.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-nodejs/package.shared.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-nodejs/workflow/nodejs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-nodejs/workflow/nodejs/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-nodejs/workflow/nodejs/jest.config.unittest.js" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-nodejs/workflow/nodejs/jest.config.unittest.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -318,12 +307,12 @@
       <workItem from="1560440267051" duration="3936000" />
       <workItem from="1560510230321" duration="1197000" />
       <workItem from="1560803071313" duration="16291000" />
-      <workItem from="1560962468855" duration="6204000" />
+      <workItem from="1560962468855" duration="6387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77123000" />
+    <option name="totallyTimeSpent" value="77306000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
