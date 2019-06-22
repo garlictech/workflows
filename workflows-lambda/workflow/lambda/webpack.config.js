@@ -49,7 +49,8 @@ module.exports = {
             }
           }
         ]
-      }]
+      }
+    ]
   },
   plugins: [
     new webpack.IgnorePlugin({
