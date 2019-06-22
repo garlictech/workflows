@@ -5,7 +5,7 @@ export $(shell sed 's/=.*//' .env)
 .PHONY:
 
 typedoc:
-	typedoc /app/project/src --out /app/doc
+	typedoc /app/project/src --out /app/artifacts/doc
 
 compile:
 	gulp compile

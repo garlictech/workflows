@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94925056-f8fd-4461-88e0-51281fde6b71" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.bitmap" beforeDir="false" afterPath="$PROJECT_DIR$/.bitmap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-lambda/workflow/lambda/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workflows-nodejs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/workflows-nodejs/Makefile" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -57,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/workflows-nodejs/Makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+            <state relative-caret-position="315">
+              <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -315,21 +312,21 @@
       <workItem from="1560510230321" duration="1197000" />
       <workItem from="1560803071313" duration="16291000" />
       <workItem from="1560962468855" duration="7077000" />
-      <workItem from="1561196317964" duration="1665000" />
+      <workItem from="1561196317964" duration="2444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79661000" />
+    <option name="totallyTimeSpent" value="80440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18315019" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18315019" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.30555555" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.30555555" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Docker" order="3" />
@@ -675,8 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/workflows-nodejs/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="315">
+          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
