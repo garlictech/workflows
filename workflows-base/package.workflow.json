@@ -6,6 +6,7 @@
         "unittest:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest.config.unittest.js $@ --forceExit --ci",
         "alltest": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest.config.all.js --coverage $@ --forceExit",
         "alltest:ci": "chmod -R 777 /app/artifacts && export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest.config.all.js --coverage $@ --forceExit --ci && chmod -R 777 /app/artifacts",
+        "integration-test:ci": "export NODE_OPTIONS=--max_old_space_size=4096 && jest -c src/jest.config.all.js --forceExit --ci $@",
         "clean": "npm run rimraf -- artifacts/* artifacts/.awcache",
         "semantic-release": "scripts/semantic-release",
         "commit": "scripts/commit.sh",

@@ -45,6 +45,7 @@
         "@angular/compiler-cli": "~7.2.1",
         "@angular/language-service": "~7.2.1",
         "@schematics/schematics": "^0.13.8",
+        "@testing-library/angular": "^7.0.1",
         "jest-environment-jsdom-thirteen": "^1.0.1",
         "codelyzer": "~5.0.0",
         "tslint-angular": "^2.0.2",
