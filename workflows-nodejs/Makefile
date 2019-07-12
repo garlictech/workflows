@@ -40,7 +40,7 @@ alltest-ci:
 	- export NODE_OPTIONS=--max_old_space_size=4096
 	- jest -c project/config/jest.config.all.js --coverage --forceExit --detectOpenHandles --ci ; EXIT_CODE=$$?
 	- chmod -R 777 /app/artifacts
-  - exit $$EXIT_CODE
+	- exit $$EXIT_CODE
 
 format-fix:
 	cd /app/project && pretty-quick --staged
