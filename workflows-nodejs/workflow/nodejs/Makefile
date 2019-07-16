@@ -99,6 +99,7 @@ lint-fix-l:
 prettier:
 	${DOCKER_RUN_NODEPS} npm run prettier
 
+# Not sure if we should autofix anything, but need a second opinion.. add --check later for no autofix
 format-fix:
 	pretty-quick --staged
 

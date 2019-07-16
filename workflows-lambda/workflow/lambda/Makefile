@@ -12,6 +12,9 @@ deploy:
 remove:
 	serverless remove
 
+schema-regenerate:
+	yarn node ./tools/generate-schema.js
+
 setup:
 	echo "Updating package.json..."
 	export DOCKER_CMD="scripts/cat-package-json.sh" && docker-compose -f docker/docker-compose.yml -f docker/docker-compose.cmd.yml run --no-deps -T ${PROJECT}.dev > package.json
