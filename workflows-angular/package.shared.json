@@ -31,7 +31,6 @@
         "ng2-logger": "^2.0.0",
         "randomcolor": "^0.5.3",
         "ngrx-store-logger": "^0.2.0",
-        "ngrx-store-freeze": "^0.2.0",
         "lodash-es": "^4.17.11"
     },
     "resolutions": {
