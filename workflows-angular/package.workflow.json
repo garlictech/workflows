@@ -3,15 +3,15 @@
     "version": "1.0.0",
     "description": "Angular and Webpack 2 Starter",
     "scripts": {
-        "start": "ng serve --hmr --host 0.0.0.0 --port 8081 $@",
-        "start:poll": "ng serve --hmr --host 0.0.0.0 --port 8081 --poll",
-        "start:aot": "npm start --aot $@",
-        "start:prod": "npm run start:aot --prod",
-        "start:universal:debug": "node artifacts/dist/server.js",
-        "build:prod": "export NODE_OPTIONS=--max_old_space_size=4096 && npm run build:prod:debug --prod $@",
-        "build:prod:debug": "export NODE_OPTIONS=--max_old_space_size=4096 && ng build --configuration=$PROJECT_CONFIG $@",
-        "build:universal": "export NODE_OPTIONS=--max_old_space_size=4096 && ng run website:server && webpack --config webpack.server.config.js --colors",
-        "build:prod:stat": "export NODE_OPTIONS=--max_old_space_size=4096 && ng build --configuration=$PROJECT_CONFIG --prod --stats-json",
+        "start": "make start",
+        "start:poll": "make start-poll",
+        "start:aot": "make start-aot",
+        "start:prod": "make start-prod",
+        "start:universal:debug": "make start-universal-debug",
+        "build:prod": "npm run build:prod:debug --prod $@",
+        "build:prod:debug": "ng build --configuration=$PROJECT_CONFIG $@",
+        "build:universal": "ng run website:server && webpack --config webpack.server.config.js --colors",
+        "build:prod:stat": "ng build --configuration=$PROJECT_CONFIG --prod --stats-json",
         "bundle-report": "webpack-bundle-analyzer -h 0.0.0.0 artifacts/dist/browser/stats.json",
         "doc:build": "compodoc src -d ./artifacts/docs -p src/tsconfig.json --includes src/docs",
         "doc:serve": "compodoc src -s -r 8092 -d ./artifacts/docs -p src/tsconfig.json --includes src/docs",
@@ -27,7 +27,6 @@
         "webpack": "~4.27.0"
     },
     "devDependencies": {
-        "@nguniversal/express-engine": "~8.1.1",
-        "@nguniversal/module-map-ngfactory-loader": "~8.1.1"
+
     }
 }
