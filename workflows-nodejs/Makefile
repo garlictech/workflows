@@ -38,7 +38,7 @@ alltest:
 alltest-ci:
 	- chmod -R 777 /app/artifacts
 	- export NODE_OPTIONS=--max_old_space_size=4096;\
-  jest -c project/config/jest.config.all.js --forceExit --detectOpenHandles  --ci ;\
+  jest -c project/config/jest.config.all.js --forceExit --detectOpenHandles --coverage --ci ;\
   EXIT_CODE=$$?;\
 	chmod -R 777 /app/artifacts;\
 	exit $$EXIT_CODE
