@@ -1,15 +1,18 @@
 {
-    "dependencies": {
-        "cypress": "^3.2.0",
-        "cypress-cucumber-preprocessor": "^1.11.0",
-        "ts-loader": "^6.0.4",
-        "@cypress/webpack-preprocessor": "^4.1.0",
-        "@testing-library/cypress": "^4.0.4",
-        "webpack": "^4.35.3",
-        "typescript": "~3.2.0",
-        "test-data-bot": "^0.8.0",
-        "cypress-pipe": "^1.5.0"
-    },
-    "license": "MIT",
-    "private": true
+  "dependencies": {
+    "cypress": "^3.2.0",
+    "cypress-cucumber-preprocessor": "^1.11.0",
+    "ts-loader": "^6.0.4",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@testing-library/cypress": "^4.0.4",
+    "webpack": "^4.35.3",
+    "typescript": "~3.2.0",
+    "test-data-bot": "^0.8.0",
+    "cypress-pipe": "^1.5.0"
+  },
+  "license": "MIT",
+  "private": true,
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
 }
