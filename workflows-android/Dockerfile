@@ -2,7 +2,7 @@ FROM azabost/android-sdk-28
 WORKDIR /app
 
 ENV NO_UPDATE_NOTIFIER 1
-ENV NODE_OPTIONS=--max_old_space_size=4096
+ENV NODE_OPTIONS "--max_old_space_size=4096"
 
 COPY setup.sh /
 RUN /setup.sh && \
