@@ -1,6 +1,6 @@
 {
   "name": "@bit/garlictech.infrastructure.workflow.lambda",
-  "version": "22.0.2",
+  "version": "23.0.0",
   "homepage": "https://bit.dev/garlictech/infrastructure/workflow/lambda",
   "main": "index.js",
   "dependencies": {
