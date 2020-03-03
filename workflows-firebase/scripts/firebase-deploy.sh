@@ -4,5 +4,7 @@ COMPONENT=$2
 
 cd /app/project
 
-firebase use $PROJECT
-firebase deploy --token "$FIREBASE_TOKEN" --only hosting:${COMPONENT}-${PROJECT_CONFIG}
+echo "*******"
+echo $PROJECT-${PROJECT_CONFIG}
+firebase use $PROJECT-${PROJECT_CONFIG}
+firebase deploy --token "$FIREBASE_TOKEN" --only hosting:${COMPONENT}
