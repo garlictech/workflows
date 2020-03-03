@@ -4,7 +4,6 @@ mkdir -p artifacts
 
 # Jest watch workaround
 git init
-npm install --unsafe-perm=true -g yarn
 yarn global add bit-bin
 yarn install
 scripts/install_dependencies.js
